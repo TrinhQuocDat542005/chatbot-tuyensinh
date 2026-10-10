@@ -1,0 +1,25 @@
+[
+  {"id":"natural-year-major-context", "turns":[
+    {"text":"điểm chuẩn ngành Công nghệ thông tin năm 2026", "contains":["UTHUIT05A"]},
+    {"text":"còn năm 2023?", "contains":["Chưa có","2023"], "excludes":["UTHUIT05A"]},
+    {"text":"đổi ngành sang Ngôn ngữ Anh", "contains":["năm nào"]},
+    {"text":"2026", "contains":["UTHNNA01A"]}
+  ]},
+  {"id":"natural-score-form-correction", "turns":[
+    {"text":"tư vấn ngành theo điểm", "contains":["tổng điểm"]},
+    {"text":"24,5", "contains":["24.5/30"]},
+    {"text":"sửa điểm thành 26 điểm", "contains":["26/30"], "excludes":["24.5/30"]},
+    {"text":"bắt đầu lại", "contains":["phiên mới"]}
+  ]},
+  {"id":"natural-major-form-cancel", "turns":[
+    {"text":"giới thiệu ngành", "contains":["ngành nào"]},
+    {"text":"hủy tra cứu", "contains":["Đã hủy"]},
+    {"text":"giới thiệu ngành", "contains":["ngành nào"]},
+    {"text":"CNTT", "contains":["Công nghệ thông tin"]}
+  ]},
+  {"id":"natural-method-correction", "turns":[
+    {"text":"điểm chuẩn ngành Công nghệ thông tin năm 2026", "contains":["UTHUIT05A"]},
+    {"text":"theo THPT nhé", "contains":["Chưa có"], "excludes":["UTHUIT05A"]},
+    {"text":"theo phương thức xét tuyển kết hợp", "contains":["UTHUIT05A"]}
+  ]}
+]

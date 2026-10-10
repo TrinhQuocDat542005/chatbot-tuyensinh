@@ -1,0 +1,71 @@
+version: '3.1'
+nlu:
+- lookup: ten_nganh
+  examples: |
+    - Công nghệ kỹ thuật cơ khí
+    - Công nghệ kỹ thuật điều khiển và tự động hóa
+    - Công nghệ kỹ thuật giao thông
+    - Công nghệ kỹ thuật ô tô
+    - Công nghệ thông tin
+    - Hệ thống thông tin quản lý
+    - Khai thác vận tải
+    - Khoa học dữ liệu
+    - Khoa học hàng hải
+    - Kinh tế vận tải
+    - Kinh tế xây dựng
+    - Kỹ thuật cơ khí
+    - Kỹ thuật điện
+    - Kỹ thuật điện tử - viễn thông
+    - Kỹ thuật điều khiển và tự động hóa
+    - Kỹ thuật môi trường
+    - Kỹ thuật ô tô
+    - Kỹ thuật tàu thủy
+    - Kỹ thuật xây dựng
+    - Kỹ thuật xây dựng công trình giao thông
+    - Kỹ thuật xây dựng công trình thủy
+    - Logistics và quản lý chuỗi cung ứng
+    - Luật
+    - Mạng máy tính và truyền thông dữ liệu
+    - Ngôn ngữ Anh
+    - Quản lý xây dựng
+    - Quy hoạch và quản lý giao thông
+    - Logistics và hạ tầng giao thông
+    - Công nghệ ô tô số
+    - Khoa học dữ liệu và AI
+    - Smart logistics
+    - Truyền thông số và đổi mới sáng tạo
+    - Kinh tế số và trí tuệ nhân tạo
+    - Quản lý và kinh doanh vận tải
+    - Quản trị logistics và vận tải đa phương thức
+    - Khai thác đường sắt tốc độ cao
+    - Điều khiển và quản lý tàu biển
+    - Khai thác máy tàu thủy và quản lý kỹ thuật
+    - Kỹ thuật điện, điện tử và điều khiển
+    - Cơ điện tử
+    - Quản lý cảng và logistics
+    - Quản lý hàng hải và đường thủy
+    - Kinh tế hàng hải và đường thủy
+    - Kinh tế hàng không
+    - Kinh tế và quản lý bất động sản
+    - Cơ khí tự động
+    - Cơ khí đường sắt tốc độ cao và đường sắt đô thị
+    - Kỹ thuật cơ khí hàng không
+    - Quản lý và khai thác Máy xếp dỡ - Xây dựng
+    - Điện công nghiệp
+    - Hệ thống điện giao thông
+    - Năng lượng tái tạo
+    - Kỹ thuật điều khiển tự động và thông tin tín hiệu đường sắt tốc độ cao
+    - Quản lý an toàn và môi trường
+    - Cơ khí ô tô
+    - Cơ điện tử ô tô
+    - Kỹ thuật tàu thủy, công trình nổi và quản lý hệ thống công nghiệp
+    - Xây dựng dân dụng và công nghiệp
+    - Kỹ thuật kết cấu công trình
+    - Thiết kế nội thất
+    - Xây dựng cầu đường
+    - Xây dựng đường bộ
+    - Xây dựng công trình giao thông đô thị
+    - Xây dựng đường sắt tốc độ cao và đường sắt đô thị
+    - Xây dựng và quản lý cảng - công trình giao thông thủy
+    - Kỹ thuật thiết kế vi mạch và AI
+    - Tiếng anh thương mại, Logistics và vận tải quốc tế

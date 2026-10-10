@@ -1,0 +1,373 @@
+{
+  "checked_at": "2026-10-10",
+  "records": [
+    {
+      "legacy_code": "7510201",
+      "legacy_name": "Công nghệ kỹ thuật cơ khí",
+      "canonical_id": "uth-01",
+      "canonical_name": "Công nghệ kỹ thuật cơ khí",
+      "identity_status": "verified_name",
+      "official_code_status": "pending",
+      "legacy_scores_status": "pending",
+      "profile_status": "pending",
+      "notes": [
+        "Điểm 2020–2024 chưa có nguồn/phương thức/thang điểm; cách ly khỏi runtime.",
+        "Giới thiệu và nghề nghiệp chưa kiểm chứng; giữ trong bản gốc.",
+        "Nghề nghiệp bản gốc tập trung cảng/logistics, cần kiểm chứng riêng."
+      ]
+    },
+    {
+      "legacy_code": "7510303",
+      "legacy_name": "Công nghệ kỹ thuật điều khiển và tự động hóa",
+      "canonical_id": "uth-02",
+      "canonical_name": "Công nghệ kỹ thuật điều khiển và tự động hóa",
+      "identity_status": "verified_name",
+      "official_code_status": "pending",
+      "legacy_scores_status": "pending",
+      "profile_status": "pending",
+      "notes": [
+        "Điểm 2020–2024 chưa có nguồn/phương thức/thang điểm; cách ly khỏi runtime.",
+        "Giới thiệu và nghề nghiệp chưa kiểm chứng; giữ trong bản gốc."
+      ]
+    },
+    {
+      "legacy_code": "7510104",
+      "legacy_name": "Ngành công nghệ kỹ thuật giao thông",
+      "canonical_id": "uth-03",
+      "canonical_name": "Công nghệ kỹ thuật giao thông",
+      "identity_status": "verified_name",
+      "official_code_status": "pending",
+      "legacy_scores_status": "pending",
+      "profile_status": "pending",
+      "notes": [
+        "Điểm 2020–2024 chưa có nguồn/phương thức/thang điểm; cách ly khỏi runtime.",
+        "Giới thiệu và nghề nghiệp chưa kiểm chứng; giữ trong bản gốc."
+      ]
+    },
+    {
+      "legacy_code": "7510205",
+      "legacy_name": "Công nghệ kỹ thuật ô tô",
+      "canonical_id": "uth-04",
+      "canonical_name": "Công nghệ kỹ thuật ô tô",
+      "identity_status": "verified_name",
+      "official_code_status": "pending",
+      "legacy_scores_status": "pending",
+      "profile_status": "pending",
+      "notes": [
+        "Điểm 2020–2024 chưa có nguồn/phương thức/thang điểm; cách ly khỏi runtime.",
+        "Giới thiệu và nghề nghiệp chưa kiểm chứng; giữ trong bản gốc."
+      ]
+    },
+    {
+      "legacy_code": "7480201",
+      "legacy_name": "Công nghệ thông tin",
+      "canonical_id": "uth-05",
+      "canonical_name": "Công nghệ thông tin",
+      "identity_status": "verified_name",
+      "official_code_status": "pending",
+      "legacy_scores_status": "pending",
+      "profile_status": "pending",
+      "notes": [
+        "Điểm 2020–2024 chưa có nguồn/phương thức/thang điểm; cách ly khỏi runtime.",
+        "Giới thiệu và nghề nghiệp chưa kiểm chứng; giữ trong bản gốc."
+      ]
+    },
+    {
+      "legacy_code": "7340405",
+      "legacy_name": "Ngành Hệ Thống Thông Tin Quản Lý",
+      "canonical_id": "uth-06",
+      "canonical_name": "Hệ thống thông tin quản lý",
+      "identity_status": "verified_name",
+      "official_code_status": "pending",
+      "legacy_scores_status": "pending",
+      "profile_status": "pending",
+      "notes": [
+        "Điểm 2020–2024 chưa có nguồn/phương thức/thang điểm; cách ly khỏi runtime.",
+        "Giới thiệu và nghề nghiệp chưa kiểm chứng; giữ trong bản gốc."
+      ]
+    },
+    {
+      "legacy_code": "7840101",
+      "legacy_name": "Ngành khai thác vận tải",
+      "canonical_id": "uth-07",
+      "canonical_name": "Khai thác vận tải",
+      "identity_status": "verified_name",
+      "official_code_status": "pending",
+      "legacy_scores_status": "pending",
+      "profile_status": "pending",
+      "notes": [
+        "Điểm 2020–2024 chưa có nguồn/phương thức/thang điểm; cách ly khỏi runtime.",
+        "Giới thiệu và nghề nghiệp chưa kiểm chứng; giữ trong bản gốc."
+      ]
+    },
+    {
+      "legacy_code": "7460108",
+      "legacy_name": "Khoa học dữ liệu",
+      "canonical_id": "uth-08",
+      "canonical_name": "Khoa học dữ liệu",
+      "identity_status": "verified_name",
+      "official_code_status": "pending",
+      "legacy_scores_status": "pending",
+      "profile_status": "pending",
+      "notes": [
+        "Điểm 2020–2024 chưa có nguồn/phương thức/thang điểm; cách ly khỏi runtime.",
+        "Giới thiệu và nghề nghiệp chưa kiểm chứng; giữ trong bản gốc."
+      ]
+    },
+    {
+      "legacy_code": "7840106",
+      "legacy_name": "Khoa học Hàng hải",
+      "canonical_id": "uth-09",
+      "canonical_name": "Khoa học hàng hải",
+      "identity_status": "verified_name",
+      "official_code_status": "pending",
+      "legacy_scores_status": "pending",
+      "profile_status": "pending",
+      "notes": [
+        "Điểm 2020–2024 chưa có nguồn/phương thức/thang điểm; cách ly khỏi runtime.",
+        "Giới thiệu và nghề nghiệp chưa kiểm chứng; giữ trong bản gốc."
+      ]
+    },
+    {
+      "legacy_code": "7840104",
+      "legacy_name": "Kinh tế Vận tải",
+      "canonical_id": "uth-10",
+      "canonical_name": "Kinh tế vận tải",
+      "identity_status": "verified_name",
+      "official_code_status": "pending",
+      "legacy_scores_status": "pending",
+      "profile_status": "pending",
+      "notes": [
+        "Điểm 2020–2024 chưa có nguồn/phương thức/thang điểm; cách ly khỏi runtime.",
+        "Giới thiệu và nghề nghiệp chưa kiểm chứng; giữ trong bản gốc."
+      ]
+    },
+    {
+      "legacy_code": "7580301",
+      "legacy_name": "Kinh tế Xây dựng",
+      "canonical_id": "uth-11",
+      "canonical_name": "Kinh tế xây dựng",
+      "identity_status": "verified_name",
+      "official_code_status": "pending",
+      "legacy_scores_status": "pending",
+      "profile_status": "pending",
+      "notes": [
+        "Điểm 2020–2024 chưa có nguồn/phương thức/thang điểm; cách ly khỏi runtime.",
+        "Giới thiệu và nghề nghiệp chưa kiểm chứng; giữ trong bản gốc."
+      ]
+    },
+    {
+      "legacy_code": "7520103",
+      "legacy_name": "Kỹ thuật Cơ khí",
+      "canonical_id": "uth-12",
+      "canonical_name": "Kỹ thuật cơ khí",
+      "identity_status": "verified_name",
+      "official_code_status": "pending",
+      "legacy_scores_status": "pending",
+      "profile_status": "pending",
+      "notes": [
+        "Điểm 2020–2024 chưa có nguồn/phương thức/thang điểm; cách ly khỏi runtime.",
+        "Giới thiệu và nghề nghiệp chưa kiểm chứng; giữ trong bản gốc."
+      ]
+    },
+    {
+      "legacy_code": "7520201",
+      "legacy_name": "Kỹ thuật Điện",
+      "canonical_id": "uth-13",
+      "canonical_name": "Kỹ thuật điện",
+      "identity_status": "verified_name",
+      "official_code_status": "pending",
+      "legacy_scores_status": "pending",
+      "profile_status": "pending",
+      "notes": [
+        "Điểm 2020–2024 chưa có nguồn/phương thức/thang điểm; cách ly khỏi runtime.",
+        "Giới thiệu và nghề nghiệp chưa kiểm chứng; giữ trong bản gốc."
+      ]
+    },
+    {
+      "legacy_code": "7520207",
+      "legacy_name": "Kỹ thuật điện, điện tử và điều khiển",
+      "canonical_id": "uth-14",
+      "canonical_name": "Kỹ thuật điện tử - viễn thông",
+      "identity_status": "verified_name",
+      "official_code_status": "pending",
+      "legacy_scores_status": "pending",
+      "profile_status": "pending",
+      "notes": [
+        "Điểm 2020–2024 chưa có nguồn/phương thức/thang điểm; cách ly khỏi runtime.",
+        "Giới thiệu và nghề nghiệp chưa kiểm chứng; giữ trong bản gốc.",
+        "Tên cũ Kỹ thuật điện, điện tử và điều khiển là chuyên ngành Khoa học hàng hải; mã 7520207 được đối chiếu là Kỹ thuật điện tử - viễn thông."
+      ]
+    },
+    {
+      "legacy_code": "7520216",
+      "legacy_name": "Kỹ thuật Điều khiển và Tự động hóa",
+      "canonical_id": "uth-15",
+      "canonical_name": "Kỹ thuật điều khiển và tự động hóa",
+      "identity_status": "verified_name",
+      "official_code_status": "pending",
+      "legacy_scores_status": "pending",
+      "profile_status": "pending",
+      "notes": [
+        "Điểm 2020–2024 chưa có nguồn/phương thức/thang điểm; cách ly khỏi runtime.",
+        "Giới thiệu và nghề nghiệp chưa kiểm chứng; giữ trong bản gốc."
+      ]
+    },
+    {
+      "legacy_code": "7520320",
+      "legacy_name": "Kỹ thuật Môi trường",
+      "canonical_id": "uth-16",
+      "canonical_name": "Kỹ thuật môi trường",
+      "identity_status": "verified_name",
+      "official_code_status": "pending",
+      "legacy_scores_status": "pending",
+      "profile_status": "pending",
+      "notes": [
+        "Điểm 2020–2024 chưa có nguồn/phương thức/thang điểm; cách ly khỏi runtime.",
+        "Giới thiệu và nghề nghiệp chưa kiểm chứng; giữ trong bản gốc."
+      ]
+    },
+    {
+      "legacy_code": "7520130",
+      "legacy_name": "Kỹ thuật Ô tô",
+      "canonical_id": "uth-17",
+      "canonical_name": "Kỹ thuật ô tô",
+      "identity_status": "verified_name",
+      "official_code_status": "pending",
+      "legacy_scores_status": "pending",
+      "profile_status": "pending",
+      "notes": [
+        "Điểm 2020–2024 chưa có nguồn/phương thức/thang điểm; cách ly khỏi runtime.",
+        "Giới thiệu và nghề nghiệp chưa kiểm chứng; giữ trong bản gốc."
+      ]
+    },
+    {
+      "legacy_code": "7520122",
+      "legacy_name": "Kỹ thuật Tàu thủy",
+      "canonical_id": "uth-18",
+      "canonical_name": "Kỹ thuật tàu thủy",
+      "identity_status": "verified_name",
+      "official_code_status": "pending",
+      "legacy_scores_status": "pending",
+      "profile_status": "pending",
+      "notes": [
+        "Điểm 2020–2024 chưa có nguồn/phương thức/thang điểm; cách ly khỏi runtime.",
+        "Giới thiệu và nghề nghiệp chưa kiểm chứng; giữ trong bản gốc."
+      ]
+    },
+    {
+      "legacy_code": "7580201",
+      "legacy_name": "Kỹ thuật Xây dựng",
+      "canonical_id": "uth-19",
+      "canonical_name": "Kỹ thuật xây dựng",
+      "identity_status": "verified_name",
+      "official_code_status": "pending",
+      "legacy_scores_status": "pending",
+      "profile_status": "pending",
+      "notes": [
+        "Điểm 2020–2024 chưa có nguồn/phương thức/thang điểm; cách ly khỏi runtime.",
+        "Giới thiệu và nghề nghiệp chưa kiểm chứng; giữ trong bản gốc."
+      ]
+    },
+    {
+      "legacy_code": "7580205",
+      "legacy_name": "Kỹ thuật Xây dựng công trình giao thông",
+      "canonical_id": "uth-20",
+      "canonical_name": "Kỹ thuật xây dựng công trình giao thông",
+      "identity_status": "verified_name",
+      "official_code_status": "pending",
+      "legacy_scores_status": "pending",
+      "profile_status": "pending",
+      "notes": [
+        "Điểm 2020–2024 chưa có nguồn/phương thức/thang điểm; cách ly khỏi runtime.",
+        "Giới thiệu và nghề nghiệp chưa kiểm chứng; giữ trong bản gốc."
+      ]
+    },
+    {
+      "legacy_code": "7580202",
+      "legacy_name": "Kinh tế xây dựng",
+      "canonical_id": "uth-21",
+      "canonical_name": "Kỹ thuật xây dựng công trình thủy",
+      "identity_status": "verified_name",
+      "official_code_status": "pending",
+      "legacy_scores_status": "pending",
+      "profile_status": "pending",
+      "notes": [
+        "Điểm 2020–2024 chưa có nguồn/phương thức/thang điểm; cách ly khỏi runtime.",
+        "Giới thiệu và nghề nghiệp chưa kiểm chứng; giữ trong bản gốc.",
+        "Tên Kinh tế xây dựng gắn mã 7580202 không khớp; danh mục sửa thành Kỹ thuật xây dựng công trình thủy."
+      ]
+    },
+    {
+      "legacy_code": "7510605A",
+      "legacy_name": "Logistics và Quản lý chuỗi cung ứng",
+      "canonical_id": "uth-22",
+      "canonical_name": "Logistics và quản lý chuỗi cung ứng",
+      "identity_status": "verified_name",
+      "official_code_status": "pending",
+      "legacy_scores_status": "pending",
+      "profile_status": "pending",
+      "notes": [
+        "Điểm 2020–2024 chưa có nguồn/phương thức/thang điểm; cách ly khỏi runtime.",
+        "Giới thiệu và nghề nghiệp chưa kiểm chứng; giữ trong bản gốc.",
+        "7510605A là mã chương trình cũ, không tự nhận là mã ngành chính thức."
+      ]
+    },
+    {
+      "legacy_code": "7380101 ",
+      "legacy_name": "Luật",
+      "canonical_id": "uth-23",
+      "canonical_name": "Luật",
+      "identity_status": "verified_name",
+      "official_code_status": "pending",
+      "legacy_scores_status": "pending",
+      "profile_status": "pending",
+      "notes": [
+        "Điểm 2020–2024 chưa có nguồn/phương thức/thang điểm; cách ly khỏi runtime.",
+        "Giới thiệu và nghề nghiệp chưa kiểm chứng; giữ trong bản gốc."
+      ]
+    },
+    {
+      "legacy_code": "7480102",
+      "legacy_name": "Mạng máy tính và Truyền thông dữ liệu",
+      "canonical_id": "uth-24",
+      "canonical_name": "Mạng máy tính và truyền thông dữ liệu",
+      "identity_status": "verified_name",
+      "official_code_status": "verified",
+      "legacy_scores_status": "pending",
+      "profile_status": "pending",
+      "notes": [
+        "Điểm 2020–2024 chưa có nguồn/phương thức/thang điểm; cách ly khỏi runtime.",
+        "Giới thiệu và nghề nghiệp chưa kiểm chứng; giữ trong bản gốc."
+      ]
+    },
+    {
+      "legacy_code": "7220201",
+      "legacy_name": "Ngôn ngữ Anh",
+      "canonical_id": "uth-25",
+      "canonical_name": "Ngôn ngữ Anh",
+      "identity_status": "verified_name",
+      "official_code_status": "pending",
+      "legacy_scores_status": "pending",
+      "profile_status": "pending",
+      "notes": [
+        "Điểm 2020–2024 chưa có nguồn/phương thức/thang điểm; cách ly khỏi runtime.",
+        "Giới thiệu và nghề nghiệp chưa kiểm chứng; giữ trong bản gốc."
+      ]
+    },
+    {
+      "legacy_code": "7580302",
+      "legacy_name": "Quản lý Xây dựng",
+      "canonical_id": "uth-26",
+      "canonical_name": "Quản lý xây dựng",
+      "identity_status": "verified_name",
+      "official_code_status": "pending",
+      "legacy_scores_status": "pending",
+      "profile_status": "pending",
+      "notes": [
+        "Điểm 2020–2024 chưa có nguồn/phương thức/thang điểm; cách ly khỏi runtime.",
+        "Giới thiệu và nghề nghiệp chưa kiểm chứng; giữ trong bản gốc."
+      ]
+    }
+  ]
+}

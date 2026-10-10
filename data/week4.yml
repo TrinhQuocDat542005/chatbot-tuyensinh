@@ -1,0 +1,163 @@
+version: '3.1'
+nlu:
+- intent: bo_sung_tra_cuu
+  examples: |
+    - còn năm [2023](nam)?
+    - đổi sang ngành [Logistics và quản lý chuỗi cung ứng](ten_nganh)
+    - tôi muốn tra cứu [Công nghệ thông tin](ten_nganh)
+    - [CNTT](ten_nganh)
+    - [Công nghệ kỹ thuật ô tô](ten_nganh)
+    - [Kinh tế xây dựng](ten_nganh)
+    - [Mạng máy tính và truyền thông dữ liệu](ten_nganh)
+    - ngành đó
+    - ngành này thì sao
+    - còn ngành đó năm [2024](nam)
+    - mình muốn đổi năm thành [2026](nam)
+    - năm [2025](nam)
+    - [2026](nam)
+    - theo phương thức xét tuyển kết hợp
+    - theo THPT nhé
+    - học bạ thì sao
+    - còn đánh giá năng lực
+    - đổi ngành sang [Ngôn ngữ Anh](ten_nganh)
+    - chuyển sang [Kỹ thuật xây dựng](ten_nganh)
+    - doi sang [Cong nghe thong tin](ten_nganh)
+    - nam [2026](nam) thi sao
+- intent: bat_dau_lai
+  examples: |
+    - bắt đầu lại
+    - xóa thông tin cũ
+    - tạo phiên mới
+    - reset cuộc trò chuyện
+    - mình muốn làm lại từ đầu
+    - quên hết những gì tôi vừa nhập
+    - bat dau lai
+    - khoi dong lai cuoc tro chuyen
+    - xoa toan bo ngu canh
+- intent: huy_tra_cuu
+  examples: |
+    - hủy tra cứu
+    - hủy tư vấn
+    - không tra cứu nữa
+    - dừng nhập thông tin
+    - thôi không hỏi nữa
+    - thoát phần tra cứu này
+    - huy tra cuu
+    - dung tu van
+    - bỏ yêu cầu hiện tại
+- intent: hoi_diem_chuan_cua_nganh
+  examples: |
+    - tra cứu điểm chuẩn
+    - diem chuan nganh [CNTT](ten_nganh) nam [2026](nam)
+    - điểm trúng tuyển ngành đó là bao nhiêu
+    - xem mức điểm chuẩn của ngành này năm nay
+    - cho em điểm chuẩn [Ngôn ngữ Anh](ten_nganh) xét tuyển kết hợp năm [2026](nam)
+    - diem chuan nganh [Logistics và quản lý chuỗi cung ứng](ten_nganh) nam ngoai
+- intent: hoi_thong_tin_gioi_thieu_chung_cua_nganh
+  examples: |
+    - giới thiệu ngành
+    - gioi thieu nganh [Cong nghe thong tin](ten_nganh)
+    - ngành đó học gì
+    - em muốn tìm hiểu ngành này
+    - tổng quan ngành [Kỹ thuật xây dựng](ten_nganh)
+- intent: hoi_co_hoi_viec_lam_cua_nganh
+  examples: |
+    - ngành đó ra trường làm gì
+    - cơ hội nghề nghiệp của ngành này
+    - hoc [CNTT](ten_nganh) ra lam gi
+    - hỏi về việc làm sau tốt nghiệp
+- intent: hoi_khoi_tuyen_sinh_cua_nganh
+  examples: |
+    - ngành đó xét những tổ hợp nào năm [2026](nam)
+    - khoi xet tuyen nganh [CNTT](ten_nganh)
+    - tra cứu khối tuyển sinh
+    - tổ hợp môn nào dùng xét tuyển vào ngành này
+- intent: tu_van_nganh_theo_diem
+  examples: |
+    - tư vấn ngành theo điểm
+    - em chưa nhập tổng điểm
+    - sửa điểm thành [23,5](diem) điểm
+    - đổi tổng điểm của tôi thành [26](diem) điểm
+    - em duoc [24](diem) diem nen hoc gi
+    - tổng điểm mới là [0](diem)
+    - tổng điểm là [31](diem)
+- intent: cung_cap_diem
+  examples: |
+    - sửa điểm Toán thành [7](d), Hóa [8](d), Anh [9](d)
+    - Toan [8](d), Hoa [7](d), Anh [9](d)
+    - Toán [7](d) và Anh [8](d)
+    - Toán [11](d), Hóa [8](d), Anh [9](d)
+- intent: hoi_hoc_phi
+  examples: |
+    - hoc phi UTH bao nhieu
+    - tiền học năm nay của trường
+    - em muốn xem mức học phí năm [2026](nam)
+- intent: hoi_dia_diem_hoc
+  examples: |
+    - dia diem hoc cua UTH
+    - học ở cơ sở nào
+    - địa chỉ các cơ sở trường
+- intent: hoi_phuong_thuc_xet_tuyen
+  examples: |
+    - truong tuyen sinh theo cach nao
+    - trường hỗ trợ những hình thức xét tuyển nào
+- intent: hoi_nganh_tuyen_sinh
+  examples: |
+    - danh sach nganh dao tao UTH
+    - trường đang đào tạo những ngành nào
+- intent: hoi_chuong_trinh_dao_tao_cua_truong
+  examples: |
+    - chuong trinh dao tao UTH
+    - trường có hệ đào tạo gì
+- intent: hoi_co_so_vat_chat
+  examples: |
+    - co so vat chat truong ra sao
+    - có khu ký túc xá cho sinh viên không
+- intent: chao_hoi
+  examples: |
+    - chao ban
+    - chao chatbot tuyen sinh
+- intent: nhap_ten
+  examples: |
+    - mình tên [Lan](ten_nguoi_dung)
+    - em là [Minh](ten_nguoi_dung)
+- intent: cam_on
+  examples: |
+    - cam on ban nhieu
+    - thông tin rất hữu ích cảm ơn nhé
+- intent: tam_biet
+  examples: |
+    - chao tam biet
+    - mình đi đây hẹn gặp lại
+- intent: nlu_fallback
+  examples: |
+    - kể một câu chuyện cổ tích đi
+    - hướng dẫn nấu món bún bò
+    - mua giúp tôi điện thoại mới
+    - giá đô la hôm nay tăng không
+    - giải thích cách đầu tư tiền ảo
+    - tư vấn chọn quỹ tài chính
+    - viết code game đua xe
+    - dịch đoạn truyện này sang tiếng Nhật
+    - hát một bài nhạc vui
+    - tôi muốn xem phim ở rạp
+    - tính đạo hàm hàm số này
+    - tìm thuốc trị cảm cúm
+    - căn bệnh này chữa ra sao
+    - đội bóng nào đá tốt nhất
+    - lịch thi đấu bóng chuyền khi nào
+    - nhiệt độ ngoài trời là bao nhiêu
+    - dự báo mưa tuần sau
+    - tìm nhà hàng ngon gần đây
+    - lên lịch đi du lịch nước ngoài
+    - cách nuôi mèo trong nhà
+    - tôi muốn mua một chiếc xe máy
+    - đặt phòng khách sạn cho ngày nghỉ
+    - tìm công thức làm bánh mì
+    - viết một quảng cáo mỹ phẩm
+    - tôi muốn hỏi tuyển sinh ở một trường khác
+    - điểm chuẩn của Đại học Y Dược
+    - học phí trường Đại học Kinh tế Quốc dân
+    - abcxyz không liên quan
+    - qwer zxcv blabla
+    - 1234567890

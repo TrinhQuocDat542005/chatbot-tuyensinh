@@ -1,0 +1,11 @@
+version: '3.1'
+nlu:
+- regex: nam
+  examples: |
+    - \b(?:19|20)\d{2}\b
+- regex: d
+  examples: |
+    - \b\d+(?:[.,]\d+)?(?=\s*điểm)
+- regex: mon_hoc
+  examples: |
+    - (?i)\b(?:Toán|Vật lý|Lý|Hóa|Tiếng Anh|Anh|Ngữ văn|Văn|Sinh|Sử|Địa)\b

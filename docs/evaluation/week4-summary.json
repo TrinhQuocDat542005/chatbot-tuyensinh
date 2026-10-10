@@ -1,0 +1,1153 @@
+{
+  "evaluated_at": "2026-10-10",
+  "limitations": [
+    "Authored examples, not an independent real-user dataset.",
+    "Evaluation errors have been reviewed; subsequent runs are regression checks, not blind evaluation.",
+    "No exact text overlap with training; semantic similarity is not ruled out.",
+    "Baseline lacks bat_dau_lai, bo_sung_tra_cuu and huy_tra_cuu; scope differs.",
+    "Fresh training can produce different weights and metrics."
+  ],
+  "final_model": {
+    "path": "models/admissions-week4.tar.gz",
+    "sha256": "f619a4e1f7194cc00c29e888b79005384ebf641edb7e30487ba8df4235d98fbe",
+    "bytes": 33920915
+  },
+  "final_config": {
+    "path": "config.yml",
+    "sha256": "93fec4f63c4a4d76202a3f3ba7875f1aac23b1b5bed328456663c2c16a204e0c"
+  },
+  "training_files": {
+    "data/intent_coverage.yml": "042796551f3bf40f9a089720df7f42f5c293d8dd84d7856d6d0b56246e2d61d2",
+    "data/lookup.yml": "f4f6bf185811dd641d4aa32a08711a8bb17d06392813133898dca802e510cb3b",
+    "data/nlu.yml": "391eb4c221a3de02b4932c7137cf18f287211f6787323cc1cd199e0bf6b9f8aa",
+    "data/regex.yml": "c1cab5d03ab2dee43b78b636dc2631dbb19e3447044f63f4f07e1c286fa167ba",
+    "data/rules.yml": "bdc0549b36d13dce0d5a6ca65f8ee65f79a33cf096f982769e744f0ba586929d",
+    "data/stories.yml": "4ef0727680d65a756aacb2db32869f29f9e8b364fc6fad9247709cb2519700ca",
+    "data/week4.yml": "da4471c093c7d7e5df6e8e46157e7ebea93f549cc51ae844a094957fca3160f4"
+  },
+  "runtime_code_sha256": {
+    "actions/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "actions/actions.py": "d40ec1dddd93f3be0fc8a2e1af297ae02966cf30f1096ca4f4ceb9a4a80fb5e8",
+    "actions/admissions.py": "f5734370b1f7dc98ecfc0adea27ffbaa6332fab9986071779b6cd0796a03c0d2",
+    "actions/conversation.py": "2d7f582fe023e80ee72bf50fc85b79fbe2aa3b2d9aaadd9cefd32993a3b1232f",
+    "actions/entities.py": "66014c42fd4672260e082fe49923b2c3b3c7cc84e733b615df43b142d61b9b4e",
+    "actions/fallback.py": "c9ffdd7cc14afb9ac4ae49a39c5f1040409277cfc219f3e0a958e2b14ffa2223",
+    "actions/repository.py": "2525496afefca02ccb02a72ea63fc3569961b63787bce93505c5de4dc64266b7",
+    "components/__init__.py": "f09f74d2a6a81f12258e0946fe50fa72f425e7b820f53865c3cd9d0204956adc",
+    "components/entity_filter.py": "b763d4a91c29a4932397d63cdc0559825cfc4a9652fe9009037b0cecc4d2f4c5"
+  },
+  "reports_sha256": {
+    "results/nlu/final.json": "e5f16e77e2e1b255f9c430e52fb6f36472ffb8bb85e4342e39e1efefca6fde2b",
+    "results/nlu/dev-final.json": "e39a623d5417264c9a3361f689e7f2d875ff5b8f0bf6be9faf2f196edbd58239",
+    "results/nlu/baseline.json": "baf5e876f332516c9d4815ab5705c135bd052f2d73d85723e834dd7fb7c342d8",
+    "results/core-coverage/story_report.json": "8af771f37a65204d7265fbc5052b86b5cbfcde00a162376054292d7d20d46fb3"
+  },
+  "baseline": {
+    "dataset": "tests/evaluation/nlu.yml",
+    "dataset_sha256": "3e85fb125592914215f33d77b4902824d128bac3ee9049b1b85df0ad693603c0",
+    "count": 154,
+    "hard_or_ood_count": 54,
+    "macro_f1_intent": 0.43331097784879297,
+    "entity_exact_span": {
+      "tp": 96,
+      "fp": 98,
+      "fn": 7,
+      "precision": 0.4948453608247423,
+      "recall": 0.9320388349514563,
+      "f1": 0.6464646464646465
+    }
+  },
+  "final": {
+    "dataset": "tests/evaluation/nlu.yml",
+    "dataset_sha256": "3e85fb125592914215f33d77b4902824d128bac3ee9049b1b85df0ad693603c0",
+    "count": 154,
+    "hard_or_ood_count": 54,
+    "macro_f1_intent": 0.9246518458500025,
+    "entity_exact_span": {
+      "tp": 93,
+      "fp": 0,
+      "fn": 10,
+      "precision": 1.0,
+      "recall": 0.9029126213592233,
+      "f1": 0.9489795918367347
+    }
+  },
+  "development_final": {
+    "dataset": "tests/evaluation/dev.yml",
+    "dataset_sha256": "fe95071263bb4a9bd3f5442821ffbeb97d3dc33436907cf0c8d580d5d02f57be",
+    "count": 44,
+    "hard_or_ood_count": 4,
+    "macro_f1_intent": 0.9788359788359787,
+    "entity_exact_span": {
+      "tp": 28,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    }
+  },
+  "fallback_threshold": 0.5,
+  "final_intent_report": {
+    "bat_dau_lai": {
+      "precision": 1.0,
+      "recall": 0.8571428571428571,
+      "f1-score": 0.923076923076923,
+      "support": 7
+    },
+    "bo_sung_tra_cuu": {
+      "precision": 0.75,
+      "recall": 0.8571428571428571,
+      "f1-score": 0.7999999999999999,
+      "support": 7
+    },
+    "cam_on": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 7
+    },
+    "chao_hoi": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 7
+    },
+    "cung_cap_diem": {
+      "precision": 1.0,
+      "recall": 0.8571428571428571,
+      "f1-score": 0.923076923076923,
+      "support": 7
+    },
+    "hoi_chuong_trinh_dao_tao_cua_truong": {
+      "precision": 0.8571428571428571,
+      "recall": 0.8571428571428571,
+      "f1-score": 0.8571428571428571,
+      "support": 7
+    },
+    "hoi_co_hoi_viec_lam_cua_nganh": {
+      "precision": 0.875,
+      "recall": 1.0,
+      "f1-score": 0.9333333333333333,
+      "support": 7
+    },
+    "hoi_co_so_vat_chat": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 7
+    },
+    "hoi_dia_diem_hoc": {
+      "precision": 1.0,
+      "recall": 0.8571428571428571,
+      "f1-score": 0.923076923076923,
+      "support": 7
+    },
+    "hoi_diem_chuan_cua_nganh": {
+      "precision": 0.75,
+      "recall": 0.8571428571428571,
+      "f1-score": 0.7999999999999999,
+      "support": 7
+    },
+    "hoi_hoc_phi": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 7
+    },
+    "hoi_khoi_tuyen_sinh_cua_nganh": {
+      "precision": 1.0,
+      "recall": 0.8571428571428571,
+      "f1-score": 0.923076923076923,
+      "support": 7
+    },
+    "hoi_nganh_tuyen_sinh": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 7
+    },
+    "hoi_phuong_thuc_xet_tuyen": {
+      "precision": 1.0,
+      "recall": 0.8571428571428571,
+      "f1-score": 0.923076923076923,
+      "support": 7
+    },
+    "hoi_thong_tin_gioi_thieu_chung_cua_nganh": {
+      "precision": 1.0,
+      "recall": 0.7142857142857143,
+      "f1-score": 0.8333333333333333,
+      "support": 7
+    },
+    "huy_tra_cuu": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 7
+    },
+    "nhap_ten": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 7
+    },
+    "nlu_fallback": {
+      "precision": 0.5882352941176471,
+      "recall": 0.7142857142857143,
+      "f1-score": 0.6451612903225806,
+      "support": 14
+    },
+    "tam_biet": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 7
+    },
+    "tu_van_nganh_theo_diem": {
+      "precision": 0.875,
+      "recall": 1.0,
+      "f1-score": 0.9333333333333333,
+      "support": 7
+    },
+    "tu_van_nganh_theo_so_thich": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 7
+    },
+    "accuracy": 0.9090909090909091,
+    "macro avg": {
+      "precision": 0.9378751500600241,
+      "recall": 0.9183673469387754,
+      "f1-score": 0.9246518458500025,
+      "support": 154
+    },
+    "weighted avg": {
+      "precision": 0.9219824293353706,
+      "recall": 0.9090909090909091,
+      "f1-score": 0.9119477296896652,
+      "support": 154
+    }
+  },
+  "final_entity_by_type": {
+    "d": {
+      "tp": 19,
+      "fp": 0,
+      "fn": 3,
+      "f1": 0.926829268292683
+    },
+    "diem": {
+      "tp": 6,
+      "fp": 0,
+      "fn": 0,
+      "f1": 1.0
+    },
+    "mon_hoc": {
+      "tp": 19,
+      "fp": 0,
+      "fn": 3,
+      "f1": 0.926829268292683
+    },
+    "nam": {
+      "tp": 18,
+      "fp": 0,
+      "fn": 0,
+      "f1": 1.0
+    },
+    "ten_nganh": {
+      "tp": 26,
+      "fp": 0,
+      "fn": 2,
+      "f1": 0.9629629629629629
+    },
+    "ten_nguoi_dung": {
+      "tp": 5,
+      "fp": 0,
+      "fn": 2,
+      "f1": 0.8333333333333334
+    }
+  },
+  "final_sparse_confusion": [
+    {
+      "expected": "bat_dau_lai",
+      "predicted": "bat_dau_lai",
+      "count": 6
+    },
+    {
+      "expected": "bat_dau_lai",
+      "predicted": "nlu_fallback",
+      "count": 1
+    },
+    {
+      "expected": "bo_sung_tra_cuu",
+      "predicted": "bo_sung_tra_cuu",
+      "count": 6
+    },
+    {
+      "expected": "bo_sung_tra_cuu",
+      "predicted": "nlu_fallback",
+      "count": 1
+    },
+    {
+      "expected": "cam_on",
+      "predicted": "cam_on",
+      "count": 7
+    },
+    {
+      "expected": "chao_hoi",
+      "predicted": "chao_hoi",
+      "count": 7
+    },
+    {
+      "expected": "cung_cap_diem",
+      "predicted": "cung_cap_diem",
+      "count": 6
+    },
+    {
+      "expected": "cung_cap_diem",
+      "predicted": "tu_van_nganh_theo_diem",
+      "count": 1
+    },
+    {
+      "expected": "hoi_chuong_trinh_dao_tao_cua_truong",
+      "predicted": "hoi_chuong_trinh_dao_tao_cua_truong",
+      "count": 6
+    },
+    {
+      "expected": "hoi_chuong_trinh_dao_tao_cua_truong",
+      "predicted": "nlu_fallback",
+      "count": 1
+    },
+    {
+      "expected": "hoi_co_hoi_viec_lam_cua_nganh",
+      "predicted": "hoi_co_hoi_viec_lam_cua_nganh",
+      "count": 7
+    },
+    {
+      "expected": "hoi_co_so_vat_chat",
+      "predicted": "hoi_co_so_vat_chat",
+      "count": 7
+    },
+    {
+      "expected": "hoi_dia_diem_hoc",
+      "predicted": "hoi_dia_diem_hoc",
+      "count": 6
+    },
+    {
+      "expected": "hoi_dia_diem_hoc",
+      "predicted": "nlu_fallback",
+      "count": 1
+    },
+    {
+      "expected": "hoi_diem_chuan_cua_nganh",
+      "predicted": "bo_sung_tra_cuu",
+      "count": 1
+    },
+    {
+      "expected": "hoi_diem_chuan_cua_nganh",
+      "predicted": "hoi_diem_chuan_cua_nganh",
+      "count": 6
+    },
+    {
+      "expected": "hoi_hoc_phi",
+      "predicted": "hoi_hoc_phi",
+      "count": 7
+    },
+    {
+      "expected": "hoi_khoi_tuyen_sinh_cua_nganh",
+      "predicted": "bo_sung_tra_cuu",
+      "count": 1
+    },
+    {
+      "expected": "hoi_khoi_tuyen_sinh_cua_nganh",
+      "predicted": "hoi_khoi_tuyen_sinh_cua_nganh",
+      "count": 6
+    },
+    {
+      "expected": "hoi_nganh_tuyen_sinh",
+      "predicted": "hoi_nganh_tuyen_sinh",
+      "count": 7
+    },
+    {
+      "expected": "hoi_phuong_thuc_xet_tuyen",
+      "predicted": "hoi_phuong_thuc_xet_tuyen",
+      "count": 6
+    },
+    {
+      "expected": "hoi_phuong_thuc_xet_tuyen",
+      "predicted": "nlu_fallback",
+      "count": 1
+    },
+    {
+      "expected": "hoi_thong_tin_gioi_thieu_chung_cua_nganh",
+      "predicted": "hoi_thong_tin_gioi_thieu_chung_cua_nganh",
+      "count": 5
+    },
+    {
+      "expected": "hoi_thong_tin_gioi_thieu_chung_cua_nganh",
+      "predicted": "nlu_fallback",
+      "count": 2
+    },
+    {
+      "expected": "huy_tra_cuu",
+      "predicted": "huy_tra_cuu",
+      "count": 7
+    },
+    {
+      "expected": "nhap_ten",
+      "predicted": "nhap_ten",
+      "count": 7
+    },
+    {
+      "expected": "nlu_fallback",
+      "predicted": "hoi_chuong_trinh_dao_tao_cua_truong",
+      "count": 1
+    },
+    {
+      "expected": "nlu_fallback",
+      "predicted": "hoi_co_hoi_viec_lam_cua_nganh",
+      "count": 1
+    },
+    {
+      "expected": "nlu_fallback",
+      "predicted": "hoi_diem_chuan_cua_nganh",
+      "count": 2
+    },
+    {
+      "expected": "nlu_fallback",
+      "predicted": "nlu_fallback",
+      "count": 10
+    },
+    {
+      "expected": "tam_biet",
+      "predicted": "tam_biet",
+      "count": 7
+    },
+    {
+      "expected": "tu_van_nganh_theo_diem",
+      "predicted": "tu_van_nganh_theo_diem",
+      "count": 7
+    },
+    {
+      "expected": "tu_van_nganh_theo_so_thich",
+      "predicted": "tu_van_nganh_theo_so_thich",
+      "count": 7
+    }
+  ],
+  "final_failures": [
+    {
+      "id": "nhap_ten-2",
+      "intent": "nhap_ten",
+      "text": "Tên đầy đủ của mình là [Mai Linh](ten_nguoi_dung)",
+      "difficulty": "normal",
+      "group": "nhap_ten-heldout",
+      "plain_text": "Tên đầy đủ của mình là Mai Linh",
+      "prediction": "nhap_ten",
+      "confidence": 0.9966354966163635,
+      "ranking": [
+        {
+          "name": "nhap_ten",
+          "confidence": 0.9966354966163635
+        },
+        {
+          "name": "hoi_phuong_thuc_xet_tuyen",
+          "confidence": 0.0009065010235644877
+        },
+        {
+          "name": "cung_cap_diem",
+          "confidence": 0.00044511229498311877
+        }
+      ],
+      "fallback_added": false,
+      "entities_expected": [
+        [
+          "ten_nguoi_dung",
+          23,
+          31
+        ]
+      ],
+      "entities_actual": [],
+      "intent_correct": true,
+      "entities_correct": false
+    },
+    {
+      "id": "nhap_ten-6",
+      "intent": "nhap_ten",
+      "text": "toi ten [Nam](ten_nguoi_dung) nhe",
+      "difficulty": "hard",
+      "group": "nhap_ten-heldout",
+      "plain_text": "toi ten Nam nhe",
+      "prediction": "nhap_ten",
+      "confidence": 0.980962336063385,
+      "ranking": [
+        {
+          "name": "nhap_ten",
+          "confidence": 0.980962336063385
+        },
+        {
+          "name": "hoi_phuong_thuc_xet_tuyen",
+          "confidence": 0.0027126194909214973
+        },
+        {
+          "name": "cung_cap_diem",
+          "confidence": 0.002245137467980385
+        }
+      ],
+      "fallback_added": false,
+      "entities_expected": [
+        [
+          "ten_nguoi_dung",
+          8,
+          11
+        ]
+      ],
+      "entities_actual": [],
+      "intent_correct": true,
+      "entities_correct": false
+    },
+    {
+      "id": "hoi_thong_tin_gioi_thieu_chung_cua_nganh-4",
+      "intent": "hoi_thong_tin_gioi_thieu_chung_cua_nganh",
+      "text": "Bạn giải thích ngành [Kỹ thuật xây dựng](ten_nganh) cho mình",
+      "difficulty": "normal",
+      "group": "hoi_thong_tin_gioi_thieu_chung_cua_nganh-heldout",
+      "plain_text": "Bạn giải thích ngành Kỹ thuật xây dựng cho mình",
+      "prediction": "nlu_fallback",
+      "confidence": 0.5,
+      "ranking": [
+        {
+          "name": "nlu_fallback",
+          "confidence": 0.5
+        },
+        {
+          "name": "tu_van_nganh_theo_so_thich",
+          "confidence": 0.35617586970329285
+        },
+        {
+          "name": "hoi_thong_tin_gioi_thieu_chung_cua_nganh",
+          "confidence": 0.320100337266922
+        }
+      ],
+      "fallback_added": true,
+      "entities_expected": [
+        [
+          "ten_nganh",
+          21,
+          38
+        ]
+      ],
+      "entities_actual": [],
+      "intent_correct": false,
+      "entities_correct": false
+    },
+    {
+      "id": "hoi_thong_tin_gioi_thieu_chung_cua_nganh-6",
+      "intent": "hoi_thong_tin_gioi_thieu_chung_cua_nganh",
+      "text": "nganh [CNTT](ten_nganh) hoc kien thuc nao",
+      "difficulty": "hard",
+      "group": "hoi_thong_tin_gioi_thieu_chung_cua_nganh-heldout",
+      "plain_text": "nganh CNTT hoc kien thuc nao",
+      "prediction": "nlu_fallback",
+      "confidence": 0.5,
+      "ranking": [
+        {
+          "name": "nlu_fallback",
+          "confidence": 0.5
+        },
+        {
+          "name": "hoi_phuong_thuc_xet_tuyen",
+          "confidence": 0.18780335783958435
+        },
+        {
+          "name": "hoi_nganh_tuyen_sinh",
+          "confidence": 0.16345129907131195
+        }
+      ],
+      "fallback_added": true,
+      "entities_expected": [
+        [
+          "ten_nganh",
+          6,
+          10
+        ]
+      ],
+      "entities_actual": [],
+      "intent_correct": false,
+      "entities_correct": false
+    },
+    {
+      "id": "hoi_diem_chuan_cua_nganh-5",
+      "intent": "hoi_diem_chuan_cua_nganh",
+      "text": "Tra mức trúng tuyển [Kinh tế xây dựng](ten_nganh) theo THPT năm [2026](nam)",
+      "difficulty": "normal",
+      "group": "hoi_diem_chuan_cua_nganh-heldout",
+      "plain_text": "Tra mức trúng tuyển Kinh tế xây dựng theo THPT năm 2026",
+      "prediction": "bo_sung_tra_cuu",
+      "confidence": 0.9807331562042236,
+      "ranking": [
+        {
+          "name": "bo_sung_tra_cuu",
+          "confidence": 0.9807331562042236
+        },
+        {
+          "name": "hoi_diem_chuan_cua_nganh",
+          "confidence": 0.017290335148572922
+        },
+        {
+          "name": "cung_cap_diem",
+          "confidence": 0.00046067102812230587
+        }
+      ],
+      "fallback_added": false,
+      "entities_expected": [
+        [
+          "nam",
+          51,
+          55
+        ],
+        [
+          "ten_nganh",
+          20,
+          36
+        ]
+      ],
+      "entities_actual": [
+        [
+          "nam",
+          51,
+          55
+        ],
+        [
+          "ten_nganh",
+          20,
+          36
+        ]
+      ],
+      "intent_correct": false,
+      "entities_correct": true
+    },
+    {
+      "id": "hoi_khoi_tuyen_sinh_cua_nganh-6",
+      "intent": "hoi_khoi_tuyen_sinh_cua_nganh",
+      "text": "nganh [CNTT](ten_nganh) xet mon nao nam [2026](nam)",
+      "difficulty": "hard",
+      "group": "hoi_khoi_tuyen_sinh_cua_nganh-heldout",
+      "plain_text": "nganh CNTT xet mon nao nam 2026",
+      "prediction": "bo_sung_tra_cuu",
+      "confidence": 0.8948778510093689,
+      "ranking": [
+        {
+          "name": "bo_sung_tra_cuu",
+          "confidence": 0.8948778510093689
+        },
+        {
+          "name": "hoi_diem_chuan_cua_nganh",
+          "confidence": 0.020981494337320328
+        },
+        {
+          "name": "hoi_phuong_thuc_xet_tuyen",
+          "confidence": 0.01654338836669922
+        }
+      ],
+      "fallback_added": false,
+      "entities_expected": [
+        [
+          "nam",
+          27,
+          31
+        ],
+        [
+          "ten_nganh",
+          6,
+          10
+        ]
+      ],
+      "entities_actual": [
+        [
+          "nam",
+          27,
+          31
+        ],
+        [
+          "ten_nganh",
+          6,
+          10
+        ]
+      ],
+      "intent_correct": false,
+      "entities_correct": true
+    },
+    {
+      "id": "hoi_chuong_trinh_dao_tao_cua_truong-2",
+      "intent": "hoi_chuong_trinh_dao_tao_cua_truong",
+      "text": "Trường có các bậc đào tạo nào cho sinh viên",
+      "difficulty": "normal",
+      "group": "hoi_chuong_trinh_dao_tao_cua_truong-heldout",
+      "plain_text": "Trường có các bậc đào tạo nào cho sinh viên",
+      "prediction": "nlu_fallback",
+      "confidence": 0.5,
+      "ranking": [
+        {
+          "name": "nlu_fallback",
+          "confidence": 0.5
+        },
+        {
+          "name": "hoi_phuong_thuc_xet_tuyen",
+          "confidence": 0.3416205048561096
+        },
+        {
+          "name": "hoi_nganh_tuyen_sinh",
+          "confidence": 0.31195029616355896
+        }
+      ],
+      "fallback_added": true,
+      "entities_expected": [],
+      "entities_actual": [],
+      "intent_correct": false,
+      "entities_correct": true
+    },
+    {
+      "id": "hoi_dia_diem_hoc-2",
+      "intent": "hoi_dia_diem_hoc",
+      "text": "UTH có cơ sở học tập tại những nơi nào",
+      "difficulty": "normal",
+      "group": "hoi_dia_diem_hoc-heldout",
+      "plain_text": "UTH có cơ sở học tập tại những nơi nào",
+      "prediction": "nlu_fallback",
+      "confidence": 0.5,
+      "ranking": [
+        {
+          "name": "nlu_fallback",
+          "confidence": 0.5
+        },
+        {
+          "name": "hoi_dia_diem_hoc",
+          "confidence": 0.43117836117744446
+        },
+        {
+          "name": "huy_tra_cuu",
+          "confidence": 0.10183554142713547
+        }
+      ],
+      "fallback_added": true,
+      "entities_expected": [],
+      "entities_actual": [],
+      "intent_correct": false,
+      "entities_correct": true
+    },
+    {
+      "id": "hoi_phuong_thuc_xet_tuyen-2",
+      "intent": "hoi_phuong_thuc_xet_tuyen",
+      "text": "Thông báo tuyển sinh dùng phương thức gì năm [2026](nam)",
+      "difficulty": "normal",
+      "group": "hoi_phuong_thuc_xet_tuyen-heldout",
+      "plain_text": "Thông báo tuyển sinh dùng phương thức gì năm 2026",
+      "prediction": "nlu_fallback",
+      "confidence": 0.5,
+      "ranking": [
+        {
+          "name": "nlu_fallback",
+          "confidence": 0.5
+        },
+        {
+          "name": "hoi_phuong_thuc_xet_tuyen",
+          "confidence": 0.47202441096305847
+        },
+        {
+          "name": "bo_sung_tra_cuu",
+          "confidence": 0.3179267644882202
+        }
+      ],
+      "fallback_added": true,
+      "entities_expected": [
+        [
+          "nam",
+          45,
+          49
+        ]
+      ],
+      "entities_actual": [
+        [
+          "nam",
+          45,
+          49
+        ]
+      ],
+      "intent_correct": false,
+      "entities_correct": true
+    },
+    {
+      "id": "cung_cap_diem-6",
+      "intent": "cung_cap_diem",
+      "text": "[Toan](mon_hoc) [6,75](d), [Hoa](mon_hoc) [7,25](d), [Anh](mon_hoc) [8,75](d) tinh diem voi",
+      "difficulty": "hard",
+      "group": "cung_cap_diem-heldout",
+      "plain_text": "Toan 6,75, Hoa 7,25, Anh 8,75 tinh diem voi",
+      "prediction": "tu_van_nganh_theo_diem",
+      "confidence": 0.9030485153198242,
+      "ranking": [
+        {
+          "name": "tu_van_nganh_theo_diem",
+          "confidence": 0.9030485153198242
+        },
+        {
+          "name": "cung_cap_diem",
+          "confidence": 0.08605580031871796
+        },
+        {
+          "name": "cam_on",
+          "confidence": 0.002095209900289774
+        }
+      ],
+      "fallback_added": false,
+      "entities_expected": [
+        [
+          "d",
+          5,
+          9
+        ],
+        [
+          "d",
+          15,
+          19
+        ],
+        [
+          "d",
+          25,
+          29
+        ],
+        [
+          "mon_hoc",
+          0,
+          4
+        ],
+        [
+          "mon_hoc",
+          11,
+          14
+        ],
+        [
+          "mon_hoc",
+          21,
+          24
+        ]
+      ],
+      "entities_actual": [],
+      "intent_correct": false,
+      "entities_correct": false
+    },
+    {
+      "id": "bo_sung_tra_cuu-4",
+      "intent": "bo_sung_tra_cuu",
+      "text": "Đổi lựa chọn ngành thành [Kỹ thuật điện](ten_nganh)",
+      "difficulty": "normal",
+      "group": "bo_sung_tra_cuu-heldout",
+      "plain_text": "Đổi lựa chọn ngành thành Kỹ thuật điện",
+      "prediction": "nlu_fallback",
+      "confidence": 0.5,
+      "ranking": [
+        {
+          "name": "nlu_fallback",
+          "confidence": 0.5
+        },
+        {
+          "name": "bo_sung_tra_cuu",
+          "confidence": 0.4918299913406372
+        },
+        {
+          "name": "hoi_thong_tin_gioi_thieu_chung_cua_nganh",
+          "confidence": 0.38963431119918823
+        }
+      ],
+      "fallback_added": true,
+      "entities_expected": [
+        [
+          "ten_nganh",
+          25,
+          38
+        ]
+      ],
+      "entities_actual": [
+        [
+          "ten_nganh",
+          25,
+          38
+        ]
+      ],
+      "intent_correct": false,
+      "entities_correct": true
+    },
+    {
+      "id": "bat_dau_lai-3",
+      "intent": "bat_dau_lai",
+      "text": "Xóa tên cùng điểm mình đã gửi nhé",
+      "difficulty": "normal",
+      "group": "bat_dau_lai-heldout",
+      "plain_text": "Xóa tên cùng điểm mình đã gửi nhé",
+      "prediction": "nlu_fallback",
+      "confidence": 0.5,
+      "ranking": [
+        {
+          "name": "nlu_fallback",
+          "confidence": 0.5
+        },
+        {
+          "name": "bat_dau_lai",
+          "confidence": 0.4874893128871918
+        },
+        {
+          "name": "nhap_ten",
+          "confidence": 0.18282228708267212
+        }
+      ],
+      "fallback_added": true,
+      "entities_expected": [],
+      "entities_actual": [],
+      "intent_correct": false,
+      "entities_correct": true
+    },
+    {
+      "id": "ood-1",
+      "intent": "nlu_fallback",
+      "text": "Ngày mai thời tiết ở Hà Nội ra sao",
+      "difficulty": "ood",
+      "group": "ood-heldout",
+      "plain_text": "Ngày mai thời tiết ở Hà Nội ra sao",
+      "prediction": "hoi_chuong_trinh_dao_tao_cua_truong",
+      "confidence": 0.8030882477760315,
+      "ranking": [
+        {
+          "name": "hoi_chuong_trinh_dao_tao_cua_truong",
+          "confidence": 0.8030882477760315
+        },
+        {
+          "name": "hoi_co_hoi_viec_lam_cua_nganh",
+          "confidence": 0.11174844205379486
+        },
+        {
+          "name": "nhap_ten",
+          "confidence": 0.0546049103140831
+        }
+      ],
+      "fallback_added": false,
+      "entities_expected": [],
+      "entities_actual": [],
+      "intent_correct": false,
+      "entities_correct": true
+    },
+    {
+      "id": "ood-8",
+      "intent": "nlu_fallback",
+      "text": "Làm sao hack tài khoản người khác",
+      "difficulty": "ood",
+      "group": "ood-heldout",
+      "plain_text": "Làm sao hack tài khoản người khác",
+      "prediction": "hoi_co_hoi_viec_lam_cua_nganh",
+      "confidence": 0.9375088810920715,
+      "ranking": [
+        {
+          "name": "hoi_co_hoi_viec_lam_cua_nganh",
+          "confidence": 0.9375088810920715
+        },
+        {
+          "name": "tu_van_nganh_theo_so_thich",
+          "confidence": 0.031415484845638275
+        },
+        {
+          "name": "nlu_fallback",
+          "confidence": 0.020890530198812485
+        }
+      ],
+      "fallback_added": false,
+      "entities_expected": [],
+      "entities_actual": [],
+      "intent_correct": false,
+      "entities_correct": true
+    },
+    {
+      "id": "ood-10",
+      "intent": "nlu_fallback",
+      "text": "Trường khác có điểm chuẩn ngành y bao nhiêu",
+      "difficulty": "ood",
+      "group": "ood-heldout",
+      "plain_text": "Trường khác có điểm chuẩn ngành y bao nhiêu",
+      "prediction": "hoi_diem_chuan_cua_nganh",
+      "confidence": 0.9999473094940186,
+      "ranking": [
+        {
+          "name": "hoi_diem_chuan_cua_nganh",
+          "confidence": 0.9999473094940186
+        },
+        {
+          "name": "hoi_nganh_tuyen_sinh",
+          "confidence": 1.3658725038112607e-05
+        },
+        {
+          "name": "hoi_hoc_phi",
+          "confidence": 6.751732598786475e-06
+        }
+      ],
+      "fallback_added": false,
+      "entities_expected": [],
+      "entities_actual": [],
+      "intent_correct": false,
+      "entities_correct": true
+    },
+    {
+      "id": "ood-11",
+      "intent": "nlu_fallback",
+      "text": "Tôi muốn tìm điểm chuẩn Đại học Bách khoa",
+      "difficulty": "ood",
+      "group": "ood-heldout",
+      "plain_text": "Tôi muốn tìm điểm chuẩn Đại học Bách khoa",
+      "prediction": "hoi_diem_chuan_cua_nganh",
+      "confidence": 0.6770813465118408,
+      "ranking": [
+        {
+          "name": "hoi_diem_chuan_cua_nganh",
+          "confidence": 0.6770813465118408
+        },
+        {
+          "name": "nlu_fallback",
+          "confidence": 0.2850155234336853
+        },
+        {
+          "name": "cung_cap_diem",
+          "confidence": 0.014073130674660206
+        }
+      ],
+      "fallback_added": false,
+      "entities_expected": [],
+      "entities_actual": [],
+      "intent_correct": false,
+      "entities_correct": true
+    }
+  ],
+  "acceptance": {
+    "intent_macro_f1_target": 0.9,
+    "intent_target_met": true,
+    "entity_exact_span_f1_target": 0.85,
+    "entity_target_met": true
+  },
+  "core_final": {
+    "utter_default": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 1
+    },
+    "tu_van_diem_form": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 1
+    },
+    "action_submit_lookup": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 2
+    },
+    "utter_chao_hoi": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 1
+    },
+    "action_prepare_lookup": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 2
+    },
+    "action_tu_van_nganh_theo_so_thich": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 1
+    },
+    "tra_cuu_nganh_form": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 2
+    },
+    "action_prepare_score": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 1
+    },
+    "action_tra_loi_thong_tin_truong": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 1
+    },
+    "action_tu_van_nganh_theo_diem": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 1
+    },
+    "action_tinh_khoi_va_goi_y_nganh": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 1
+    },
+    "action_listen": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 10
+    },
+    "utter_tam_biet": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 1
+    },
+    "action_tra_loi_nganh_tuyen_sinh": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 1
+    },
+    "accuracy": 1.0,
+    "macro avg": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 26
+    },
+    "weighted avg": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 26
+    },
+    "micro avg": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 26
+    },
+    "conversation_accuracy": {
+      "accuracy": 1.0,
+      "correct": 10,
+      "with_warnings": 0,
+      "total": 10
+    }
+  },
+  "rest": {
+    "explicit_intents": {
+      "count": 22,
+      "passed": 22
+    },
+    "natural_multiturn": {
+      "count": 4,
+      "passed": 4
+    }
+  }
+}

@@ -1,0 +1,14 @@
+.git
+.tools
+.venv
+.venv-*
+venv
+rasa_env
+.rasa
+models
+results
+reports
+**/__pycache__
+.pytest_cache
+.env
+*.log

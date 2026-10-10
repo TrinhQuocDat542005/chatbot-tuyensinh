@@ -1,0 +1,46 @@
+version: '1.0'
+examples:
+- {intent: chao_hoi, text: 'Chào anh chị tư vấn, em mới tham gia', difficulty: normal}
+- {intent: chao_hoi, text: 'Xin chào UTH, mình hỏi chút nha', difficulty: normal}
+- {intent: nhap_ten, text: 'Tên của mình là [Vân Anh](ten_nguoi_dung) nha', difficulty: normal}
+- {intent: nhap_ten, text: 'Bạn gọi tôi bằng tên [Khánh](ten_nguoi_dung) nhé', difficulty: normal}
+- {intent: hoi_nganh_tuyen_sinh, text: 'Danh mục ngành đại học trường có những tên nào', difficulty: normal}
+- {intent: hoi_nganh_tuyen_sinh, text: 'Em đang chọn ngành, trường có ngành gì để chọn', difficulty: normal}
+- {intent: hoi_thong_tin_gioi_thieu_chung_cua_nganh, text: 'Mô tả nội dung học [Kỹ thuật điện](ten_nganh) nhé', difficulty: normal}
+- {intent: hoi_thong_tin_gioi_thieu_chung_cua_nganh, text: 'Em muốn biết ngành [Công nghệ thông tin](ten_nganh) học về gì', difficulty: normal}
+- {intent: hoi_co_hoi_viec_lam_cua_nganh, text: 'Sau khi học ngành này mình làm công việc nào', difficulty: normal}
+- {intent: hoi_co_hoi_viec_lam_cua_nganh, text: 'Nghề cho sinh viên tốt nghiệp [Ngôn ngữ Anh](ten_nganh) là gì', difficulty: normal}
+- {intent: hoi_diem_chuan_cua_nganh, text: 'Có điểm chuẩn [Kỹ thuật điện](ten_nganh) năm [2025](nam) không', difficulty: normal}
+- {intent: hoi_diem_chuan_cua_nganh, text: 'Điểm trúng tuyển năm [2026](nam) của [Công nghệ thông tin](ten_nganh)', difficulty: normal}
+- {intent: hoi_khoi_tuyen_sinh_cua_nganh, text: 'Tổ hợp xét tuyển [Kỹ thuật điện](ten_nganh) gồm môn gì', difficulty: normal}
+- {intent: hoi_khoi_tuyen_sinh_cua_nganh, text: 'Các khối nào tuyển [Ngôn ngữ Anh](ten_nganh)', difficulty: normal}
+- {intent: hoi_chuong_trinh_dao_tao_cua_truong, text: 'Trường tổ chức chương trình đào tạo nào vậy', difficulty: normal}
+- {intent: hoi_chuong_trinh_dao_tao_cua_truong, text: 'UTH có hệ đào tạo quốc tế không', difficulty: normal}
+- {intent: hoi_hoc_phi, text: 'Học phí ở trường tính theo năm hay tín chỉ', difficulty: normal}
+- {intent: hoi_hoc_phi, text: 'Cho xem biểu học phí năm [2026](nam)', difficulty: normal}
+- {intent: hoi_dia_diem_hoc, text: 'Địa điểm học tập của sinh viên nằm chỗ nào', difficulty: normal}
+- {intent: hoi_dia_diem_hoc, text: 'Liệt kê địa chỉ cơ sở UTH giúp em', difficulty: normal}
+- {intent: hoi_phuong_thuc_xet_tuyen, text: 'Những phương thức nào được dùng tuyển sinh ở trường', difficulty: normal}
+- {intent: hoi_phuong_thuc_xet_tuyen, text: 'Em muốn xem thông báo về hình thức xét tuyển', difficulty: normal}
+- {intent: hoi_co_so_vat_chat, text: 'Phòng máy và khu học tập có tốt không', difficulty: normal}
+- {intent: hoi_co_so_vat_chat, text: 'Điều kiện ký túc xá UTH hiện thế nào', difficulty: normal}
+- {intent: cam_on, text: 'Cám ơn nha, bạn trả lời giúp mình nhiều rồi', difficulty: normal}
+- {intent: cam_on, text: 'Em xin cảm ơn phần hỗ trợ vừa rồi', difficulty: normal}
+- {intent: tam_biet, text: 'Mình đi nhé, hẹn lại lần tới', difficulty: normal}
+- {intent: tam_biet, text: 'Goodbye bạn, em kết thúc đây', difficulty: normal}
+- {intent: tu_van_nganh_theo_so_thich, text: 'Mình thích sửa máy móc, gợi ý ngành học đi', difficulty: normal}
+- {intent: tu_van_nganh_theo_so_thich, text: 'Đam mê ngoại ngữ nên chọn ngành nào cho hợp', difficulty: normal}
+- {intent: tu_van_nganh_theo_diem, text: 'Tư vấn chọn ngành với [18.25](diem) điểm thi', difficulty: normal}
+- {intent: tu_van_nganh_theo_diem, text: 'Tổng [29,5](diem) điểm THPT thì tham khảo ngành gì', difficulty: normal}
+- {intent: cung_cap_diem, text: '[Toán](mon_hoc) [5.25](d), [Hóa](mon_hoc) [6.75](d), [Anh](mon_hoc) [9.75](d)', difficulty: normal}
+- {intent: cung_cap_diem, text: 'Em có [7.25](d) điểm [Toán](mon_hoc), [8.75](d) điểm [Lý](mon_hoc), [6.25](d) điểm [Anh](mon_hoc)', difficulty: normal}
+- {intent: bo_sung_tra_cuu, text: 'Còn ngành cũ ở năm [2019](nam) thì sao', difficulty: normal}
+- {intent: bo_sung_tra_cuu, text: 'Chuyển lựa chọn sang [Kỹ thuật điện](ten_nganh) nha', difficulty: normal}
+- {intent: bat_dau_lai, text: 'Đặt lại cuộc trò chuyện này cho mình', difficulty: normal}
+- {intent: bat_dau_lai, text: 'Mình cần bắt đầu một lần tư vấn mới', difficulty: normal}
+- {intent: huy_tra_cuu, text: 'Hủy phần điền thông tin này nhé', difficulty: normal}
+- {intent: huy_tra_cuu, text: 'Dừng tra cứu, mình đổi ý rồi', difficulty: normal}
+- {intent: nlu_fallback, text: 'Viết cho tôi một bài hát mới', difficulty: ood}
+- {intent: nlu_fallback, text: 'Bitcoin sẽ lên giá hay xuống giá', difficulty: ood}
+- {intent: nlu_fallback, text: 'Tôi cần mua đồ ăn tối', difficulty: ood}
+- {intent: nlu_fallback, text: 'Ngày mai trời mưa ở Sài Gòn không', difficulty: ood}

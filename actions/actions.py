@@ -1,499 +1,413 @@
-import json
+"""Rasa adapters: answer only with source-verified admissions facts."""
+
+import logging
 import re
-import os
-from typing import Any, Text, Dict, List, Tuple
-from rasa_sdk import Action, Tracker
-from rasa_sdk.executor import CollectingDispatcher
-from rasa_sdk.events import SlotSet
-from fuzzywuzzy import process, fuzz
+from abc import ABC, abstractmethod
 
-# Biến toàn cục lưu đường dẫn đến file nganh.json
-NGANH_JSON_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data", "nganh.json")
+from rasa_sdk import Action
+from rasa_sdk.events import SlotSet, AllSlotsReset, ActiveLoop
+from rasa_sdk.forms import FormValidationAction
+from rasa_sdk.interfaces import ActionExecutionRejection
 
-def load_nganh_data():
-    """
-    Hàm đọc dữ liệu từ file nganh.json
-    
-    Returns:
-        list: Danh sách các ngành học
-    """
+from actions.admissions import combination_scores, normalize, parse_subject_scores, parse_total_score, requested_year
+from actions.repository import DataError, find_major, load_catalog, load_document, source_text, verified_admissions
+from actions.conversation import LOOKUPS, lookup_updates, major_from_message, method_from_text
+
+LOGGER = logging.getLogger(__name__)
+OFFICIAL_URL = "https://tuyensinh.ut.edu.vn/"
+DATA_ERROR = "Dữ liệu đang tạm thời không khả dụng. Xem thông tin tại " + OFFICIAL_URL
+DISCLAIMER = "Điểm chuẩn đã công bố chỉ dùng để tham khảo, không bảo đảm trúng tuyển."
+
+
+def query_year(tracker):
+    return requested_year(tracker.latest_message.get("text", "")) or requested_year(tracker.get_slot("nam"))
+
+
+def catalog(dispatcher):
     try:
-        with open(NGANH_JSON_PATH, 'r', encoding='utf-8') as file:
-            return json.load(file)
-    except Exception as e:
-        print(f"Lỗi khi đọc file JSON: {e}")
-        return []
-
-def find_similar_nganh(nganh_name, nganh_list, threshold=70):
-    
-    """
-    Tìm kiếm ngành gần đúng sử dụng fuzzywuzzy
-    
-    
-    Args:
-        nganh_name (str): Tên ngành cần tìm
-        nganh_list (list): Danh sách các ngành
-        threshold (int): Ngưỡng điểm tương đồng (mặc định: 70)
-        
-    Returns:
-        dict: Ngành học tương đồng nhất nếu điểm cao hơn ngưỡng, None nếu không tìm thấy
-    """
-    
-    if not nganh_name or not nganh_list:
+        return load_catalog()
+    except DataError:
+        LOGGER.exception("Unable to load catalog")
+        dispatcher.utter_message(text=DATA_ERROR)
         return None
-        
-    # Trích xuất tên ngành từ danh sách
-    nganh_names = [nganh["ten_nganh"] for nganh in nganh_list]
-    
-    # Tìm tên ngành tương đồng nhất
-    best_match, score = process.extractOne(nganh_name, nganh_names, scorer=fuzz.token_sort_ratio)
-    
-    if score >= threshold:
-        # Trả về đối tượng ngành đầy đủ
-        for nganh in nganh_list:
-            if nganh["ten_nganh"] == best_match:
-                return nganh
-                
-    return None
+
 
 class ActionXuLyTen(Action):
-    """
-    Hành động xử lý tên người dùng
-    """
-    def name(self) -> Text:
+    def name(self):
         return "action_xu_ly_ten"
-        
-    def run(self, dispatcher: CollectingDispatcher,
-            tracker: Tracker,
-            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        
-        # Lấy tên người dùng từ slot
-        ten_nguoi_dung = tracker.get_slot("ten_nguoi_dung")
-        
-        if not ten_nguoi_dung:
-            dispatcher.utter_message(text="Tôi chưa biết tên bạn. Bạn có thể cho tôi biết tên được không?")
-            return []
-            
-        # Xử lý tên người dùng bằng regex
-        processed_name = self.process_name(ten_nguoi_dung)
-        
-        # Gửi lời chào với tên đã xử lý
-        dispatcher.utter_message(response="utter_chao_sau_khi_biet_ten", ten_nguoi_dung=processed_name)
-        
-        return [SlotSet("ten_nguoi_dung", processed_name)]
-    
-    def process_name(self, name: Text) -> Text:
-        """
-        Xử lý tên người dùng:
-        - Loại bỏ khoảng trắng thừa
-        - Chuẩn hóa các chữ cái đầu thành chữ hoa
-        - Loại bỏ các ký tự đặc biệt
-        
-        Args:
-            name (str): Tên người dùng cần xử lý
-            
-        Returns:
-            str: Tên đã được xử lý
-        """
+
+    def process_name(self, name):
+        return " ".join("".join(c for c in (name or "") if c.isalpha() or c.isspace()).split()).title()
+
+    def run(self, dispatcher, tracker, domain):
+        name = self.process_name(tracker.get_slot("ten_nguoi_dung"))
         if not name:
-            return ""
-            
-        # Loại bỏ ký tự đặc biệt và số
-        name = re.sub(r'[^a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễếệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\s]', '', name)
-        
-        # Loại bỏ khoảng trắng thừa
-        name = re.sub(r'\s+', ' ', name).strip()
-        
-        # Chuẩn hóa chữ cái đầu thành chữ hoa
-        name = name.title()
-        
-        return name
+            dispatcher.utter_message(text="Bạn có thể tra cứu ngay hoặc cho tôi biết tên của bạn.")
+            return []
+        return [SlotSet("ten_nguoi_dung", name)]
+
 
 class ActionTraLoiNganhTuyenSinh(Action):
-    """
-    Hành động trả lời về các ngành tuyển sinh
-    """
-    def name(self) -> Text:
+    def name(self):
         return "action_tra_loi_nganh_tuyen_sinh"
-        
-    def run(self, dispatcher: CollectingDispatcher,
-            tracker: Tracker,
-            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        
-        # Đọc danh sách ngành từ JSON
-        nganh_list = load_nganh_data()
-        
-        if not nganh_list:
-            dispatcher.utter_message(text="Hiện tại tôi không thể cung cấp thông tin về các ngành tuyển sinh. Xin vui lòng thử lại sau.")
+
+    def run(self, dispatcher, tracker, domain):
+        doc = catalog(dispatcher)
+        if doc is None:
             return []
-            
-        # Tạo thông báo về các ngành
-        message = "Trường Đại học Giao thông Vận tải TP.HCM đào tạo các ngành sau:\n"
-        for i, nganh in enumerate(nganh_list, 1):
-            message += f"\n{i}. {nganh['ten_nganh']}\n\n"
-            
-        dispatcher.utter_message(text=message)
+        majors = [m for m in doc["majors"] if m["verification"] == "verified" and m["kind"] == "major"]
+        dispatcher.utter_message(text="Các ngành trong danh mục đào tạo UTH đã đối chiếu nguồn:\n"
+                                 + "\n".join(f"{i}. {m['ten_nganh']}" for i, m in enumerate(majors, 1))
+                                 + "\nDanh mục đào tạo không thay thế thông báo tuyển sinh từng năm.\n"
+                                 + source_text(doc, [s for m in majors for s in m["source_ids"]]))
         return []
 
-class ActionTraLoiThongTinNganh(Action):
-    """
-    Hành động trả lời thông tin giới thiệu về ngành
-    """
-    def name(self) -> Text:
-        return "action_tra_loi_thong_tin_nganh"
-        
-    def run(self, dispatcher: CollectingDispatcher,
-            tracker: Tracker,
-            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        
-        ten_nganh = tracker.get_slot("ten_nganh")
-        if not ten_nganh:
-            dispatcher.utter_message(text="Bạn muốn tìm hiểu về ngành nào?")
-            return []
-            
-        nganh_list = load_nganh_data()
-        nganh = find_similar_nganh(ten_nganh, nganh_list)
-        
-        if nganh:
-            message = f"Dưới đây là thông tin về ngành {nganh['ten_nganh']}, mã ngành {nganh['ma_nganh']}:\n\n"
-            message += nganh["gioi_thieu_chung"]
-            dispatcher.utter_message(text=message)
-            return [SlotSet("ten_nganh", nganh["ten_nganh"])]
-        else:
-            dispatcher.utter_message(text=f"Tôi không tìm thấy thông tin về ngành '{ten_nganh}'. Bạn có thể kiểm tra lại tên ngành hoặc tìm hiểu về ngành khác.")
-            return []
 
-class ActionTraLoiCoHoiViecLam(Action):
-    """
-    Hành động trả lời về cơ hội việc làm của ngành
-    """
-    def name(self) -> Text:
-        return "action_tra_loi_co_hoi_viec_lam"
-        
-    def run(self, dispatcher: CollectingDispatcher,
-            tracker: Tracker,
-            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        
-        ten_nganh = tracker.get_slot("ten_nganh")
-        if not ten_nganh:
-            dispatcher.utter_message(text="Bạn muốn tìm hiểu cơ hội việc làm của ngành nào?")
-            return []
-            
-        nganh_list = load_nganh_data()
-        nganh = find_similar_nganh(ten_nganh, nganh_list)
-        
-        if nganh:
-            message = f"Cơ hội việc làm của ngành {nganh['ten_nganh']}:\n\n"
-            for i, co_hoi in enumerate(nganh["co_hoi_viec_lam"], 1):
-                message += f"{i}. {co_hoi}\n"
-                
-            dispatcher.utter_message(text=message)
-            return [SlotSet("ten_nganh", nganh["ten_nganh"])]
-        else:
-            dispatcher.utter_message(text=f"Tôi không tìm thấy thông tin về cơ hội việc làm của ngành '{ten_nganh}'. Bạn có thể kiểm tra lại tên ngành hoặc tìm hiểu về ngành khác.")
-            return []
+class MajorAction(Action, ABC):
+    @abstractmethod
+    def answer(self, dispatcher, tracker, doc, major):
+        """Implemented by concrete actions; never registered by the SDK."""
+        raise NotImplementedError
 
-class ActionTraLoiDiemChuanNganh(Action):
-    """
-    Hành động trả lời về điểm chuẩn của ngành
-    """
-    def name(self) -> Text:
-        return "action_tra_loi_diem_chuan_nganh"
-        
-    def run(self, dispatcher: CollectingDispatcher,
-            tracker: Tracker,
-            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        
-        ten_nganh = tracker.get_slot("ten_nganh")
-        nam = tracker.get_slot("nam")
-        
-        if not ten_nganh:
-            dispatcher.utter_message(text="Bạn muốn tìm hiểu điểm chuẩn của ngành nào?")
-            return []
-            
-        nganh_list = load_nganh_data()
-        nganh = find_similar_nganh(ten_nganh, nganh_list)
-        
-        if not nganh:
-            dispatcher.utter_message(text=f"Tôi không tìm thấy thông tin về ngành '{ten_nganh}'. Bạn có thể kiểm tra lại tên ngành hoặc tìm hiểu về ngành khác.")
-            return []
-            
-        # Xử lý năm cụ thể nếu có
-        if nam:
-            # Trích xuất năm từ chuỗi (ví dụ: "năm 2024" -> "2024")
-            nam_match = re.search(r'\d{4}', nam)
-            if nam_match:
-                nam_value = nam_match.group(0)
-                if nam_value in nganh["diem_chuan"]:
-                    diem = nganh["diem_chuan"][nam_value]
-                    if diem is not None:
-                        dispatcher.utter_message(text=f"Điểm chuẩn ngành {nganh['ten_nganh']} năm {nam_value} là: {diem} điểm.")
-                    else:
-                        dispatcher.utter_message(text=f"Chưa có thông tin điểm chuẩn ngành {nganh['ten_nganh']} năm {nam_value}.")
-                else:
-                    dispatcher.utter_message(text=f"Tôi không có thông tin về điểm chuẩn ngành {nganh['ten_nganh']} năm {nam_value}.")
-            else:
-                # Trường hợp người dùng nhập "năm ngoái", "năm trước", v.v.
-                self.tra_loi_diem_chuan_khong_co_nam(dispatcher, nganh)
-        else:
-            # Trường hợp không có năm cụ thể
-            self.tra_loi_diem_chuan_khong_co_nam(dispatcher, nganh)
-            
-        return [SlotSet("ten_nganh", nganh["ten_nganh"])]
-        
-    def tra_loi_diem_chuan_khong_co_nam(self, dispatcher, nganh):
-        """
-        Trả lời điểm chuẩn khi không có năm cụ thể
-        """
-        message = f"Điểm chuẩn ngành {nganh['ten_nganh']} các năm gần đây:\n\n"
-        for nam, diem in nganh["diem_chuan"].items():
-            if diem is not None:
-                message += f"Năm {nam}: {diem} điểm\n"
-                
-        dispatcher.utter_message(text=message)
+    def name(self):
+        return self.action_name
 
-class ActionTraLoiKhoiXetTuyen(Action):
-    """
-    Hành động trả lời về khối xét tuyển của ngành
-    """
-    def name(self) -> Text:
-        return "action_tra_loi_khoi_xet_tuyen"
-        
-    def run(self, dispatcher: CollectingDispatcher,
-            tracker: Tracker,
-            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        
-        ten_nganh = tracker.get_slot("ten_nganh")
-        if not ten_nganh:
-            dispatcher.utter_message(text="Bạn muốn tìm hiểu khối xét tuyển của ngành nào?")
+    def run(self, dispatcher, tracker, domain):
+        doc = catalog(dispatcher)
+        if doc is None:
             return []
-            
-        nganh_list = load_nganh_data()
-        nganh = find_similar_nganh(ten_nganh, nganh_list)
-        
-        if nganh:
-            message = f"Khối xét tuyển của ngành {nganh['ten_nganh']} là: "
-            message += ", ".join(nganh["khoi_xet_tuyen"])
-            
-            dispatcher.utter_message(text=message)
-            return [SlotSet("ten_nganh", nganh["ten_nganh"])]
-        else:
-            dispatcher.utter_message(text=f"Tôi không tìm thấy thông tin về khối xét tuyển của ngành '{ten_nganh}'. Bạn có thể kiểm tra lại tên ngành hoặc tìm hiểu về ngành khác.")
+        name = tracker.get_slot("ten_nganh")
+        if not name:
+            dispatcher.utter_message(text="Bạn muốn tra cứu ngành nào? Ví dụ: Công nghệ thông tin.")
             return []
-        
-# Thêm các hàm tư vấn ngành theo điểm và sở thích
+        major = find_major(name, doc)
+        if major is None:
+            dispatcher.utter_message(text="Tên ngành chưa có trong danh mục đã xác minh. Bạn hãy nhập tên đầy đủ hoặc hỏi danh sách ngành.")
+            return []
+        try:
+            self.answer(dispatcher, tracker, doc, major)
+        except ValueError as exc:
+            dispatcher.utter_message(text=str(exc))
+        return [SlotSet("ten_nganh", major["ten_nganh"])]
+
+
+def major_records(doc, major, year=None, method=None):
+    records = verified_admissions(doc, major["parent_id"] or major["id"], year, method)
+    if major["kind"] == "specialization":
+        records = [a for a in records if major["id"] in a["specialization_ids"]]
+    return records
+
+
+class ActionTraLoiThongTinNganh(MajorAction):
+    action_name = "action_tra_loi_thong_tin_nganh"
+
+    def answer(self, dispatcher, tracker, doc, major):
+        children = [m["ten_nganh"] for m in doc["majors"] if m["parent_id"] == major["id"] and m["verification"] == "verified"]
+        text = f"UTH có {('ngành' if major['kind'] == 'major' else 'chuyên ngành')} {major['ten_nganh']} trong danh mục đã đối chiếu."
+        if children:
+            text += "\nChuyên ngành trong dữ liệu: " + "; ".join(children) + "."
+        profile = major["profile"]
+        text += "\n" + (profile["summary"] if profile["verification"] == "verified" else "Giới thiệu chi tiết đang được kiểm chứng; xem chương trình tại nguồn chính thức.")
+        dispatcher.utter_message(text=text + "\n" + source_text(doc, [*major["source_ids"], *profile["source_ids"]]))
+
+
+class ActionTraLoiCoHoiViecLam(MajorAction):
+    action_name = "action_tra_loi_co_hoi_viec_lam"
+
+    def answer(self, dispatcher, tracker, doc, major):
+        profile = major["profile"]
+        text = (f"Cơ hội nghề nghiệp của {major['ten_nganh']}:\n" + "\n".join(profile["careers"])) if profile["verification"] == "verified" and profile["careers"] else f"Thông tin nghề nghiệp chi tiết của {major['ten_nganh']} chưa được xác minh. Vui lòng xem chương trình đào tạo chính thức."
+        dispatcher.utter_message(text=text + "\n" + source_text(doc, profile["source_ids"] if profile["verification"] == "verified" and profile["careers"] else major["source_ids"]))
+
+
+class ActionTraLoiDiemChuanNganh(MajorAction):
+    action_name = "action_tra_loi_diem_chuan_nganh"
+
+    def answer(self, dispatcher, tracker, doc, major):
+        year = query_year(tracker)
+        text = normalize(tracker.latest_message.get("text", ""))
+        method = method_from_text(text) or tracker.get_slot('phuong_thuc')
+        records = major_records(doc, major, year, method)
+        if not records:
+            dispatcher.utter_message(text=f"Chưa có điểm chuẩn đã xác minh cho {major['ten_nganh']}" + (f" năm {year}" if year else "") + (f" theo phương thức {method}" if method else "") + f". Xem thông báo: {OFFICIAL_URL}")
+            return
+        lines = [f"Điểm chuẩn đã công bố của {major['ten_nganh']} (năm {records[0]['year']}):"]
+        for a in records:
+            scale = f"thang {a['score_max']}" if a["score_max"] is not None else "theo quy chế xét tuyển kết hợp; không phải tổng 3 môn thang 30"
+            lines.append(f"- {a['program_code']} — {a['program_label']}, đợt {a['round']}: {a['cutoff']:g} điểm ({a['method_label']}; {scale}).")
+        dispatcher.utter_message(text="\n".join([*lines, DISCLAIMER, source_text(doc, [a["source_id"] for a in records])]))
+
+
+class ActionTraLoiKhoiXetTuyen(MajorAction):
+    action_name = "action_tra_loi_khoi_xet_tuyen"
+
+    def answer(self, dispatcher, tracker, doc, major):
+        records = major_records(doc, major, query_year(tracker), "thpt")
+        codes = sorted({c for a in records for c in a["combinations"]})
+        text = (f"Tổ hợp THPT của {major['ten_nganh']}: {', '.join(codes)} (năm {records[0]['year']}).\n" + source_text(doc, [a["source_id"] for a in records])) if codes else "Chưa có tổ hợp xét tuyển THPT đã xác minh cho ngành/năm này. " + OFFICIAL_URL
+        dispatcher.utter_message(text=text)
+
+
+def recommend(dispatcher, doc, scores, year):
+    records = verified_admissions(doc, year=year, method="thpt")
+    candidates = [a for a in records if a["score_max"] == 30 and any(code in a["combinations"] and value >= a["cutoff"] for code, value in scores.items())]
+    if candidates:
+        dispatcher.utter_message(text="Chương trình để tham khảo:\n" + "\n".join(f"- {a['program_code']} ({a['program_label']}), năm {a['year']}: {a['cutoff']:g}." for a in sorted(candidates, key=lambda a: a["cutoff"], reverse=True)[:5]) + "\n" + DISCLAIMER + "\n" + source_text(doc, [a["source_id"] for a in candidates]))
+    else:
+        dispatcher.utter_message(text="Chưa có chương trình phù hợp trong điểm chuẩn THPT đã xác minh" + (f" năm {year}" if year else "") + ". Điểm xét tuyển kết hợp không thể so trực tiếp với tổng 3 môn. " + OFFICIAL_URL)
+
+
 class ActionTuVanNganhTheoDiem(Action):
-    """
-    Hành động tư vấn ngành học dựa trên điểm thi của thí sinh
-    """
-    def name(self) -> Text:
+    def name(self):
         return "action_tu_van_nganh_theo_diem"
-        
-    def run(self, dispatcher: CollectingDispatcher,
-            tracker: Tracker,
-            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        
-        # Trích xuất thông tin điểm từ tin nhắn của người dùng
-        message = tracker.latest_message.get('text', '')
-        diem_pattern = r'(\d{1,2}(\.\d+)?)\s*(?:điểm|diem)'
-        diem_matches = re.findall(diem_pattern, message)
-        
-        diem = None
-        if diem_matches:
-            try:
-                diem = float(diem_matches[0][0])
-            except (ValueError, IndexError):
-                pass
-        
-        if not diem:
-            # Tìm số điểm từ các cụm từ thông thường
-            diem_pattern = r'(\d{1,2}(\.\d+)?)'
-            diem_matches = re.findall(diem_pattern, message)
-            
-            if diem_matches:
-                try:
-                    # Lấy số điểm đầu tiên tìm thấy
-                    diem = float(diem_matches[0][0])
-                except (ValueError, IndexError):
-                    pass
-        
-        if not diem:
-            dispatcher.utter_message(text="Xin lỗi, tôi không xác định được điểm của bạn. Vui lòng cho biết tổng điểm 3 môn là bao nhiêu?")
+
+    def run(self, dispatcher, tracker, domain):
+        try:
+            score = parse_total_score(tracker.latest_message.get("text", ""), tracker.get_slot("diem"))
+            year = query_year(tracker)
+        except ValueError as exc:
+            dispatcher.utter_message(text=str(exc))
             return []
-        
-        # Đọc danh sách ngành từ JSON
-        nganh_list = load_nganh_data()
-        
-        if not nganh_list:
-            dispatcher.utter_message(text="Hiện tại tôi không thể cung cấp thông tin về các ngành tuyển sinh. Xin vui lòng thử lại sau.")
+        if score is None:
+            dispatcher.utter_message(text="Bạn hãy nhập tổng điểm 3 môn THPT thang 30, ví dụ: 24,5 điểm.")
             return []
-        
-        # Tư vấn dựa theo mức điểm
-        suitable_nganh = []
-        
-        # Lấy điểm chuẩn các ngành năm gần nhất
-        latest_year = "2024"  # Năm mới nhất trong dữ liệu
-        
-        for nganh in nganh_list:
-            if latest_year in nganh["diem_chuan"] and nganh["diem_chuan"][latest_year] is not None:
-                diem_chuan = nganh["diem_chuan"][latest_year]
-                
-                # Phân loại theo mức độ phù hợp
-                if diem >= diem_chuan + 2:  # Dư điểm nhiều
-                    suitable_nganh.append((nganh["ten_nganh"], diem_chuan, "rất phù hợp"))
-                elif diem >= diem_chuan:  # Đủ điểm
-                    suitable_nganh.append((nganh["ten_nganh"], diem_chuan, "phù hợp"))
-                elif diem >= diem_chuan - 2:  # Thiếu điểm không nhiều
-                    suitable_nganh.append((nganh["ten_nganh"], diem_chuan, "có thể cân nhắc"))
-        
-        # Sắp xếp theo mức độ phù hợp
-        suitable_nganh.sort(key=lambda x: (
-            0 if x[2] == "rất phù hợp" else 1 if x[2] == "phù hợp" else 2,
-            x[1]  # Sau đó sắp xếp theo điểm chuẩn để ưu tiên ngành có điểm cao hơn
-        ))
-        
-        if suitable_nganh:
-            message = f"Với {diem} điểm, bạn có thể tham khảo các ngành sau:\n\n"
-            
-            for i, (ten_nganh, diem_chuan, muc_do) in enumerate(suitable_nganh[:5], 1):
-                message += f"{i}. {ten_nganh} (điểm chuẩn: {diem_chuan}) - {muc_do}\n"
-                
-            message += "\nBạn có muốn biết thêm thông tin về ngành nào trong số này không?"
+        doc = catalog(dispatcher)
+        if doc is None:
+            return []
+        combos = re.findall(r"\b(?:A00|A01|B00|C00|C01|D01|D07)\b", tracker.latest_message.get("text", "").upper())
+        if not verified_admissions(doc, year=year, method="thpt"):
+            dispatcher.utter_message(text=f"Tổng điểm 3 môn của bạn là {score:g}/30. Chưa có điểm chuẩn THPT đã xác minh" + (f" năm {year}" if year else "") + ". Không thể so với điểm xét tuyển kết hợp. " + OFFICIAL_URL)
+        elif len(set(combos)) != 1:
+            dispatcher.utter_message(text="Bạn xét tổ hợp nào? Vui lòng chọn một tổ hợp như A00, A01 hoặc D07.")
         else:
-            message = f"Với mức điểm {diem}, bạn có thể cân nhắc các ngành có điểm chuẩn thấp hơn hoặc cân nhắc các phương thức xét tuyển khác như xét học bạ hoặc đánh giá năng lực."
-        
-        dispatcher.utter_message(text=message)
-        return []
+            recommend(dispatcher, doc, {combos[0]: score}, year)
+        return [SlotSet("diem", score)]
+
 
 class ActionTuVanNganhTheoSoThich(Action):
-    """
-    Hành động tư vấn ngành học dựa trên sở thích của thí sinh
-    """
-    def name(self) -> Text:
+    def name(self):
         return "action_tu_van_nganh_theo_so_thich"
-        
-    def run(self, dispatcher: CollectingDispatcher,
-            tracker: Tracker,
-            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        
-        # Lấy tin nhắn chứa sở thích của người dùng
-        message = tracker.latest_message.get('text', '').lower()
-        
-        # Từ khóa ánh xạ sở thích với ngành học
-        so_thich_nganh_mapping = {
-            "máy tính": ["Công nghệ thông tin", "Kỹ thuật phần mềm", "Hệ thống thông tin", "An toàn thông tin"],
-            "lập trình": ["Công nghệ thông tin", "Kỹ thuật phần mềm", "Khoa học máy tính"],
-            "thiết kế": ["Kiến trúc", "Kỹ thuật công trình", "Thiết kế công nghiệp"],
-            "ô tô": ["Công nghệ kỹ thuật ô tô", "Kỹ thuật cơ khí động lực"],
-            "xe máy": ["Công nghệ kỹ thuật ô tô", "Kỹ thuật cơ khí động lực"],
-            "động cơ": ["Công nghệ kỹ thuật ô tô", "Kỹ thuật cơ khí động lực"],
-            "điện": ["Công nghệ kỹ thuật điện, điện tử", "Công nghệ kỹ thuật điều khiển và tự động hóa"],
-            "điện tử": ["Công nghệ kỹ thuật điện, điện tử", "Công nghệ kỹ thuật điều khiển và tự động hóa"],
-            "tự động hóa": ["Công nghệ kỹ thuật điều khiển và tự động hóa"],
-            "robot": ["Công nghệ kỹ thuật điều khiển và tự động hóa", "Công nghệ kỹ thuật cơ điện tử"],
-            "cơ khí": ["Công nghệ kỹ thuật cơ khí", "Công nghệ chế tạo máy"],
-            "máy móc": ["Công nghệ kỹ thuật cơ khí", "Công nghệ chế tạo máy"],
-            "công trình": ["Kỹ thuật xây dựng", "Kỹ thuật xây dựng công trình giao thông"],
-            "xây dựng": ["Kỹ thuật xây dựng", "Kỹ thuật xây dựng công trình giao thông"],
-            "cầu đường": ["Kỹ thuật xây dựng công trình giao thông"],
-            "giao thông": ["Kỹ thuật xây dựng công trình giao thông", "Quy hoạch và quản lý giao thông"],
-            "vận tải": ["Logistics và hạ tầng giao thông", "Quy hoạch và quản lý giao thông"],
-            "logistics": ["Logistics và hạ tầng giao thông"],
-            "kinh doanh": ["Quản trị kinh doanh", "Marketing", "Thương mại điện tử"],
-            "quản lý": ["Quản trị kinh doanh", "Quản trị nhân lực"],
-            "marketing": ["Marketing", "Thương mại điện tử"],
-            "tiếng anh": ["Ngôn ngữ Anh"],
-            "ngoại ngữ": ["Ngôn ngữ Anh"]
-        }
-        
-        # Tìm các từ khóa liên quan đến sở thích trong tin nhắn
-        matched_interests = []
-        for keyword, nganh_list in so_thich_nganh_mapping.items():
-            if keyword in message:
-                matched_interests.extend(nganh_list)
-        
-        # Loại bỏ các ngành trùng lặp và lấy tối đa 5 ngành
-        recommended_nganh = list(dict.fromkeys(matched_interests))[:5]
-        
-        if recommended_nganh:
-            message = "Dựa trên sở thích của bạn, tôi gợi ý các ngành sau:\n\n"
-            for i, nganh in enumerate(recommended_nganh, 1):
-                message += f"{i}. {nganh}\n"
-                
-            message += "\nBạn có muốn biết thêm thông tin về ngành nào trong số này không?"
+
+    def run(self, dispatcher, tracker, domain):
+        doc = catalog(dispatcher)
+        if doc is None:
+            return []
+        text = normalize(tracker.latest_message.get("text", ""))
+        majors = [m for m in doc["majors"] if m["kind"] == "major" and m["verification"] == "verified" and any(normalize(tag) in text for tag in m["interest_tags"])][:5]
+        if not majors:
+            dispatcher.utter_message(text="Bạn quan tâm lĩnh vực nào? Ví dụ lập trình, ô tô, xây dựng hoặc ngoại ngữ.")
         else:
-            message = "Tôi chưa xác định được sở thích rõ ràng của bạn. Bạn có thể cho tôi biết bạn thích gì hoặc quan tâm đến lĩnh vực nào không?"
-        
-        dispatcher.utter_message(text=message)
+            dispatcher.utter_message(text="Gợi ý khám phá theo từ khóa sở thích (chưa phải đánh giá năng lực nghề nghiệp):\n" + "\n".join(f"- {m['ten_nganh']}" for m in majors) + "\n" + source_text(doc, [s for m in majors for s in m["source_ids"]]))
         return []
-    
+
+
 class ActionTinhKhoiVaGoiYNganh(Action):
-    def name(self) -> Text:
+    def name(self):
         return "action_tinh_khoi_va_goi_y_nganh"
 
-    def run(self, dispatcher: CollectingDispatcher,
-            tracker: Tracker,
-            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-
-        text = tracker.latest_message.get('text', '').lower()
-        
-        # 1) Lấy điểm từ regex (ví dụ "8 điểm toán")
-        matches: List[Tuple[str, str]] = re.findall(
-            r'(\d+(?:\.\d+)?)\s*điểm\s*([^\d,]+)', text
-        )
-        
-        # 2) Chuẩn bị danh sách ngành
+    def run(self, dispatcher, tracker, domain):
         try:
-            with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "data", "nganh.json"), "r", encoding="utf-8") as f:
-                ds_nganh = json.load(f)
-        except Exception as e:
-            dispatcher.utter_message(text=f"❗ Lỗi đọc dữ liệu ngành: {e}")
+            scores = combination_scores(parse_subject_scores(tracker.latest_message.get("text", "")))
+            year = query_year(tracker)
+        except ValueError as exc:
+            dispatcher.utter_message(text=str(exc))
             return []
-
-        # 3) Nếu có >=3 môn điểm, tính khối và lọc theo điểm chuẩn 2024
-        phu_hop, can_nhac = [], []
-        if len(matches) >= 3:
-            m = {mat.strip(): float(s) for s, mat in matches[:3]}
-            khoi_def = {
-                "A00": ["toán", "lý", "hóa"],
-                "A01": ["toán", "lý", "anh"],
-                "B00": ["toán", "hóa", "sinh"],
-                "C00": ["văn", "sử", "địa"],
-                "D01": ["toán", "văn", "anh"],
-                "D07": ["toán", "hóa", "anh"],
-            }
-            diem_khoi = {k: sum(m.get(subj, 0) for subj in subjs)
-                         for k, subjs in khoi_def.items()}
-            best_khoi = max(diem_khoi, key=diem_khoi.get)
-            best_score = diem_khoi[best_khoi]
-            dispatcher.utter_message(
-                text=f"📊 Khối phù hợp nhất: *{best_khoi}* với tổng {best_score} điểm."
-            )
-
-            for ng in ds_nganh:
-                if best_khoi in ng.get("khoi_xet_tuyen", []):
-                    dc = ng.get("diem_chuan", {}).get("2024")
-                    if dc is None:
-                        continue
-                    if best_score >= dc:
-                        phu_hop.append(ng["ten_nganh"])
-                    elif best_score + 2 >= dc:
-                        can_nhac.append(ng["ten_nganh"])
-
-            if phu_hop:
-                dispatcher.utter_message("🎉 Bạn đủ điểm cho các ngành sau:")
-                for ng in phu_hop:
-                    dispatcher.utter_message(f"- {ng}")
-            if can_nhac:
-                dispatcher.utter_message("💡 Có thể cân nhắc (cách điểm chuẩn ≤2 điểm):")
-                for ng in can_nhac:
-                    dispatcher.utter_message(f"- {ng}")
-            if not phu_hop and not can_nhac:
-                dispatcher.utter_message("❗ Rất tiếc, chưa tìm được ngành nào phù hợp với điểm hiện tại.")
-
-        else:
-            dispatcher.utter_message(
-                "🔍 Bạn vui lòng cung cấp ít nhất 3 môn và điểm tương ứng (ví dụ: 8 điểm Toán, 7 điểm Văn, 9 điểm Anh)."
-            )
-
+        if not scores:
+            dispatcher.utter_message(text="Bạn hãy nhập đủ điểm các môn của một tổ hợp, ví dụ: 8 điểm Toán, 8 điểm Hóa và 9 điểm Anh. Điểm mỗi môn từ 0 đến 10.")
+            return []
+        dispatcher.utter_message(text="Tổng các tổ hợp đủ môn (chưa cộng ưu tiên hoặc quy đổi):\n" + "\n".join(f"- {code}: {score:g}/30" for code, score in sorted(scores.items())))
+        doc = catalog(dispatcher)
+        if doc is not None:
+            recommend(dispatcher, doc, scores, year)
         return []
+
+
+class ActionTraLoiThongTinTruong(Action):
+    def name(self):
+        return "action_tra_loi_thong_tin_truong"
+
+    def run(self, dispatcher, tracker, domain):
+        try:
+            doc = load_document("school")
+        except DataError:
+            LOGGER.exception("Unable to load school facts")
+            dispatcher.utter_message(text=DATA_ERROR)
+            return []
+        fact = doc["facts"].get(tracker.latest_message.get("intent", {}).get("name"))
+        if not fact or fact["verification"] != "verified":
+            dispatcher.utter_message(text="Thông tin này đang được kiểm chứng. Xem thông báo chính thức: " + OFFICIAL_URL)
+            return []
+        try:
+            year = query_year(tracker)
+        except ValueError as exc:
+            dispatcher.utter_message(text=str(exc))
+            return []
+        if year is not None and fact["year"] is not None and year != fact["year"]:
+            dispatcher.utter_message(text=f"Chưa có thông tin đã xác minh năm {year} cho nội dung này. " + OFFICIAL_URL)
+        else:
+            dispatcher.utter_message(text=fact["text"] + "\n" + source_text(doc, fact["source_ids"]))
+        return []
+
+
+class ActionPrepareLookup(Action):
+    def name(self):
+        return 'action_prepare_lookup'
+
+    def run(self, dispatcher, tracker, domain):
+        doc = catalog(dispatcher)
+        if doc is None:
+            return [SlotSet('ten_nganh', None)]
+        try:
+            updates = lookup_updates(tracker, doc)
+        except ValueError as exc:
+            dispatcher.utter_message(text=str(exc))
+            # Discard old context on an invalid explicit replacement.
+            updates = {'ten_nganh': None, 'nam': None, 'phuong_thuc': None,
+                       'lookup_intent': tracker.latest_message.get('intent', {}).get('name')
+                       if tracker.latest_message.get('intent', {}).get('name') in LOOKUPS
+                       else tracker.get_slot('lookup_intent')}
+        return [SlotSet(key, value) for key, value in updates.items()]
+
+
+class ValidateTraCuuNganhForm(FormValidationAction):
+    def name(self):
+        return 'validate_tra_cuu_nganh_form'
+
+    async def run(self, dispatcher, tracker, domain):
+        intent = tracker.latest_message.get('intent', {}).get('name')
+        valid_input = False
+        if intent == 'nlu_fallback' and tracker.get_slot('requested_slot'):
+            try:
+                if tracker.get_slot('requested_slot') == 'nam':
+                    valid_input = requested_year(tracker.latest_message.get('text', '')) is not None
+                else:
+                    valid_input = major_from_message(tracker, load_catalog()) is not None
+            except (ValueError, DataError):
+                pass
+        if intent in {'bat_dau_lai', 'huy_tra_cuu'} or (intent == 'nlu_fallback' and not valid_input and tracker.latest_action_name != 'utter_default'):
+            raise ActionExecutionRejection('tra_cuu_nganh_form')
+        return await super().run(dispatcher, tracker, domain)
+
+    async def required_slots(self, domain_slots, dispatcher, tracker, domain):
+        return ['ten_nganh', 'nam'] if tracker.get_slot('lookup_intent') in {
+            'hoi_diem_chuan_cua_nganh', 'hoi_khoi_tuyen_sinh_cua_nganh'} else ['ten_nganh']
+
+    async def extract_ten_nganh(self, dispatcher, tracker, domain):
+        doc = catalog(dispatcher)
+        if doc is None:
+            return {'ten_nganh': None}
+        try:
+            major = major_from_message(tracker, doc)
+        except ValueError as exc:
+            dispatcher.utter_message(text=str(exc))
+            return {'ten_nganh': None, 'nam': None, 'phuong_thuc': None}
+        if major is None and tracker.get_slot('requested_slot') == 'ten_nganh':
+            dispatcher.utter_message(text='Tên ngành chưa rõ. Hãy nhập tên đầy đủ, ví dụ Công nghệ thông tin.')
+            return {'ten_nganh': None}
+        if not major:
+            return {}
+        result = {'ten_nganh': major}
+        if normalize(major) != normalize(tracker.get_slot('ten_nganh') or ''):
+            result.update(nam=None, phuong_thuc=None)
+            try:
+                year = requested_year(tracker.latest_message.get('text', ''))
+                result['nam'] = str(year) if year else None
+                result['phuong_thuc'] = method_from_text(tracker.latest_message.get('text', ''))
+            except ValueError as exc:
+                dispatcher.utter_message(text=str(exc))
+        return result
+
+    async def extract_nam(self, dispatcher, tracker, domain):
+        try:
+            year = requested_year(tracker.latest_message.get('text', ''))
+            method = method_from_text(tracker.latest_message.get('text', ''))
+        except ValueError as exc:
+            dispatcher.utter_message(text=str(exc))
+            return {'nam': None, 'phuong_thuc': None}
+        result = {'nam': str(year)} if year else {}
+        if method:
+            result['phuong_thuc'] = method
+        if not year and tracker.get_slot('requested_slot') == 'nam':
+            dispatcher.utter_message(text='Hãy nhập một năm rõ ràng, ví dụ 2026 hoặc năm ngoái.')
+            result['nam'] = None
+        return result
+
+    def validate_ten_nganh(self, value, dispatcher, tracker, domain):
+        doc = catalog(dispatcher)
+        major = find_major(value, doc) if doc and value else None
+        return {'ten_nganh': major['ten_nganh'] if major else None}
+
+    def validate_nam(self, value, dispatcher, tracker, domain):
+        try:
+            year = requested_year(str(value or ''))
+        except ValueError:
+            year = None
+        return {'nam': str(year) if year else None}
+
+
+class ActionSubmitLookup(Action):
+    def name(self):
+        return 'action_submit_lookup'
+
+    def run(self, dispatcher, tracker, domain):
+        action_name = LOOKUPS.get(tracker.get_slot('lookup_intent'))
+        action_class = next((cls for cls in [ActionTraLoiThongTinNganh, ActionTraLoiCoHoiViecLam,
+                             ActionTraLoiDiemChuanNganh, ActionTraLoiKhoiXetTuyen]
+                             if cls.action_name == action_name), ActionTraLoiThongTinNganh)
+        return action_class().run(dispatcher, tracker, domain)
+
+
+class ActionPrepareScore(Action):
+    def name(self):
+        return 'action_prepare_score'
+
+    def run(self, dispatcher, tracker, domain):
+        try:
+            entity = next((e['value'] for e in tracker.latest_message.get('entities', []) if e['entity'] == 'diem'), None)
+            value = parse_total_score(tracker.latest_message.get('text', ''), entity)
+        except ValueError as exc:
+            dispatcher.utter_message(text=str(exc))
+            value = None
+        return [SlotSet('diem', value)]
+
+
+class ValidateTuVanDiemForm(FormValidationAction):
+    def name(self):
+        return 'validate_tu_van_diem_form'
+
+    async def run(self, dispatcher, tracker, domain):
+        intent = tracker.latest_message.get('intent', {}).get('name')
+        valid_input = False
+        if intent == 'nlu_fallback' and tracker.get_slot('requested_slot') == 'diem':
+            try:
+                valid_input = parse_total_score(tracker.latest_message.get('text', '')) is not None
+            except ValueError:
+                pass
+        if intent in {'bat_dau_lai', 'huy_tra_cuu'} or (intent == 'nlu_fallback' and not valid_input and tracker.latest_action_name != 'utter_default'):
+            raise ActionExecutionRejection('tu_van_diem_form')
+        return await super().run(dispatcher, tracker, domain)
+
+    async def extract_diem(self, dispatcher, tracker, domain):
+        try:
+            entity = next((e['value'] for e in tracker.latest_message.get('entities', []) if e['entity'] == 'diem'), None)
+            value = parse_total_score(tracker.latest_message.get('text', ''), entity)
+        except ValueError as exc:
+            dispatcher.utter_message(text=str(exc))
+            return {'diem': None}
+        return {'diem': value} if value is not None else {}
+
+    def validate_diem(self, value, dispatcher, tracker, domain):
+        try:
+            return {'diem': parse_total_score(str(value))}
+        except ValueError as exc:
+            dispatcher.utter_message(text=str(exc))
+            return {'diem': None}
+
+
+class ActionCancelConsultation(Action):
+    def name(self):
+        return 'action_huy_tra_cuu'
+
+    def run(self, dispatcher, tracker, domain):
+        dispatcher.utter_message(text='Đã hủy tra cứu và xóa ngữ cảnh. Bạn có thể hỏi câu mới.')
+        return [ActiveLoop(None), AllSlotsReset()]

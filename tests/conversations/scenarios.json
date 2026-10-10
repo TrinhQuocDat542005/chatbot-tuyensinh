@@ -1,0 +1,626 @@
+[
+  {
+    "id": "missing-major",
+    "turns": [
+      {
+        "intent": "hoi_thong_tin_gioi_thieu_chung_cua_nganh",
+        "entities": {},
+        "contains": [
+          "ngành nào"
+        ],
+        "excludes": []
+      },
+      {
+        "intent": "bo_sung_tra_cuu",
+        "entities": {
+          "ten_nganh": "CNTT"
+        },
+        "contains": [
+          "Công nghệ thông tin"
+        ],
+        "excludes": []
+      }
+    ]
+  },
+  {
+    "id": "missing-year",
+    "turns": [
+      {
+        "intent": "hoi_diem_chuan_cua_nganh",
+        "entities": {
+          "ten_nganh": "CNTT"
+        },
+        "contains": [
+          "năm nào"
+        ],
+        "excludes": []
+      },
+      {
+        "intent": "bo_sung_tra_cuu",
+        "entities": {
+          "nam": "2026"
+        },
+        "contains": [
+          "UTHUIT05A"
+        ],
+        "excludes": []
+      }
+    ]
+  },
+  {
+    "id": "year-replacement",
+    "turns": [
+      {
+        "intent": "hoi_diem_chuan_cua_nganh",
+        "entities": {
+          "ten_nganh": "CNTT",
+          "nam": "2026"
+        },
+        "contains": [
+          "UTHUIT05A"
+        ],
+        "excludes": []
+      },
+      {
+        "intent": "bo_sung_tra_cuu",
+        "entities": {
+          "nam": "2023"
+        },
+        "contains": [
+          "Chưa có",
+          "2023"
+        ],
+        "excludes": [
+          "UTHUIT05A"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "new-major-clears-year",
+    "turns": [
+      {
+        "intent": "hoi_diem_chuan_cua_nganh",
+        "entities": {
+          "ten_nganh": "CNTT",
+          "nam": "2026"
+        },
+        "contains": [
+          "UTHUIT05A"
+        ],
+        "excludes": []
+      },
+      {
+        "intent": "bo_sung_tra_cuu",
+        "entities": {
+          "ten_nganh": "Ngôn ngữ Anh"
+        },
+        "contains": [
+          "năm nào"
+        ],
+        "excludes": [
+          "UTHUIT05A"
+        ]
+      },
+      {
+        "intent": "bo_sung_tra_cuu",
+        "entities": {
+          "nam": "2026"
+        },
+        "contains": [
+          "UTHNNA01A"
+        ],
+        "excludes": []
+      }
+    ]
+  },
+  {
+    "id": "same-major-keeps-year",
+    "turns": [
+      {
+        "intent": "hoi_diem_chuan_cua_nganh",
+        "entities": {
+          "ten_nganh": "CNTT",
+          "nam": "2026"
+        },
+        "contains": [
+          "UTHUIT05A"
+        ],
+        "excludes": []
+      },
+      {
+        "intent": "bo_sung_tra_cuu",
+        "entities": {
+          "ten_nganh": "CNTT"
+        },
+        "contains": [
+          "UTHUIT05A"
+        ],
+        "excludes": []
+      }
+    ]
+  },
+  {
+    "id": "method-thpt",
+    "turns": [
+      {
+        "intent": "hoi_diem_chuan_cua_nganh",
+        "entities": {
+          "ten_nganh": "CNTT",
+          "nam": "2026"
+        },
+        "contains": [
+          "UTHUIT05A"
+        ],
+        "excludes": []
+      },
+      {
+        "intent": "bo_sung_tra_cuu",
+        "entities": {
+          "phuong_thuc": "THPT"
+        },
+        "contains": [
+          "Chưa có"
+        ],
+        "excludes": [
+          "UTHUIT05A"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "method-back-to-combined",
+    "turns": [
+      {
+        "intent": "hoi_diem_chuan_cua_nganh",
+        "entities": {
+          "ten_nganh": "CNTT",
+          "nam": "2026"
+        },
+        "contains": [
+          "UTHUIT05A"
+        ],
+        "excludes": []
+      },
+      {
+        "intent": "bo_sung_tra_cuu",
+        "entities": {
+          "phuong_thuc": "THPT"
+        },
+        "contains": [
+          "Chưa có"
+        ],
+        "excludes": []
+      },
+      {
+        "intent": "bo_sung_tra_cuu",
+        "entities": {
+          "phuong_thuc": "xét tuyển kết hợp"
+        },
+        "contains": [
+          "UTHUIT05A"
+        ],
+        "excludes": []
+      }
+    ]
+  },
+  {
+    "id": "unknown-major-replacement",
+    "turns": [
+      {
+        "intent": "hoi_diem_chuan_cua_nganh",
+        "entities": {
+          "ten_nganh": "CNTT",
+          "nam": "2026"
+        },
+        "contains": [
+          "UTHUIT05A"
+        ],
+        "excludes": []
+      },
+      {
+        "intent": "bo_sung_tra_cuu",
+        "entities": {
+          "ten_nganh": "Ngành ABC"
+        },
+        "contains": [
+          "ngành nào"
+        ],
+        "excludes": [
+          "UTHUIT05A"
+        ]
+      },
+      {
+        "intent": "bo_sung_tra_cuu",
+        "entities": {
+          "ten_nganh": "Ngôn ngữ Anh",
+          "nam": "2026"
+        },
+        "contains": [
+          "UTHNNA01A"
+        ],
+        "excludes": []
+      }
+    ]
+  },
+  {
+    "id": "restart-clears-context",
+    "turns": [
+      {
+        "intent": "hoi_diem_chuan_cua_nganh",
+        "entities": {
+          "ten_nganh": "CNTT",
+          "nam": "2026"
+        },
+        "contains": [
+          "UTHUIT05A"
+        ],
+        "excludes": []
+      },
+      {
+        "intent": "bat_dau_lai",
+        "entities": {},
+        "contains": [
+          "phiên mới"
+        ],
+        "excludes": []
+      },
+      {
+        "intent": "bo_sung_tra_cuu",
+        "entities": {
+          "nam": "2026"
+        },
+        "contains": [
+          "ngành nào"
+        ],
+        "excludes": [
+          "Công nghệ thông tin ("
+        ]
+      }
+    ]
+  },
+  {
+    "id": "restart-in-form",
+    "turns": [
+      {
+        "intent": "hoi_thong_tin_gioi_thieu_chung_cua_nganh",
+        "entities": {},
+        "contains": [
+          "ngành nào"
+        ],
+        "excludes": []
+      },
+      {
+        "intent": "bat_dau_lai",
+        "entities": {},
+        "contains": [
+          "phiên mới"
+        ],
+        "excludes": []
+      },
+      {
+        "intent": "hoi_diem_chuan_cua_nganh",
+        "entities": {
+          "nam": "2026"
+        },
+        "contains": [
+          "ngành nào"
+        ],
+        "excludes": []
+      }
+    ]
+  },
+  {
+    "id": "cancel-in-form",
+    "turns": [
+      {
+        "intent": "hoi_thong_tin_gioi_thieu_chung_cua_nganh",
+        "entities": {},
+        "contains": [
+          "ngành nào"
+        ],
+        "excludes": []
+      },
+      {
+        "intent": "huy_tra_cuu",
+        "entities": {},
+        "contains": [
+          "Đã hủy"
+        ],
+        "excludes": []
+      },
+      {
+        "intent": "bo_sung_tra_cuu",
+        "entities": {
+          "nam": "2026"
+        },
+        "contains": [
+          "ngành nào"
+        ],
+        "excludes": []
+      }
+    ]
+  },
+  {
+    "id": "bad-major-in-form",
+    "turns": [
+      {
+        "intent": "hoi_thong_tin_gioi_thieu_chung_cua_nganh",
+        "entities": {},
+        "contains": [
+          "ngành nào"
+        ],
+        "excludes": []
+      },
+      {
+        "intent": "bo_sung_tra_cuu",
+        "entities": {
+          "ten_nganh": "ABC"
+        },
+        "contains": [
+          "ngành nào"
+        ],
+        "excludes": []
+      },
+      {
+        "intent": "bo_sung_tra_cuu",
+        "entities": {
+          "ten_nganh": "CNTT"
+        },
+        "contains": [
+          "Công nghệ thông tin"
+        ],
+        "excludes": []
+      }
+    ]
+  },
+  {
+    "id": "score-asks-value",
+    "turns": [
+      {
+        "intent": "tu_van_nganh_theo_diem",
+        "entities": {},
+        "contains": [
+          "tổng điểm"
+        ],
+        "excludes": []
+      },
+      {
+        "intent": "tu_van_nganh_theo_diem",
+        "entities": {
+          "diem": "24,5"
+        },
+        "contains": [
+          "24.5/30"
+        ],
+        "excludes": []
+      }
+    ]
+  },
+  {
+    "id": "score-out-of-range",
+    "turns": [
+      {
+        "intent": "tu_van_nganh_theo_diem",
+        "entities": {
+          "diem": "31"
+        },
+        "contains": [
+          "tổng điểm"
+        ],
+        "excludes": []
+      },
+      {
+        "intent": "tu_van_nganh_theo_diem",
+        "entities": {
+          "diem": "0"
+        },
+        "contains": [
+          "0/30"
+        ],
+        "excludes": []
+      }
+    ]
+  },
+  {
+    "id": "score-replacement",
+    "turns": [
+      {
+        "intent": "tu_van_nganh_theo_diem",
+        "entities": {
+          "diem": "24"
+        },
+        "contains": [
+          "24/30"
+        ],
+        "excludes": []
+      },
+      {
+        "intent": "tu_van_nganh_theo_diem",
+        "entities": {
+          "diem": "26"
+        },
+        "contains": [
+          "26/30"
+        ],
+        "excludes": []
+      }
+    ]
+  },
+  {
+    "id": "score-fresh-request",
+    "turns": [
+      {
+        "intent": "tu_van_nganh_theo_diem",
+        "entities": {
+          "diem": "25"
+        },
+        "contains": [
+          "25/30"
+        ],
+        "excludes": []
+      },
+      {
+        "intent": "tu_van_nganh_theo_diem",
+        "entities": {},
+        "contains": [
+          "tổng điểm"
+        ],
+        "excludes": [
+          "25/30"
+        ]
+      },
+      {
+        "intent": "tu_van_nganh_theo_diem",
+        "entities": {
+          "diem": "22"
+        },
+        "contains": [
+          "22/30"
+        ],
+        "excludes": []
+      }
+    ]
+  },
+  {
+    "id": "isolated-new-session",
+    "turns": [
+      {
+        "intent": "bo_sung_tra_cuu",
+        "entities": {
+          "nam": "2026"
+        },
+        "contains": [
+          "ngành nào"
+        ],
+        "excludes": []
+      }
+    ]
+  },
+  {
+    "id": "fallback-in-form",
+    "turns": [
+      {
+        "intent": "hoi_thong_tin_gioi_thieu_chung_cua_nganh",
+        "entities": {},
+        "contains": [
+          "ngành nào"
+        ],
+        "excludes": []
+      },
+      {
+        "intent": "nlu_fallback",
+        "entities": {},
+        "contains": [
+          "chưa hiểu"
+        ],
+        "excludes": []
+      },
+      {
+        "intent": "bo_sung_tra_cuu",
+        "entities": {
+          "ten_nganh": "CNTT"
+        },
+        "contains": [
+          "Công nghệ thông tin"
+        ],
+        "excludes": []
+      }
+    ]
+  },
+  {
+    "id": "name-optional",
+    "turns": [
+      {
+        "intent": "chao_hoi",
+        "entities": {},
+        "contains": [
+          "không cần cung cấp tên"
+        ],
+        "excludes": [
+          "cho tôi biết tên"
+        ]
+      },
+      {
+        "intent": "hoi_thong_tin_gioi_thieu_chung_cua_nganh",
+        "entities": {
+          "ten_nganh": "CNTT"
+        },
+        "contains": [
+          "Công nghệ thông tin"
+        ],
+        "excludes": []
+      }
+    ]
+  },
+  {
+    "id": "career-context",
+    "turns": [
+      {
+        "intent": "hoi_thong_tin_gioi_thieu_chung_cua_nganh",
+        "entities": {
+          "ten_nganh": "CNTT"
+        },
+        "contains": [
+          "Công nghệ thông tin"
+        ],
+        "excludes": []
+      },
+      {
+        "intent": "hoi_co_hoi_viec_lam_cua_nganh",
+        "entities": {},
+        "contains": [
+          "Công nghệ thông tin"
+        ],
+        "excludes": [
+          "ngành nào"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "explicit-new-year-new-major",
+    "turns": [
+      {
+        "intent": "hoi_diem_chuan_cua_nganh",
+        "entities": {
+          "ten_nganh": "CNTT",
+          "nam": "2024"
+        },
+        "contains": [
+          "Chưa có",
+          "2024"
+        ],
+        "excludes": []
+      },
+      {
+        "intent": "bo_sung_tra_cuu",
+        "entities": {
+          "ten_nganh": "Ngôn ngữ Anh",
+          "nam": "2026"
+        },
+        "contains": [
+          "UTHNNA01A"
+        ],
+        "excludes": [
+          "năm 2024"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "zero-total",
+    "turns": [
+      {
+        "intent": "tu_van_nganh_theo_diem",
+        "entities": {
+          "diem": "0"
+        },
+        "contains": [
+          "0/30"
+        ],
+        "excludes": []
+      }
+    ]
+  }
+]

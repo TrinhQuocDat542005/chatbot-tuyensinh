@@ -1,0 +1,48 @@
+# Local fallback for hosts where Windows blocks Python extension DLLs.
+# Docker engine must be running. This is not a public deployment configuration.
+services:
+  train:
+    build: .
+    image: chatbot-tuyensinh:local
+    profiles: [tools]
+    command: [python, -m, rasa, train, --data, data, --fixed-model-name, admissions-week4]
+    volumes:
+      - ./models:/app/models
+  check:
+    image: chatbot-tuyensinh:local
+    build: .
+    profiles: [tools]
+    command: [bash, -c, "python scripts/validate_data.py && python -m pytest -q && python -m rasa data validate --fail-on-warnings && python -m rasa test core --model models/admissions-week4.tar.gz --stories tests/test_stories.yml --out results/core"]
+    volumes:
+      - ./models:/app/models:ro
+      - ./results:/app/results
+  actions:
+    image: chatbot-tuyensinh:local
+    build: .
+    command: [python, -m, rasa_sdk, --actions, actions, --port, '5055']
+    ports:
+      - 127.0.0.1:5055:5055
+    healthcheck:
+      test: [CMD, python, -c, "from urllib.request import urlopen; urlopen('http://localhost:5055/health', timeout=5)"]
+      interval: 5s
+      timeout: 6s
+      retries: 12
+      start_period: 10s
+  rasa:
+    image: chatbot-tuyensinh:local
+    build: .
+    command: [python, -m, rasa, run, --model, models/admissions-week4.tar.gz, --endpoints, endpoints.docker.yml, --port, '5005']
+    depends_on:
+      actions:
+        condition: service_healthy
+    volumes:
+      - ./models:/app/models:ro
+      - ./results:/app/results
+    ports:
+      - 127.0.0.1:5005:5005
+    healthcheck:
+      test: [CMD, python, -c, "from urllib.request import urlopen; urlopen('http://localhost:5005/', timeout=5)"]
+      interval: 5s
+      timeout: 6s
+      retries: 24
+      start_period: 30s

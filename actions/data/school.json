@@ -1,0 +1,112 @@
+{
+  "schema_version": "1.0",
+  "dataset_version": "2026.10.10",
+  "sources": [
+    {
+      "id": "uth-home",
+      "url": "https://tuyensinh.ut.edu.vn/",
+      "publisher": "UTH",
+      "published_at": null,
+      "checked_at": "2026-10-10",
+      "verification": "verified",
+      "evidence_type": "indexed_official_page",
+      "scope": "Địa điểm giảng đường/cơ sở thực hành và liên hệ trên trang tuyển sinh."
+    },
+    {
+      "id": "uth-admissions-2026",
+      "url": "https://tuyensinh.ut.edu.vn/thong-bao-tuyen-sinh-dai-hoc-chinh-quy-nam-2026/",
+      "publisher": "UTH",
+      "published_at": "2026-06-16",
+      "checked_at": "2026-10-10",
+      "verification": "verified",
+      "evidence_type": "indexed_official_page",
+      "scope": "Liên kết thông báo tuyển sinh chính quy 2026; chi tiết đính kèm chưa đọc được."
+    },
+    {
+      "id": "uth-logistics-fees",
+      "url": "https://tuyensinh.ut.edu.vn/thong-bao-tuyen-sinh-dai-hoc-2026-dot-2-chuong-trinh-cu-nhan-logistics-quoc-te-tich-hop-fiata/",
+      "publisher": "UTH",
+      "published_at": "2026-06-18",
+      "checked_at": "2026-10-10",
+      "verification": "verified",
+      "evidence_type": "indexed_official_page",
+      "scope": "Học phí tại Việt Nam riêng chương trình Logistics liên kết quốc tế, thông báo đợt 2 năm 2026."
+    },
+    {
+      "id": "uth-cutoffs-2026",
+      "url": "https://tuyensinh.ut.edu.vn/thong-bao-diem-chuan-trung-tuyen-dai-hoc-chinh-quy-tai-uth-nam-2026/",
+      "publisher": "UTH",
+      "published_at": "2026-08-09",
+      "checked_at": "2026-10-10",
+      "verification": "verified",
+      "evidence_type": "indexed_official_page",
+      "scope": "Điểm xét tuyển kết hợp theo mã chương trình, đợt chính năm 2026."
+    },
+    {
+      "id": "uth-catalog",
+      "url": "https://daotao.ut.edu.vn/danh-sach-nganh-chuyen-nganh-dao-tao/",
+      "publisher": "UTH",
+      "published_at": null,
+      "checked_at": "2026-10-10",
+      "verification": "verified",
+      "evidence_type": "indexed_official_page",
+      "scope": "Tên ngành và quan hệ ngành/chuyên ngành, theo khóa; không xác minh điểm chuẩn."
+    }
+  ],
+  "facts": {
+    "hoi_hoc_phi": {
+      "verification": "verified",
+      "year": 2026,
+      "source_ids": [
+        "uth-logistics-fees"
+      ],
+      "text": "Học phí tùy chương trình và năm tuyển sinh. Thông báo Logistics liên kết quốc tế đợt 2 năm 2026 ghi học phí tại Việt Nam 79 triệu đồng/năm; chi phí tiếng Anh bổ sung tùy năng lực. Mức này KHÔNG áp dụng chung cho toàn trường. Các chương trình khác chưa có mức học phí đã xác minh trong dữ liệu; xem thông báo riêng.",
+      "values": [
+        {
+          "amount": 79000000,
+          "currency": "VND",
+          "unit": "năm",
+          "program": "Logistics liên kết quốc tế - học tại Việt Nam",
+          "year": 2026
+        }
+      ]
+    },
+    "hoi_dia_diem_hoc": {
+      "verification": "verified",
+      "year": null,
+      "source_ids": [
+        "uth-home"
+      ],
+      "text": "Trang tuyển sinh UTH liệt kê giảng đường tại: 2 Võ Oanh, P. Thạnh Mỹ Tây; 10 Đường số 12, P. An Khánh; 70 Tô Ký, P. Trung Mỹ Tây; 33 Đào Trí, P. Phú Thuận; 17 Đường 3 tháng 2, P. Phước Thắng (TP.HCM). Cơ sở thực hành tại Đồng Nai. Địa điểm học cụ thể tùy chương trình; cần xem thông báo của khóa.",
+      "values": []
+    },
+    "hoi_phuong_thuc_xet_tuyen": {
+      "verification": "verified",
+      "year": 2026,
+      "source_ids": [
+        "uth-admissions-2026",
+        "uth-cutoffs-2026"
+      ],
+      "text": "UTH đã công bố thông báo tuyển sinh chính quy 2026 và bảng điểm chuẩn theo phương thức xét tuyển kết hợp. Chi tiết điều kiện, công thức và các phương thức khác cần xem thông báo chính thức; bot chưa tự quy đổi tổng 3 môn sang điểm kết hợp.",
+      "values": []
+    },
+    "hoi_chuong_trinh_dao_tao_cua_truong": {
+      "verification": "verified",
+      "year": null,
+      "source_ids": [
+        "uth-catalog"
+      ],
+      "text": "UTH công bố danh mục ngành/chuyên ngành theo từng khóa. Bạn hãy cho biết ngành và khóa để xem chương trình phù hợp; thời gian đào tạo cần đối chiếu từng chương trình.",
+      "values": []
+    },
+    "hoi_co_so_vat_chat": {
+      "verification": "pending",
+      "year": null,
+      "source_ids": [
+        "uth-home"
+      ],
+      "text": "",
+      "values": []
+    }
+  }
+}

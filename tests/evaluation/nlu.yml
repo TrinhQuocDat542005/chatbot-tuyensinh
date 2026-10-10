@@ -1,0 +1,780 @@
+version: '1.0'
+examples:
+- id: chao_hoi-1
+  intent: chao_hoi
+  text: Chào trợ lý, mình mới tới đây
+  difficulty: normal
+  group: chao_hoi-heldout
+- id: chao_hoi-2
+  intent: chao_hoi
+  text: Xin chào hệ thống tư vấn
+  difficulty: normal
+  group: chao_hoi-heldout
+- id: chao_hoi-3
+  intent: chao_hoi
+  text: Buổi tối vui vẻ nha bot
+  difficulty: normal
+  group: chao_hoi-heldout
+- id: chao_hoi-4
+  intent: chao_hoi
+  text: Hello, có ai tư vấn không
+  difficulty: normal
+  group: chao_hoi-heldout
+- id: chao_hoi-5
+  intent: chao_hoi
+  text: Chào UTH, em cần hỗ trợ
+  difficulty: normal
+  group: chao_hoi-heldout
+- id: chao_hoi-6
+  intent: chao_hoi
+  text: chao ad tuyen sinh
+  difficulty: hard
+  group: chao_hoi-heldout
+- id: chao_hoi-7
+  intent: chao_hoi
+  text: xin chaoo bot
+  difficulty: hard
+  group: chao_hoi-heldout
+- id: nhap_ten-1
+  intent: nhap_ten
+  text: Bạn cứ gọi em là [Hà](ten_nguoi_dung)
+  difficulty: normal
+  group: nhap_ten-heldout
+- id: nhap_ten-2
+  intent: nhap_ten
+  text: Tên đầy đủ của mình là [Mai Linh](ten_nguoi_dung)
+  difficulty: normal
+  group: nhap_ten-heldout
+- id: nhap_ten-3
+  intent: nhap_ten
+  text: Em xin giới thiệu em tên [Hoàng](ten_nguoi_dung)
+  difficulty: normal
+  group: nhap_ten-heldout
+- id: nhap_ten-4
+  intent: nhap_ten
+  text: Mình có tên là [Thảo](ten_nguoi_dung)
+  difficulty: normal
+  group: nhap_ten-heldout
+- id: nhap_ten-5
+  intent: nhap_ten
+  text: 'Tên em: [Ngọc](ten_nguoi_dung)'
+  difficulty: normal
+  group: nhap_ten-heldout
+- id: nhap_ten-6
+  intent: nhap_ten
+  text: toi ten [Nam](ten_nguoi_dung) nhe
+  difficulty: hard
+  group: nhap_ten-heldout
+- id: nhap_ten-7
+  intent: nhap_ten
+  text: minh ten la [An](ten_nguoi_dung) a
+  difficulty: hard
+  group: nhap_ten-heldout
+- id: hoi_nganh_tuyen_sinh-1
+  intent: hoi_nganh_tuyen_sinh
+  text: Có thể liệt kê ngành đào tạo giúp em được chứ
+  difficulty: normal
+  group: hoi_nganh_tuyen_sinh-heldout
+- id: hoi_nganh_tuyen_sinh-2
+  intent: hoi_nganh_tuyen_sinh
+  text: Danh mục các ngành của UTH gồm những gì
+  difficulty: normal
+  group: hoi_nganh_tuyen_sinh-heldout
+- id: hoi_nganh_tuyen_sinh-3
+  intent: hoi_nganh_tuyen_sinh
+  text: Cho mình một danh sách ngành để lựa chọn
+  difficulty: normal
+  group: hoi_nganh_tuyen_sinh-heldout
+- id: hoi_nganh_tuyen_sinh-4
+  intent: hoi_nganh_tuyen_sinh
+  text: UTH dạy những ngành đại học nào vậy
+  difficulty: normal
+  group: hoi_nganh_tuyen_sinh-heldout
+- id: hoi_nganh_tuyen_sinh-5
+  intent: hoi_nganh_tuyen_sinh
+  text: Có bao nhiêu ngành trong danh mục trường
+  difficulty: normal
+  group: hoi_nganh_tuyen_sinh-heldout
+- id: hoi_nganh_tuyen_sinh-6
+  intent: hoi_nganh_tuyen_sinh
+  text: ke ten cac nganh o UTH giup minh
+  difficulty: hard
+  group: hoi_nganh_tuyen_sinh-heldout
+- id: hoi_nganh_tuyen_sinh-7
+  intent: hoi_nganh_tuyen_sinh
+  text: danh sach nghanh cua truong dau
+  difficulty: hard
+  group: hoi_nganh_tuyen_sinh-heldout
+- id: hoi_thong_tin_gioi_thieu_chung_cua_nganh-1
+  intent: hoi_thong_tin_gioi_thieu_chung_cua_nganh
+  text: Cho mình tổng quan về [Kinh tế xây dựng](ten_nganh) nhé
+  difficulty: normal
+  group: hoi_thong_tin_gioi_thieu_chung_cua_nganh-heldout
+- id: hoi_thong_tin_gioi_thieu_chung_cua_nganh-2
+  intent: hoi_thong_tin_gioi_thieu_chung_cua_nganh
+  text: '[Công nghệ thông tin](ten_nganh) học kiến thức gì vậy'
+  difficulty: normal
+  group: hoi_thong_tin_gioi_thieu_chung_cua_nganh-heldout
+- id: hoi_thong_tin_gioi_thieu_chung_cua_nganh-3
+  intent: hoi_thong_tin_gioi_thieu_chung_cua_nganh
+  text: Nội dung ngành [Ngôn ngữ Anh](ten_nganh) gồm gì
+  difficulty: normal
+  group: hoi_thong_tin_gioi_thieu_chung_cua_nganh-heldout
+- id: hoi_thong_tin_gioi_thieu_chung_cua_nganh-4
+  intent: hoi_thong_tin_gioi_thieu_chung_cua_nganh
+  text: Bạn giải thích ngành [Kỹ thuật xây dựng](ten_nganh) cho mình
+  difficulty: normal
+  group: hoi_thong_tin_gioi_thieu_chung_cua_nganh-heldout
+- id: hoi_thong_tin_gioi_thieu_chung_cua_nganh-5
+  intent: hoi_thong_tin_gioi_thieu_chung_cua_nganh
+  text: Em cần một mô tả về [Kỹ thuật điện](ten_nganh)
+  difficulty: normal
+  group: hoi_thong_tin_gioi_thieu_chung_cua_nganh-heldout
+- id: hoi_thong_tin_gioi_thieu_chung_cua_nganh-6
+  intent: hoi_thong_tin_gioi_thieu_chung_cua_nganh
+  text: nganh [CNTT](ten_nganh) hoc kien thuc nao
+  difficulty: hard
+  group: hoi_thong_tin_gioi_thieu_chung_cua_nganh-heldout
+- id: hoi_thong_tin_gioi_thieu_chung_cua_nganh-7
+  intent: hoi_thong_tin_gioi_thieu_chung_cua_nganh
+  text: gioi thieu [Logistics và quản lý chuỗi cung ứng](ten_nganh) voi a
+  difficulty: hard
+  group: hoi_thong_tin_gioi_thieu_chung_cua_nganh-heldout
+- id: hoi_co_hoi_viec_lam_cua_nganh-1
+  intent: hoi_co_hoi_viec_lam_cua_nganh
+  text: Tốt nghiệp [Kinh tế xây dựng](ten_nganh) có thể làm nghề nào
+  difficulty: normal
+  group: hoi_co_hoi_viec_lam_cua_nganh-heldout
+- id: hoi_co_hoi_viec_lam_cua_nganh-2
+  intent: hoi_co_hoi_viec_lam_cua_nganh
+  text: Vị trí công việc cho ngành [Kỹ thuật điện](ten_nganh) là gì
+  difficulty: normal
+  group: hoi_co_hoi_viec_lam_cua_nganh-heldout
+- id: hoi_co_hoi_viec_lam_cua_nganh-3
+  intent: hoi_co_hoi_viec_lam_cua_nganh
+  text: Học [Công nghệ thông tin](ten_nganh) xong làm ở lĩnh vực nào
+  difficulty: normal
+  group: hoi_co_hoi_viec_lam_cua_nganh-heldout
+- id: hoi_co_hoi_viec_lam_cua_nganh-4
+  intent: hoi_co_hoi_viec_lam_cua_nganh
+  text: Ra trường ngành đó có các lựa chọn việc làm gì
+  difficulty: normal
+  group: hoi_co_hoi_viec_lam_cua_nganh-heldout
+- id: hoi_co_hoi_viec_lam_cua_nganh-5
+  intent: hoi_co_hoi_viec_lam_cua_nganh
+  text: Nghề nghiệp sau khi học [Ngôn ngữ Anh](ten_nganh) ra sao
+  difficulty: normal
+  group: hoi_co_hoi_viec_lam_cua_nganh-heldout
+- id: hoi_co_hoi_viec_lam_cua_nganh-6
+  intent: hoi_co_hoi_viec_lam_cua_nganh
+  text: co hoi nghe nghiep cua [CNTT](ten_nganh) the nao
+  difficulty: hard
+  group: hoi_co_hoi_viec_lam_cua_nganh-heldout
+- id: hoi_co_hoi_viec_lam_cua_nganh-7
+  intent: hoi_co_hoi_viec_lam_cua_nganh
+  text: viec lam nganh [Logistics và quản lý chuỗi cung ứng](ten_nganh) sau tot nghiep
+  difficulty: hard
+  group: hoi_co_hoi_viec_lam_cua_nganh-heldout
+- id: hoi_diem_chuan_cua_nganh-1
+  intent: hoi_diem_chuan_cua_nganh
+  text: Mức điểm trúng tuyển [Công nghệ thông tin](ten_nganh) năm [2026](nam) là gì
+  difficulty: normal
+  group: hoi_diem_chuan_cua_nganh-heldout
+- id: hoi_diem_chuan_cua_nganh-2
+  intent: hoi_diem_chuan_cua_nganh
+  text: Mình muốn biết điểm chuẩn [Kỹ thuật điện](ten_nganh) đợt chính năm [2026](nam)
+  difficulty: normal
+  group: hoi_diem_chuan_cua_nganh-heldout
+- id: hoi_diem_chuan_cua_nganh-3
+  intent: hoi_diem_chuan_cua_nganh
+  text: '[Ngôn ngữ Anh](ten_nganh) cần điểm chuẩn bao nhiêu năm [2025](nam)'
+  difficulty: normal
+  group: hoi_diem_chuan_cua_nganh-heldout
+- id: hoi_diem_chuan_cua_nganh-4
+  intent: hoi_diem_chuan_cua_nganh
+  text: Xem điểm chuẩn của ngành đó cho năm [2023](nam) giúp em
+  difficulty: normal
+  group: hoi_diem_chuan_cua_nganh-heldout
+- id: hoi_diem_chuan_cua_nganh-5
+  intent: hoi_diem_chuan_cua_nganh
+  text: Tra mức trúng tuyển [Kinh tế xây dựng](ten_nganh) theo THPT năm [2026](nam)
+  difficulty: normal
+  group: hoi_diem_chuan_cua_nganh-heldout
+- id: hoi_diem_chuan_cua_nganh-6
+  intent: hoi_diem_chuan_cua_nganh
+  text: diem trung tuyen [CNTT](ten_nganh) nam [2024](nam) la may
+  difficulty: hard
+  group: hoi_diem_chuan_cua_nganh-heldout
+- id: hoi_diem_chuan_cua_nganh-7
+  intent: hoi_diem_chuan_cua_nganh
+  text: diem chuan nganh [Kỹ thuật xây dựng](ten_nganh) nam [2026](nam) ket hop bao
+    nhieu
+  difficulty: hard
+  group: hoi_diem_chuan_cua_nganh-heldout
+- id: hoi_khoi_tuyen_sinh_cua_nganh-1
+  intent: hoi_khoi_tuyen_sinh_cua_nganh
+  text: Những tổ hợp thi nào dùng xét ngành [Công nghệ thông tin](ten_nganh)
+  difficulty: normal
+  group: hoi_khoi_tuyen_sinh_cua_nganh-heldout
+- id: hoi_khoi_tuyen_sinh_cua_nganh-2
+  intent: hoi_khoi_tuyen_sinh_cua_nganh
+  text: Ngành [Ngôn ngữ Anh](ten_nganh) chấp nhận khối nào năm [2026](nam)
+  difficulty: normal
+  group: hoi_khoi_tuyen_sinh_cua_nganh-heldout
+- id: hoi_khoi_tuyen_sinh_cua_nganh-3
+  intent: hoi_khoi_tuyen_sinh_cua_nganh
+  text: '[Kỹ thuật điện](ten_nganh) tuyển bằng tổ hợp môn gì'
+  difficulty: normal
+  group: hoi_khoi_tuyen_sinh_cua_nganh-heldout
+- id: hoi_khoi_tuyen_sinh_cua_nganh-4
+  intent: hoi_khoi_tuyen_sinh_cua_nganh
+  text: Em muốn xem khối xét tuyển của ngành đó
+  difficulty: normal
+  group: hoi_khoi_tuyen_sinh_cua_nganh-heldout
+- id: hoi_khoi_tuyen_sinh_cua_nganh-5
+  intent: hoi_khoi_tuyen_sinh_cua_nganh
+  text: Tổ hợp vào [Kinh tế xây dựng](ten_nganh) năm [2024](nam) là gì
+  difficulty: normal
+  group: hoi_khoi_tuyen_sinh_cua_nganh-heldout
+- id: hoi_khoi_tuyen_sinh_cua_nganh-6
+  intent: hoi_khoi_tuyen_sinh_cua_nganh
+  text: nganh [CNTT](ten_nganh) xet mon nao nam [2026](nam)
+  difficulty: hard
+  group: hoi_khoi_tuyen_sinh_cua_nganh-heldout
+- id: hoi_khoi_tuyen_sinh_cua_nganh-7
+  intent: hoi_khoi_tuyen_sinh_cua_nganh
+  text: khoi tuyen sinh [Logistics và quản lý chuỗi cung ứng](ten_nganh) gom gi
+  difficulty: hard
+  group: hoi_khoi_tuyen_sinh_cua_nganh-heldout
+- id: hoi_chuong_trinh_dao_tao_cua_truong-1
+  intent: hoi_chuong_trinh_dao_tao_cua_truong
+  text: UTH tổ chức các chương trình đào tạo thế nào
+  difficulty: normal
+  group: hoi_chuong_trinh_dao_tao_cua_truong-heldout
+- id: hoi_chuong_trinh_dao_tao_cua_truong-2
+  intent: hoi_chuong_trinh_dao_tao_cua_truong
+  text: Trường có các bậc đào tạo nào cho sinh viên
+  difficulty: normal
+  group: hoi_chuong_trinh_dao_tao_cua_truong-heldout
+- id: hoi_chuong_trinh_dao_tao_cua_truong-3
+  intent: hoi_chuong_trinh_dao_tao_cua_truong
+  text: Giới thiệu về hệ đào tạo ở UTH giúp em
+  difficulty: normal
+  group: hoi_chuong_trinh_dao_tao_cua_truong-heldout
+- id: hoi_chuong_trinh_dao_tao_cua_truong-4
+  intent: hoi_chuong_trinh_dao_tao_cua_truong
+  text: Có thể tìm thông tin chương trình đào tạo toàn trường ở đâu
+  difficulty: normal
+  group: hoi_chuong_trinh_dao_tao_cua_truong-heldout
+- id: hoi_chuong_trinh_dao_tao_cua_truong-5
+  intent: hoi_chuong_trinh_dao_tao_cua_truong
+  text: Hệ đại học của UTH có những chương trình gì
+  difficulty: normal
+  group: hoi_chuong_trinh_dao_tao_cua_truong-heldout
+- id: hoi_chuong_trinh_dao_tao_cua_truong-6
+  intent: hoi_chuong_trinh_dao_tao_cua_truong
+  text: cac he dao tao tai UTH la gi
+  difficulty: hard
+  group: hoi_chuong_trinh_dao_tao_cua_truong-heldout
+- id: hoi_chuong_trinh_dao_tao_cua_truong-7
+  intent: hoi_chuong_trinh_dao_tao_cua_truong
+  text: cho minh xem chuong trinh daotao cua truong
+  difficulty: hard
+  group: hoi_chuong_trinh_dao_tao_cua_truong-heldout
+- id: hoi_hoc_phi-1
+  intent: hoi_hoc_phi
+  text: Một năm học cần đóng học phí bao nhiêu vậy
+  difficulty: normal
+  group: hoi_hoc_phi-heldout
+- id: hoi_hoc_phi-2
+  intent: hoi_hoc_phi
+  text: Cho em thông tin tiền học của UTH
+  difficulty: normal
+  group: hoi_hoc_phi-heldout
+- id: hoi_hoc_phi-3
+  intent: hoi_hoc_phi
+  text: Mức thu học phí của trường năm [2026](nam) là gì
+  difficulty: normal
+  group: hoi_hoc_phi-heldout
+- id: hoi_hoc_phi-4
+  intent: hoi_hoc_phi
+  text: Học phí năm [2024](nam) có thông tin không
+  difficulty: normal
+  group: hoi_hoc_phi-heldout
+- id: hoi_hoc_phi-5
+  intent: hoi_hoc_phi
+  text: Chi phí học Logistics quốc tế tại Việt Nam là bao nhiêu
+  difficulty: normal
+  group: hoi_hoc_phi-heldout
+- id: hoi_hoc_phi-6
+  intent: hoi_hoc_phi
+  text: hoc phi o UTH moi nam may tien
+  difficulty: hard
+  group: hoi_hoc_phi-heldout
+- id: hoi_hoc_phi-7
+  intent: hoi_hoc_phi
+  text: hocphí nam [2026](nam) nhu nao a
+  difficulty: hard
+  group: hoi_hoc_phi-heldout
+- id: hoi_dia_diem_hoc-1
+  intent: hoi_dia_diem_hoc
+  text: Sinh viên sẽ đến địa chỉ nào để học
+  difficulty: normal
+  group: hoi_dia_diem_hoc-heldout
+- id: hoi_dia_diem_hoc-2
+  intent: hoi_dia_diem_hoc
+  text: UTH có cơ sở học tập tại những nơi nào
+  difficulty: normal
+  group: hoi_dia_diem_hoc-heldout
+- id: hoi_dia_diem_hoc-3
+  intent: hoi_dia_diem_hoc
+  text: Bạn chỉ giúp mình địa điểm các cơ sở học
+  difficulty: normal
+  group: hoi_dia_diem_hoc-heldout
+- id: hoi_dia_diem_hoc-4
+  intent: hoi_dia_diem_hoc
+  text: Học ở UTH thì học ở quận nào vậy
+  difficulty: normal
+  group: hoi_dia_diem_hoc-heldout
+- id: hoi_dia_diem_hoc-5
+  intent: hoi_dia_diem_hoc
+  text: Các cơ sở giảng dạy nằm tại đâu
+  difficulty: normal
+  group: hoi_dia_diem_hoc-heldout
+- id: hoi_dia_diem_hoc-6
+  intent: hoi_dia_diem_hoc
+  text: co so hoc o dau vay bot
+  difficulty: hard
+  group: hoi_dia_diem_hoc-heldout
+- id: hoi_dia_diem_hoc-7
+  intent: hoi_dia_diem_hoc
+  text: dia chi truong UTH nam cho nao
+  difficulty: hard
+  group: hoi_dia_diem_hoc-heldout
+- id: hoi_phuong_thuc_xet_tuyen-1
+  intent: hoi_phuong_thuc_xet_tuyen
+  text: Muốn xét tuyển vào UTH thì có những cách nào
+  difficulty: normal
+  group: hoi_phuong_thuc_xet_tuyen-heldout
+- id: hoi_phuong_thuc_xet_tuyen-2
+  intent: hoi_phuong_thuc_xet_tuyen
+  text: Thông báo tuyển sinh dùng phương thức gì năm [2026](nam)
+  difficulty: normal
+  group: hoi_phuong_thuc_xet_tuyen-heldout
+- id: hoi_phuong_thuc_xet_tuyen-3
+  intent: hoi_phuong_thuc_xet_tuyen
+  text: UTH có nhận xét hồ sơ học bạ không
+  difficulty: normal
+  group: hoi_phuong_thuc_xet_tuyen-heldout
+- id: hoi_phuong_thuc_xet_tuyen-4
+  intent: hoi_phuong_thuc_xet_tuyen
+  text: Em muốn tìm các hình thức tuyển sinh của trường
+  difficulty: normal
+  group: hoi_phuong_thuc_xet_tuyen-heldout
+- id: hoi_phuong_thuc_xet_tuyen-5
+  intent: hoi_phuong_thuc_xet_tuyen
+  text: Có thể xem quy chế xét tuyển kết hợp ở đâu
+  difficulty: normal
+  group: hoi_phuong_thuc_xet_tuyen-heldout
+- id: hoi_phuong_thuc_xet_tuyen-6
+  intent: hoi_phuong_thuc_xet_tuyen
+  text: UTH xet tuyen theo nhung cach gi
+  difficulty: hard
+  group: hoi_phuong_thuc_xet_tuyen-heldout
+- id: hoi_phuong_thuc_xet_tuyen-7
+  intent: hoi_phuong_thuc_xet_tuyen
+  text: phuong thuc tuyensinh nam [2026](nam) co gi
+  difficulty: hard
+  group: hoi_phuong_thuc_xet_tuyen-heldout
+- id: hoi_co_so_vat_chat-1
+  intent: hoi_co_so_vat_chat
+  text: Điều kiện phòng học ở trường như thế nào
+  difficulty: normal
+  group: hoi_co_so_vat_chat-heldout
+- id: hoi_co_so_vat_chat-2
+  intent: hoi_co_so_vat_chat
+  text: Khu thực hành của UTH có thông tin gì
+  difficulty: normal
+  group: hoi_co_so_vat_chat-heldout
+- id: hoi_co_so_vat_chat-3
+  intent: hoi_co_so_vat_chat
+  text: Có thông tin về thư viện và phòng máy không
+  difficulty: normal
+  group: hoi_co_so_vat_chat-heldout
+- id: hoi_co_so_vat_chat-4
+  intent: hoi_co_so_vat_chat
+  text: Em muốn xem điều kiện ký túc xá trường
+  difficulty: normal
+  group: hoi_co_so_vat_chat-heldout
+- id: hoi_co_so_vat_chat-5
+  intent: hoi_co_so_vat_chat
+  text: Cơ sở vật chất phục vụ học tập ra sao
+  difficulty: normal
+  group: hoi_co_so_vat_chat-heldout
+- id: hoi_co_so_vat_chat-6
+  intent: hoi_co_so_vat_chat
+  text: truong co cho o ky tuc xa khong
+  difficulty: hard
+  group: hoi_co_so_vat_chat-heldout
+- id: hoi_co_so_vat_chat-7
+  intent: hoi_co_so_vat_chat
+  text: phong thi nghiem UTH nhu nao
+  difficulty: hard
+  group: hoi_co_so_vat_chat-heldout
+- id: cam_on-1
+  intent: cam_on
+  text: Cảm ơn vì đã giải đáp cho mình nha
+  difficulty: normal
+  group: cam_on-heldout
+- id: cam_on-2
+  intent: cam_on
+  text: Mình cảm ơn sự hỗ trợ này
+  difficulty: normal
+  group: cam_on-heldout
+- id: cam_on-3
+  intent: cam_on
+  text: Dạ em cảm ơn rất nhiều
+  difficulty: normal
+  group: cam_on-heldout
+- id: cam_on-4
+  intent: cam_on
+  text: Cảm ơn, mình đã hiểu thông tin rồi
+  difficulty: normal
+  group: cam_on-heldout
+- id: cam_on-5
+  intent: cam_on
+  text: Thanks vì đã hướng dẫn mình
+  difficulty: normal
+  group: cam_on-heldout
+- id: cam_on-6
+  intent: cam_on
+  text: cam on bot da tu van
+  difficulty: hard
+  group: cam_on-heldout
+- id: cam_on-7
+  intent: cam_on
+  text: cam onnn ad
+  difficulty: hard
+  group: cam_on-heldout
+- id: tam_biet-1
+  intent: tam_biet
+  text: Mình chào bạn nhé, hẹn lần sau
+  difficulty: normal
+  group: tam_biet-heldout
+- id: tam_biet-2
+  intent: tam_biet
+  text: Em xin phép kết thúc, tạm biệt
+  difficulty: normal
+  group: tam_biet-heldout
+- id: tam_biet-3
+  intent: tam_biet
+  text: Bye bot, mình đi học đây
+  difficulty: normal
+  group: tam_biet-heldout
+- id: tam_biet-4
+  intent: tam_biet
+  text: Hẹn gặp bạn trong buổi tư vấn tới
+  difficulty: normal
+  group: tam_biet-heldout
+- id: tam_biet-5
+  intent: tam_biet
+  text: Tạm biệt, chúc bạn buổi tối tốt lành
+  difficulty: normal
+  group: tam_biet-heldout
+- id: tam_biet-6
+  intent: tam_biet
+  text: tam biet nha bot
+  difficulty: hard
+  group: tam_biet-heldout
+- id: tam_biet-7
+  intent: tam_biet
+  text: hen gap lai lan khac nhe
+  difficulty: hard
+  group: tam_biet-heldout
+- id: tu_van_nganh_theo_so_thich-1
+  intent: tu_van_nganh_theo_so_thich
+  text: Em mê chế tạo robot thì nên tìm hiểu ngành nào
+  difficulty: normal
+  group: tu_van_nganh_theo_so_thich-heldout
+- id: tu_van_nganh_theo_so_thich-2
+  intent: tu_van_nganh_theo_so_thich
+  text: Mình hứng thú với lập trình thì học ngành gì phù hợp
+  difficulty: normal
+  group: tu_van_nganh_theo_so_thich-heldout
+- id: tu_van_nganh_theo_so_thich-3
+  intent: tu_van_nganh_theo_so_thich
+  text: Em thích tìm hiểu động cơ ô tô, gợi ý ngành nhé
+  difficulty: normal
+  group: tu_van_nganh_theo_so_thich-heldout
+- id: tu_van_nganh_theo_so_thich-4
+  intent: tu_van_nganh_theo_so_thich
+  text: Mình yêu ngoại ngữ thì chọn ngành nào
+  difficulty: normal
+  group: tu_van_nganh_theo_so_thich-heldout
+- id: tu_van_nganh_theo_so_thich-5
+  intent: tu_van_nganh_theo_so_thich
+  text: Em đam mê xây dựng công trình nên học gì
+  difficulty: normal
+  group: tu_van_nganh_theo_so_thich-heldout
+- id: tu_van_nganh_theo_so_thich-6
+  intent: tu_van_nganh_theo_so_thich
+  text: minh thich may tinh tu van nganh voi
+  difficulty: hard
+  group: tu_van_nganh_theo_so_thich-heldout
+- id: tu_van_nganh_theo_so_thich-7
+  intent: tu_van_nganh_theo_so_thich
+  text: em me logistics nen chon nganh gi
+  difficulty: hard
+  group: tu_van_nganh_theo_so_thich-heldout
+- id: tu_van_nganh_theo_diem-1
+  intent: tu_van_nganh_theo_diem
+  text: Với tổng [22,75](diem) điểm THPT thì tham khảo ngành nào
+  difficulty: normal
+  group: tu_van_nganh_theo_diem-heldout
+- id: tu_van_nganh_theo_diem-2
+  intent: tu_van_nganh_theo_diem
+  text: Em đạt [28.25](diem) điểm, gợi ý lựa chọn học giúp em
+  difficulty: normal
+  group: tu_van_nganh_theo_diem-heldout
+- id: tu_van_nganh_theo_diem-3
+  intent: tu_van_nganh_theo_diem
+  text: Tổng điểm thi của mình là [16](diem), tư vấn ngành nhé
+  difficulty: normal
+  group: tu_van_nganh_theo_diem-heldout
+- id: tu_van_nganh_theo_diem-4
+  intent: tu_van_nganh_theo_diem
+  text: Mình sửa tổng điểm thành [25,25](diem) điểm
+  difficulty: normal
+  group: tu_van_nganh_theo_diem-heldout
+- id: tu_van_nganh_theo_diem-5
+  intent: tu_van_nganh_theo_diem
+  text: Em muốn được tư vấn theo tổng điểm thi
+  difficulty: normal
+  group: tu_van_nganh_theo_diem-heldout
+- id: tu_van_nganh_theo_diem-6
+  intent: tu_van_nganh_theo_diem
+  text: em co [21,75](diem) diem nen hoc nghanh nao
+  difficulty: hard
+  group: tu_van_nganh_theo_diem-heldout
+- id: tu_van_nganh_theo_diem-7
+  intent: tu_van_nganh_theo_diem
+  text: diem moi la [27.5](diem) diem tu van lai nhe
+  difficulty: hard
+  group: tu_van_nganh_theo_diem-heldout
+- id: cung_cap_diem-1
+  intent: cung_cap_diem
+  text: '[Toán](mon_hoc) [8.75](d), [Hóa](mon_hoc) [7.25](d), [Anh](mon_hoc) [9.5](d)
+    thì tính tổ hợp giúp em'
+  difficulty: normal
+  group: cung_cap_diem-heldout
+- id: cung_cap_diem-2
+  intent: cung_cap_diem
+  text: Em thi được [6.25](d) điểm [Toán](mon_hoc), [7.75](d) điểm [Lý](mon_hoc) và
+    [8.5](d) điểm [Anh](mon_hoc)
+  difficulty: normal
+  group: cung_cap_diem-heldout
+- id: cung_cap_diem-3
+  intent: cung_cap_diem
+  text: Mình có [8.5](d) điểm [Văn](mon_hoc), [7.5](d) điểm [Sử](mon_hoc) và [6.5](d)
+    điểm [Địa](mon_hoc)
+  difficulty: normal
+  group: cung_cap_diem-heldout
+- id: cung_cap_diem-4
+  intent: cung_cap_diem
+  text: Sửa [Toán](mon_hoc) thành [7.25](d), [Hóa](mon_hoc) thành [8.75](d), [Anh](mon_hoc)
+    thành [9.25](d)
+  difficulty: normal
+  group: cung_cap_diem-heldout
+- id: cung_cap_diem-5
+  intent: cung_cap_diem
+  text: Tính tổ hợp với [Toán](mon_hoc) [9.25](d), [Lý](mon_hoc) [8.25](d), [Hóa](mon_hoc)
+    [7.25](d), [Anh](mon_hoc) [6.25](d)
+  difficulty: normal
+  group: cung_cap_diem-heldout
+- id: cung_cap_diem-6
+  intent: cung_cap_diem
+  text: '[Toan](mon_hoc) [6,75](d), [Hoa](mon_hoc) [7,25](d), [Anh](mon_hoc) [8,75](d)
+    tinh diem voi'
+  difficulty: hard
+  group: cung_cap_diem-heldout
+- id: cung_cap_diem-7
+  intent: cung_cap_diem
+  text: minh co [9.25](d) diem [Toán](mon_hoc), [8.75](d) diem [Hóa](mon_hoc), [7.25](d)
+    diem [Anh](mon_hoc)
+  difficulty: hard
+  group: cung_cap_diem-heldout
+- id: bo_sung_tra_cuu-1
+  intent: bo_sung_tra_cuu
+  text: Nếu đổi năm thành [2022](nam) thì sao
+  difficulty: normal
+  group: bo_sung_tra_cuu-heldout
+- id: bo_sung_tra_cuu-2
+  intent: bo_sung_tra_cuu
+  text: Chuyển sang [Kinh tế xây dựng](ten_nganh) giúp mình
+  difficulty: normal
+  group: bo_sung_tra_cuu-heldout
+- id: bo_sung_tra_cuu-3
+  intent: bo_sung_tra_cuu
+  text: Vẫn ngành đó nhưng xem năm [2021](nam)
+  difficulty: normal
+  group: bo_sung_tra_cuu-heldout
+- id: bo_sung_tra_cuu-4
+  intent: bo_sung_tra_cuu
+  text: Đổi lựa chọn ngành thành [Kỹ thuật điện](ten_nganh)
+  difficulty: normal
+  group: bo_sung_tra_cuu-heldout
+- id: bo_sung_tra_cuu-5
+  intent: bo_sung_tra_cuu
+  text: Xem tiếp theo phương thức học bạ
+  difficulty: normal
+  group: bo_sung_tra_cuu-heldout
+- id: bo_sung_tra_cuu-6
+  intent: bo_sung_tra_cuu
+  text: con nam [2020](nam) nua thi sao
+  difficulty: hard
+  group: bo_sung_tra_cuu-heldout
+- id: bo_sung_tra_cuu-7
+  intent: bo_sung_tra_cuu
+  text: doi sang [Ngôn ngữ Anh](ten_nganh) nhe bot
+  difficulty: hard
+  group: bo_sung_tra_cuu-heldout
+- id: bat_dau_lai-1
+  intent: bat_dau_lai
+  text: Mình muốn xóa ngữ cảnh và hỏi từ đầu
+  difficulty: normal
+  group: bat_dau_lai-heldout
+- id: bat_dau_lai-2
+  intent: bat_dau_lai
+  text: Khởi tạo cuộc trò chuyện mới cho em
+  difficulty: normal
+  group: bat_dau_lai-heldout
+- id: bat_dau_lai-3
+  intent: bat_dau_lai
+  text: Xóa tên cùng điểm mình đã gửi nhé
+  difficulty: normal
+  group: bat_dau_lai-heldout
+- id: bat_dau_lai-4
+  intent: bat_dau_lai
+  text: Đặt lại toàn bộ thông tin tư vấn cho mình
+  difficulty: normal
+  group: bat_dau_lai-heldout
+- id: bat_dau_lai-5
+  intent: bat_dau_lai
+  text: Hãy quên ngành và năm mình vừa chọn
+  difficulty: normal
+  group: bat_dau_lai-heldout
+- id: bat_dau_lai-6
+  intent: bat_dau_lai
+  text: reset tat ca thong tin da nhap
+  difficulty: hard
+  group: bat_dau_lai-heldout
+- id: bat_dau_lai-7
+  intent: bat_dau_lai
+  text: bat dau lai tu dau cho em nhe
+  difficulty: hard
+  group: bat_dau_lai-heldout
+- id: huy_tra_cuu-1
+  intent: huy_tra_cuu
+  text: Mình muốn hủy yêu cầu đang nhập
+  difficulty: normal
+  group: huy_tra_cuu-heldout
+- id: huy_tra_cuu-2
+  intent: huy_tra_cuu
+  text: Bỏ phần tra cứu hiện tại giúp em
+  difficulty: normal
+  group: huy_tra_cuu-heldout
+- id: huy_tra_cuu-3
+  intent: huy_tra_cuu
+  text: Em không muốn tiếp tục nhập điểm nữa
+  difficulty: normal
+  group: huy_tra_cuu-heldout
+- id: huy_tra_cuu-4
+  intent: huy_tra_cuu
+  text: Dừng luồng hỏi bổ sung này lại
+  difficulty: normal
+  group: huy_tra_cuu-heldout
+- id: huy_tra_cuu-5
+  intent: huy_tra_cuu
+  text: Thoát yêu cầu tư vấn đang mở nhé
+  difficulty: normal
+  group: huy_tra_cuu-heldout
+- id: huy_tra_cuu-6
+  intent: huy_tra_cuu
+  text: huy yeu cau tra cuu dang mo
+  difficulty: hard
+  group: huy_tra_cuu-heldout
+- id: huy_tra_cuu-7
+  intent: huy_tra_cuu
+  text: thoi minh khong muon tra cuu nua
+  difficulty: hard
+  group: huy_tra_cuu-heldout
+- id: ood-1
+  intent: nlu_fallback
+  text: Ngày mai thời tiết ở Hà Nội ra sao
+  difficulty: ood
+  group: ood-heldout
+- id: ood-2
+  intent: nlu_fallback
+  text: Tạo giúp em một bài thơ về mùa xuân
+  difficulty: ood
+  group: ood-heldout
+- id: ood-3
+  intent: nlu_fallback
+  text: Bạn dự đoán giá vàng tuần tới đi
+  difficulty: ood
+  group: ood-heldout
+- id: ood-4
+  intent: nlu_fallback
+  text: Mua vé máy bay tới Đà Nẵng giúp mình
+  difficulty: ood
+  group: ood-heldout
+- id: ood-5
+  intent: nlu_fallback
+  text: Cho mình lời khuyên mua cổ phiếu
+  difficulty: ood
+  group: ood-heldout
+- id: ood-6
+  intent: nlu_fallback
+  text: Hướng dẫn chữa đau răng tại nhà
+  difficulty: ood
+  group: ood-heldout
+- id: ood-7
+  intent: nlu_fallback
+  text: Ai sẽ thắng trận bóng đá tối nay
+  difficulty: ood
+  group: ood-heldout
+- id: ood-8
+  intent: nlu_fallback
+  text: Làm sao hack tài khoản người khác
+  difficulty: ood
+  group: ood-heldout
+- id: ood-9
+  intent: nlu_fallback
+  text: Giải bài tích phân này giúp tôi
+  difficulty: ood
+  group: ood-heldout
+- id: ood-10
+  intent: nlu_fallback
+  text: Trường khác có điểm chuẩn ngành y bao nhiêu
+  difficulty: ood
+  group: ood-heldout
+- id: ood-11
+  intent: nlu_fallback
+  text: Tôi muốn tìm điểm chuẩn Đại học Bách khoa
+  difficulty: ood
+  group: ood-heldout
+- id: ood-12
+  intent: nlu_fallback
+  text: Đặt bàn ăn cho bốn người tối nay
+  difficulty: ood
+  group: ood-heldout
+- id: ood-13
+  intent: nlu_fallback
+  text: thoi tiet hom nay the nao
+  difficulty: ood
+  group: ood-heldout
+- id: ood-14
+  intent: nlu_fallback
+  text: asdkj qwerty 987 xyz
+  difficulty: ood
+  group: ood-heldout

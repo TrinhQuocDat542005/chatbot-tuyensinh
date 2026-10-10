@@ -1,0 +1,302 @@
+{
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "dataset_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "sources": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "url": {
+            "type": "string",
+            "format": "uri",
+            "pattern": "^https://"
+          },
+          "publisher": {
+            "type": "string",
+            "minLength": 1
+          },
+          "published_at": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date"
+          },
+          "checked_at": {
+            "type": "string",
+            "format": "date"
+          },
+          "verification": {
+            "enum": [
+              "verified",
+              "pending"
+            ]
+          },
+          "evidence_type": {
+            "enum": [
+              "indexed_official_page",
+              "official_document"
+            ]
+          },
+          "scope": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "id",
+          "url",
+          "publisher",
+          "published_at",
+          "checked_at",
+          "verification",
+          "evidence_type",
+          "scope"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "majors": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "ma_nganh": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "code_verification": {
+            "enum": [
+              "verified",
+              "pending"
+            ]
+          },
+          "ten_nganh": {
+            "type": "string",
+            "minLength": 1
+          },
+          "kind": {
+            "enum": [
+              "major",
+              "specialization"
+            ]
+          },
+          "parent_id": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "aliases": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "uniqueItems": true
+          },
+          "interest_tags": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "uniqueItems": true
+          },
+          "verification": {
+            "enum": [
+              "verified",
+              "pending"
+            ]
+          },
+          "source_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 1,
+            "uniqueItems": true
+          },
+          "profile": {
+            "type": "object",
+            "properties": {
+              "verification": {
+                "enum": [
+                  "verified",
+                  "pending"
+                ]
+              },
+              "summary": {
+                "type": "string"
+              },
+              "careers": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "uniqueItems": true
+              },
+              "source_ids": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "uniqueItems": true
+              }
+            },
+            "required": [
+              "verification",
+              "summary",
+              "careers",
+              "source_ids"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "id",
+          "ma_nganh",
+          "code_verification",
+          "ten_nganh",
+          "kind",
+          "parent_id",
+          "aliases",
+          "interest_tags",
+          "verification",
+          "source_ids",
+          "profile"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "admissions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "major_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "specialization_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "uniqueItems": true
+          },
+          "program_code": {
+            "type": "string",
+            "minLength": 1
+          },
+          "program_label": {
+            "type": "string",
+            "minLength": 1
+          },
+          "year": {
+            "type": "integer",
+            "minimum": 2000,
+            "maximum": 2100
+          },
+          "method": {
+            "enum": [
+              "thpt",
+              "hoc_ba",
+              "dgnl",
+              "ket_hop",
+              "unknown"
+            ]
+          },
+          "method_label": {
+            "type": "string",
+            "minLength": 1
+          },
+          "round": {
+            "type": "string",
+            "minLength": 1
+          },
+          "score_max": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "exclusiveMinimum": 0
+          },
+          "cutoff": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "combinations": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[A-Z][0-9]{2}$"
+            },
+            "uniqueItems": true
+          },
+          "source_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "verification": {
+            "enum": [
+              "verified",
+              "pending"
+            ]
+          }
+        },
+        "required": [
+          "major_id",
+          "specialization_ids",
+          "program_code",
+          "program_label",
+          "year",
+          "method",
+          "method_label",
+          "round",
+          "score_max",
+          "cutoff",
+          "combinations",
+          "source_id",
+          "verification"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "schema_version",
+    "dataset_version",
+    "sources",
+    "majors",
+    "admissions"
+  ],
+  "additionalProperties": false,
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

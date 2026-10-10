@@ -1,2 +1,3 @@
-#!/bin/bash
-rasa run --enable-api --cors "*" --port $PORT
+#!/usr/bin/env bash
+# Compatibility alias; use start.sh for new deployments.
+exec bash "$(dirname "$0")/start.sh" "$@"

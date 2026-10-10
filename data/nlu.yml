@@ -1,4 +1,4 @@
-version: "3.1"
+version: '3.1'
 nlu:
 - intent: chao_hoi
   examples: |
@@ -69,7 +69,7 @@ nlu:
     - giới thiệu ngành [Khai thác máy tàu thủy và quản lý kỹ thuật](ten_nganh)
     - cho thêm thông tin về ngành [Kỹ thuật điện, điện tử và điều khiển](ten_nganh)
     - thông tin ngành [Cơ điện tử](ten_nganh)
-    - giới thiệu ngành [Quản lý cảng và logistics](ten_ngành)
+    - giới thiệu ngành [Quản lý cảng và logistics](ten_nganh)
     - cho thêm thông tin về ngành [Quản lý hàng hải và đường thuỷ](ten_nganh)
     - thông tin ngành [Kinh tế hàng hải và đường thủy](ten_nganh)
     - giới thiệu ngành [Kinh tế vận tải hàng không](ten_nganh)
@@ -105,7 +105,6 @@ nlu:
     - giới thiệu ngành [Ngôn ngữ Anh](ten_nganh)
     - cho thêm thông tin về ngành [Tiếng anh thương mại, Logistics và vận tải quốc tế](ten_nganh)
     - thông tin ngành [Quản lý xây dựng](ten_nganh)
-
 - intent: hoi_co_hoi_viec_lam_cua_nganh
   examples: |
     - cơ hội việc làm của ngành [Công nghệ kỹ thuật cơ khí](ten_nganh)
@@ -152,7 +151,7 @@ nlu:
     - cơ hội việc làm của ngành [Xây dựng dân dụng và công nghiệp](ten_nganh)
     - cơ hội việc làm của ngành [Kỹ thuật kết cấu công trình](ten_nganh)
     - cơ hội việc làm của ngành [Thiết kế nội thất](ten_nganh)
-    - cơ hội việc làm của ngành [Xây dựng cầu đường](ten_ngành)
+    - cơ hội việc làm của ngành [Xây dựng cầu đường](ten_nganh)
     - cơ hội việc làm của ngành [Xây dựng đường bộ](ten_nganh)
     - cơ hội việc làm của ngành [Xây dựng công trình giao thông đô thị](ten_nganh)
     - cơ hội việc làm của ngành [Xây dựng đường sắt tốc độ cao và đường sắt đô thị](ten_nganh)
@@ -238,7 +237,6 @@ nlu:
     - [Quy hoạch và quản lý giao thông](ten_nganh) lấy khối nào
     - khối xét tuyển vào ngành [Logistics và hạ tầng giao thông](ten_nganh)
     - cần thi khối gì để vào [Công nghệ kỹ thuật ô tô](ten_nganh)
-    - [Công nghệ thông tin](ten_nganh) lấy khối nào
     - khối xét tuyển vào ngành [Công nghệ ô tô số](ten_nganh)
     - cần thi khối gì để vào [Khoa học dữ liệu và Al](ten_nganh)
     - [Smart logistics](ten_nganh) lấy khối nào
@@ -246,7 +244,7 @@ nlu:
     - cần thi khối gì để vào [Hệ thống thông tin quản lý](ten_nganh)
     - [Kinh tế số và trí tuệ nhân tạo](ten_nganh) lấy khối nào
     - khối xét tuyển vào ngành [Quản lý và kinh doanh vận tải](ten_nganh)
-    - cần thi khối gì để vào [Quản trị logistics và vận tải đa phương thức](ten_ngành)
+    - cần thi khối gì để vào [Quản trị logistics và vận tải đa phương thức](ten_nganh)
     - [Khai thác đường sắt tốc độ cao](ten_nganh) lấy khối nào
     - khối xét tuyển vào ngành [Khoa học dữ liệu](ten_nganh)
     - cần thi khối gì để vào [Điều khiển và quản lý tàu biển](ten_nganh)
@@ -289,7 +287,6 @@ nlu:
     - [Ngôn ngữ Anh](ten_nganh) lấy khối nào
     - khối xét tuyển vào ngành [Tiếng anh thương mại, Logistics và vận tải quốc tế](ten_nganh)
     - cần thi khối gì để vào [Quản lý xây dựng](ten_nganh)
-
 - intent: hoi_hoc_phi
   examples: |
     - học phí là bao nhiêu
@@ -354,36 +351,35 @@ nlu:
     - tôi muốn học ngành liên quan đến ngoại ngữ
     - tôi thích học các môn liên quan đến tự động hóa
     - em thích cơ khí và các máy móc
-
 - intent: tu_van_nganh_theo_diem
   examples: |
-    - tôi được 24 điểm thì nên học ngành nào?
-    - nếu em được 20 điểm thì có thể học ngành gì?
-    - em thi được khoảng 26 điểm, có ngành nào phù hợp không?
-    - với điểm 19 thì có cơ hội ngành nào không?
-    - điểm 22 thì nên chọn ngành nào?
-    - nếu có 18 điểm thì nên chọn ngành gì?
-    - em được 25 điểm, gợi ý giúp ngành học phù hợp
-    - với 21 điểm thì nên học ngành gì?
-    - mình được 23 điểm có thể đậu được ngành nào?
-    - tôi đạt 24.5 điểm, tư vấn giúp tôi các ngành phù hợp
-    - em được 17 điểm, có ngành nào phù hợp không?
-    - với 20.5 điểm thì có những ngành nào phù hợp?
-    - tôi có 22.5 điểm, nên học ngành gì?
-    - 19.5 điểm thì học được ngành nào?
-    - 27 điểm thì nên học ngành gì ạ?
-    - em đạt 23 điểm có đủ đậu ngành công nghệ thông tin không?
-
+    - tôi được [24](diem) điểm thì nên học ngành nào?
+    - nếu em được [20](diem) điểm thì có thể học ngành gì?
+    - em thi được khoảng [26](diem) điểm, có ngành nào phù hợp không?
+    - với điểm [19](diem) thì có cơ hội ngành nào không?
+    - điểm [22](diem) thì nên chọn ngành nào?
+    - nếu có [18](diem) điểm thì nên chọn ngành gì?
+    - em được [25](diem) điểm, gợi ý giúp ngành học phù hợp
+    - với [21](diem) điểm thì nên học ngành gì?
+    - mình được [23](diem) điểm có thể đậu được ngành nào?
+    - tôi đạt [24.5](diem) điểm, tư vấn giúp tôi các ngành phù hợp
+    - em được [17](diem) điểm, có ngành nào phù hợp không?
+    - với [20.5](diem) điểm thì có những ngành nào phù hợp?
+    - tôi có [22.5](diem) điểm, nên học ngành gì?
+    - [19.5](diem) điểm thì học được ngành nào?
+    - [27](diem) điểm thì nên học ngành gì ạ?
+    - em đạt [23](diem) điểm có đủ đậu ngành công nghệ thông tin không?
+    - tôi được [24,5](diem) điểm
+    - tổng điểm THPT của em là [0](diem)
 - intent: cung_cap_diem
   examples: |
-    - Em có [8](d) điểm [Toán](mon_hoc), [8](d) điểm [Hóa](mon_hoc) và [9](d) điểm [Anh](mon_hoc)
-    - Mình đạt [7.5](d) điểm [Toán](mon_hoc), [8](d) điểm [Lý](mon_hoc), [9](d) điểm [Anh](mon_hoc)
     - Em có [8](d) điểm [Toán](mon_hoc), [8](d) điểm [Hóa](mon_hoc) và [9](d) điểm [Anh](mon_hoc)
     - Mình đạt [7.5](d) điểm [Toán](mon_hoc), [8](d) điểm [Lý](mon_hoc), [9](d) điểm [Anh](mon_hoc)
     - Tôi được [6](d) điểm [Sinh](mon_hoc), [7](d) điểm [Hóa](mon_hoc), [8](d) điểm [Toán](mon_hoc)
     - Em có [9](d) điểm [Văn](mon_hoc), [8](d) điểm [Sử](mon_hoc), [7](d) điểm [Địa](mon_hoc)
     - Mình có [8.25](d) điểm [Toán](mon_hoc), [7.5](d) điểm [Anh](mon_hoc), [8](d) điểm [Anh Văn](mon_hoc)
-
+    - Toán [8,5](d), Hóa [8](d), Anh [9](d)
+    - [8,5](d) điểm [Toán](mon_hoc), [8](d) điểm [Lý](mon_hoc), [9](d) điểm [Anh](mon_hoc)
 - synonym: công nghệ thông tin
   examples: |
     - CNTT

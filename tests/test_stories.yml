@@ -1,91 +1,75 @@
-#### This file contains tests to evaluate that your bot behaves as expected.
-#### If you want to learn more, please see the docs: https://rasa.com/docs/rasa/testing-your-assistant
-
+version: '3.1'
 stories:
-- story: happy path 1
+- story: Chào hỏi
   steps:
-  - user: |
-      hello there!
-    intent: greet
-  - action: utter_greet
-  - user: |
-      amazing
-    intent: mood_great
-  - action: utter_happy
-
-- story: happy path 2
+  - user: xin chào
+    intent: chao_hoi
+  - action: utter_chao_hoi
+- story: Danh sách ngành
   steps:
-  - user: |
-      hello there!
-    intent: greet
-  - action: utter_greet
-  - user: |
-      amazing
-    intent: mood_great
-  - action: utter_happy
-  - user: |
-      bye-bye!
-    intent: goodbye
-  - action: utter_goodbye
-
-- story: sad path 1
+  - user: UTH đào tạo những ngành gì
+    intent: hoi_nganh_tuyen_sinh
+  - action: action_tra_loi_nganh_tuyen_sinh
+- story: Giới thiệu CNTT
   steps:
-  - user: |
-      hello
-    intent: greet
-  - action: utter_greet
-  - user: |
-      not good
-    intent: mood_unhappy
-  - action: utter_cheer_up
-  - action: utter_did_that_help
-  - user: |
-      yes
-    intent: affirm
-  - action: utter_happy
-
-- story: sad path 2
+  - user: giới thiệu ngành [Công nghệ thông tin](ten_nganh)
+    intent: hoi_thong_tin_gioi_thieu_chung_cua_nganh
+    entities:
+    - ten_nganh: Công nghệ thông tin
+  - action: action_prepare_lookup
+  - action: tra_cuu_nganh_form
+  - active_loop: tra_cuu_nganh_form
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: action_submit_lookup
+- story: Điểm chuẩn theo năm
   steps:
-  - user: |
-      hello
-    intent: greet
-  - action: utter_greet
-  - user: |
-      not good
-    intent: mood_unhappy
-  - action: utter_cheer_up
-  - action: utter_did_that_help
-  - user: |
-      not really
-    intent: deny
-  - action: utter_goodbye
-
-- story: sad path 3
+  - user: điểm chuẩn [Công nghệ thông tin](ten_nganh) năm [2026](nam)
+    intent: hoi_diem_chuan_cua_nganh
+    entities:
+    - ten_nganh: Công nghệ thông tin
+    - nam: '2026'
+  - action: action_prepare_lookup
+  - action: tra_cuu_nganh_form
+  - active_loop: tra_cuu_nganh_form
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: action_submit_lookup
+- story: Nhập điểm thập phân
   steps:
-  - user: |
-      hi
-    intent: greet
-  - action: utter_greet
-  - user: |
-      very terrible
-    intent: mood_unhappy
-  - action: utter_cheer_up
-  - action: utter_did_that_help
-  - user: |
-      no
-    intent: deny
-  - action: utter_goodbye
-
-- story: say goodbye
+  - user: em được [24,5](diem) điểm nên học ngành nào
+    intent: tu_van_nganh_theo_diem
+  - action: action_prepare_score
+  - action: tu_van_diem_form
+  - active_loop: tu_van_diem_form
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: action_tu_van_nganh_theo_diem
+- story: Tính tổ hợp đủ môn
   steps:
-  - user: |
-      bye-bye!
-    intent: goodbye
-  - action: utter_goodbye
-
-- story: bot challenge
+  - user: '[8](d) điểm [Toán](mon_hoc), [8](d) điểm [Hóa](mon_hoc) và [9](d) điểm [Anh](mon_hoc)'
+    intent: cung_cap_diem
+  - action: action_tinh_khoi_va_goi_y_nganh
+- story: Hỏi học phí
   steps:
-  - user: |
-      are you a bot?
-    intent: bot_challenge
-  - action: utter_iamabot
+  - user: học phí của trường
+    intent: hoi_hoc_phi
+  - action: action_tra_loi_thong_tin_truong
+- story: Gợi ý sở thích
+  steps:
+  - user: tôi thích lập trình
+    intent: tu_van_nganh_theo_so_thich
+  - action: action_tu_van_nganh_theo_so_thich
+- story: Fallback
+  steps:
+  - user: xyz ngoài phạm vi tuyển sinh
+    intent: nlu_fallback
+  - action: utter_default
+- story: Tạm biệt
+  steps:
+  - user: tạm biệt
+    intent: tam_biet
+  - action: utter_tam_biet

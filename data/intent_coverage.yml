@@ -1,0 +1,309 @@
+version: '3.1'
+# Authored training expansion. Frozen evaluation examples are never copied here.
+nlu:
+- intent: hoi_nganh_tuyen_sinh
+  examples: |
+    - UTH mở tuyển sinh những chuyên ngành gì vậy ạ
+    - em cần xem toàn bộ ngành mà trường tuyển
+    - có bảng tổng hợp các ngành của đại học giao thông không
+    - những ngành nào đang nhận hồ sơ tại UTH
+    - cho em các lựa chọn ngành học của trường
+    - trường cung cấp bao nhiêu ngành để đăng ký
+    - em muốn tham khảo danh mục ngành tuyển sinh
+    - tất cả ngành bậc đại học tại UTH gồm những gì
+    - liệt kê giúp những ngành trường có tuyển
+    - xem danh sách ngành của trường ở đâu
+    - có thể kể tên các ngành học tại UTH không
+    - hiện nay trường nhận sinh viên vào những ngành nào
+    - gửi mình danh mục các chuyên ngành
+    - em chưa chọn ngành muốn xem trường có ngành gì
+    - ngành đào tạo của UTH gồm các ngành nào
+    - cac nganh tuyen sinh o UTH gom nhung gi
+    - em muon coi danh muc nganh hoc cua truong
+    - liet ke nganh ma UTH dang tuyen giup em
+    - cho xem toan bo nganh cua dai hoc giao thong
+    - truong nhan ho so vao nhung nganh gi vay
+- intent: hoi_chuong_trinh_dao_tao_cua_truong
+  examples: |
+    - UTH có đào tạo hệ chất lượng cao chứ
+    - hệ chính quy và hệ tiên tiến khác nhau thế nào
+    - trường tổ chức những loại chương trình học nào
+    - cho em biết các hệ đào tạo của UTH
+    - chương trình học liên kết nước ngoài có tại trường không
+    - muốn hỏi về thời lượng đào tạo ở UTH
+    - học đại học tại trường mất bao lâu
+    - hệ quốc tế có dạy bằng tiếng Anh không
+    - các chương trình chất lượng cao có đặc điểm gì
+    - tìm hiểu chương trình tiên tiến của trường
+    - trường có liên kết đào tạo với nước ngoài chứ
+    - chương trình chính quy kéo dài bao nhiêu năm
+    - UTH có chương trình giảng dạy song ngữ không
+    - nội dung chương trình đào tạo của trường là gì
+    - trường có các hệ học nào cho sinh viên
+    - em muốn xem thông tin hệ đào tạo quốc tế
+    - chuong trinh hoc cua UTH keo dai bao lau
+    - he tien tien cua truong la gi
+    - UTH co dao tao chat luong cao khong
+    - co he lien ket voi dai hoc nuoc ngoai khong
+- intent: hoi_dia_diem_hoc
+  examples: |
+    - cơ sở UTH nằm tại những địa chỉ nào
+    - học tại UTH thì đến địa điểm nào
+    - cho em vị trí các khu học của trường
+    - em cần địa chỉ để đến trường giao thông vận tải
+    - các cơ sở của UTH thuộc quận nào
+    - trường có khu học ở thành phố Thủ Đức không
+    - địa điểm học năm đầu ở đâu vậy
+    - cho biết địa chỉ cơ sở chính UTH
+    - sinh viên được bố trí học ở cơ sở nào
+    - các khuôn viên trường tọa lạc ở đâu
+    - mình muốn đến UTH nên cần địa chỉ
+    - trường phân bố địa điểm học thế nào
+    - học ngành này có phải qua nhiều cơ sở không
+    - gửi em địa chỉ những cơ sở đào tạo
+    - trường nằm ở khu vực nào của thành phố
+    - dia chi cac co so UTH o dau vay
+    - hoc tai truong thi den quan nao
+    - em muon biet vi tri truong giao thong
+    - co so nam nhat nam o dau
+    - UTH co nhung dia diem hoc nao
+- intent: hoi_phuong_thuc_xet_tuyen
+  examples: |
+    - UTH nhận hồ sơ bằng những cách xét tuyển gì
+    - xin thông tin các hình thức tuyển sinh
+    - muốn đăng ký vào trường thì xét tuyển ra sao
+    - trường dùng điểm thi hay học bạ để tuyển
+    - em muốn tìm hiểu quy trình xét tuyển của UTH
+    - có thể dùng kết quả đánh giá năng lực đăng ký không
+    - học sinh được tuyển thẳng trong trường hợp nào
+    - xét tuyển kết hợp của UTH là gì
+    - điểm thi tốt nghiệp được dùng xét tuyển chứ
+    - trường tuyển sinh qua các phương thức nào ạ
+    - muốn vào UTH thì phải nộp hồ sơ theo cách nào
+    - điều kiện để xét tuyển bằng học bạ là gì
+    - UTH có mấy hình thức tuyển sinh
+    - xin giải thích các cách xét tuyển vào đại học giao thông
+    - xét tuyển thẳng và xét tuyển kết hợp khác gì
+    - UTH xet tuyen bang nhung phuong thuc gi
+    - cach dang ky xet tuyen vao truong la gi
+    - hoc ba co dung de nop ho so duoc khong
+    - diem thi danh gia nang luc co duoc chap nhan khong
+    - truong tuyen thang theo dieu kien nao
+- intent: hoi_hoc_phi
+  examples: |
+    - một năm học tại UTH phải đóng bao nhiêu tiền
+    - cho em mức thu học phí mới nhất
+    - em cần biết tiền học mỗi học kỳ
+    - trường thu học phí theo tín chỉ hay theo năm
+    - mức phí đào tạo của trường là bao nhiêu
+    - chi phí học chương trình quốc tế ở UTH
+    - xin thông tin học phí để chuẩn bị tài chính
+    - học phí của trường trong năm [2026](nam)
+    - có bảng học phí theo chương trình không
+    - tiền học một tín chỉ là bao nhiêu
+    - hoc mot nam tai UTH ton bao nhieu tien
+    - cho em muc thu hoc phi moi nhat
+    - chi phi dong cho mot hoc ky la bao nhieu
+    - truong thu bao nhieu tien mot tin chi
+- intent: hoi_co_so_vat_chat
+  examples: |
+    - UTH trang bị phòng học và phòng máy thế nào
+    - có nơi ở nội trú cho sinh viên không
+    - muốn biết điều kiện phòng thí nghiệm của trường
+    - thư viện có những tiện ích nào
+    - sinh viên có được dùng xưởng thực hành không
+    - trường có sân thể thao và khu sinh hoạt chứ
+    - cơ sở vật chất có đáp ứng thực hành không
+    - em hỏi về trang thiết bị phục vụ việc học
+    - khu ký túc xá tại UTH có thông tin gì
+    - trường đầu tư phòng máy tính ra sao
+    - chất lượng các phòng học của UTH thế nào
+    - có thư viện cho sinh viên tự học không
+    - trang thiet bi phuc vu hoc tap nhu the nao
+    - UTH co ky tuc xa cho sinh vien khong
+    - phong thi nghiem cua truong ra sao
+    - co xuong thuc hanh va phong may khong
+- intent: tu_van_nganh_theo_so_thich
+  examples: |
+    - em mê sửa xe và máy móc nên chọn ngành gì
+    - thích viết phần mềm thì đăng ký ngành nào
+    - em muốn theo công việc thiết kế công trình
+    - sở trường của em là giao tiếp ngoại ngữ
+    - có ngành nào phù hợp người thích quản lý hàng hóa không
+    - em thích vận hành tàu và làm việc trên biển
+    - muốn làm về tự động hóa nên chọn hướng nào
+    - mình đam mê kinh doanh cần gợi ý ngành học
+    - thích khám phá công nghệ và máy tính thì học gì
+    - em hợp với công việc thiết kế sáng tạo
+    - em thích điện và robot muốn tìm ngành phù hợp
+    - có ngành nào cho người yêu thích xây dựng không
+    - em me lap trinh muon duoc goi y nganh hoc
+    - thich kinh doanh thi nen dang ky nganh nao
+    - em dam me o to can tu van chon nganh
+    - so thich cua em la ngoai ngu
+- intent: hoi_co_hoi_viec_lam_cua_nganh
+  examples: |
+    - tốt nghiệp ngành này có thể đảm nhận vị trí gì
+    - sinh viên ngành đó tìm việc trong lĩnh vực nào
+    - học [Kỹ thuật xây dựng](ten_nganh) xong làm nghề gì
+    - nghề nghiệp sau khi học [Ngôn ngữ Anh](ten_nganh)
+    - em cần biết triển vọng việc làm của ngành đó
+    - đầu ra nghề nghiệp của ngành này như thế nào
+    - người học [CNTT](ten_nganh) có thể làm ở đâu
+    - công việc nào phù hợp khi tốt nghiệp ngành đó
+    - hoc nganh nay xong co the lam cong viec gi
+    - co hoi nghe nghiep sau khi tot nghiep ra sao
+    - ra truong nganh nay thi lam o nhung linh vuc nao
+    - tu van ve viec lam cua nganh [Logistics](ten_nganh)
+- intent: hoi_thong_tin_gioi_thieu_chung_cua_nganh
+  examples: |
+    - cho em nội dung tổng quan ngành [Kinh tế xây dựng](ten_nganh)
+    - ngành [Ngôn ngữ Anh](ten_nganh) nghiên cứu những gì
+    - em muốn biết đặc điểm của ngành này
+    - có mô tả về ngành [Công nghệ thông tin](ten_nganh) không
+    - hãy giải thích ngành đó học về lĩnh vực gì
+    - thông tin cơ bản về ngành [Logistics](ten_nganh)
+    - giới thiệu các hướng chuyên ngành trong ngành này
+    - học ngành này được trang bị kiến thức gì
+    - cho em tong quan ve nganh [CNTT](ten_nganh)
+    - nganh nay hoc ve nhung noi dung gi
+    - em can tim hieu dac diem cua nganh do
+    - mo ta giup em nganh [Ky thuat xay dung](ten_nganh)
+- intent: chao_hoi
+  examples: |
+    - xin chào trợ lý của UTH
+    - mình mới vào đây chào mọi người
+    - bot có đang trực không vậy
+    - chào nhé em là học sinh mới
+    - chúc bạn ngày mới vui vẻ
+    - chào buổi sáng trợ lý tuyển sinh
+    - chào buổi chiều bạn nhé
+    - chào buổi tối trợ lý ơi
+    - em chào anh chị tư vấn
+    - alo có người hỗ trợ không ạ
+    - hello bot mình vào chào chút
+    - xin chào em đang cần tư vấn
+    - chao tro ly UTH em moi vao
+    - xin chao anh chi tu van
+    - alo bot co o day khong
+    - chuc ban mot ngay tot lanh
+- intent: nhap_ten
+  examples: |
+    - cho phép mình giới thiệu tên [Quỳnh](ten_nguoi_dung)
+    - bạn gọi mình là [Dũng](ten_nguoi_dung) được nhé
+    - xin giới thiệu mình là [Mai Anh](ten_nguoi_dung)
+    - tên em [Bảo](ten_nguoi_dung) ạ
+    - em tên là [Ngọc](ten_nguoi_dung) nhé
+    - mình là [Phúc](ten_nguoi_dung) đây
+    - cứ gọi em là [Thành](ten_nguoi_dung)
+    - em xin giới thiệu tên là [Khánh Linh](ten_nguoi_dung)
+    - ten em la [Hai](ten_nguoi_dung) a
+    - minh ten [Thuy](ten_nguoi_dung) nhe
+    - ban cu goi minh la [Tuan](ten_nguoi_dung)
+    - xin gioi thieu em la [Bao Anh](ten_nguoi_dung)
+- intent: cam_on
+  examples: |
+    - em cảm ơn trợ lý đã giải đáp
+    - cảm ơn nhiều em đã hiểu rồi
+    - thông tin bạn đưa rất hữu ích
+    - cảm ơn vì đã hỗ trợ em
+    - mình biết rồi cám ơn bot
+    - rất cảm ơn lời tư vấn của bạn
+    - thanks bạn đã giúp mình
+    - dạ cảm ơn anh chị ạ
+    - em cam on tro ly da ho tro
+    - cam on minh da hieu roi
+- intent: tam_biet
+  examples: |
+    - thôi em xin chào và hẹn lần tới
+    - mình thoát đây chào bạn nhé
+    - em không còn câu hỏi chào bot
+    - hẹn tư vấn lại hôm khác nhé
+    - em đi học đây tạm biệt
+    - mình phải ra ngoài rồi bye
+    - chúc bạn khỏe hẹn gặp sau
+    - tạm biệt trợ lý tuyển sinh
+    - minh thoat day hen gap sau
+    - em di day tam biet bot
+- intent: bat_dau_lai
+  examples: |
+    - hãy xóa phiên để mình hỏi lại từ đầu
+    - mình muốn một cuộc trò chuyện mới
+    - bỏ toàn bộ dữ liệu phiên vừa rồi
+    - đặt lại cuộc tư vấn cho em
+    - khởi tạo lại phần tư vấn
+    - em cần reset các thông tin đã nhập
+    - quên ngành và điểm cũ đi
+    - mình muốn bắt đầu phiên hỏi đáp khác
+    - xoa phien de em hoi lai tu dau
+    - reset het thong tin vua nhap
+    - khoi tao cuoc tu van moi
+    - bo nganh va diem cu giup em
+- intent: huy_tra_cuu
+  examples: |
+    - em không muốn tiếp tục yêu cầu này
+    - dừng hỏi thêm thông tin giúp mình
+    - bỏ bước nhập ngành đi
+    - em muốn thoát form đang nhập
+    - hủy yêu cầu đang thực hiện nhé
+    - thôi bỏ phần tra cứu hiện tại
+    - không tư vấn tiếp nữa đâu
+    - em đổi ý không tra cứu nữa
+    - huy yeu cau hien tai giup em
+    - dung nhap thong tin nha bot
+    - thoat form dang dien
+    - bo phan tra cuu nay di
+- intent: bo_sung_tra_cuu
+  examples: |
+    - tiếp tục với ngành [Logistics](ten_nganh)
+    - cho em chuyển qua [Ngôn ngữ Anh](ten_nganh)
+    - giữ ngành đó nhưng đổi năm sang [2024](nam)
+    - xét theo điểm thi THPT thì sao
+    - với phương thức học bạ thì thế nào
+    - em muốn xem theo đánh giá năng lực
+    - thay ngành đang hỏi bằng [Kỹ thuật xây dựng](ten_nganh)
+    - chọn năm [2026](nam) giúp em
+    - chuyen qua [CNTT](ten_nganh) giup minh
+    - doi nam sang [2025](nam)
+    - xem theo xet tuyen ket hop di
+    - giu nganh do cho em
+- intent: tu_van_nganh_theo_diem
+  examples: |
+    - em cần tư vấn dựa trên tổng điểm của mình
+    - giúp em tìm ngành vừa sức với điểm thi
+    - em có tổng [21,75](diem) điểm THPT
+    - tổng ba môn của mình là [23.25](diem)
+    - cập nhật tổng điểm thành [25,5](diem)
+    - mình đạt [18.75](diem) điểm muốn chọn ngành
+    - nhập lại tổng điểm [27](diem) giúp em
+    - tư vấn hướng đăng ký dựa trên điểm thi
+    - em co tong [22,5](diem) diem THPT
+    - tu van nganh dua tren diem thi cua em
+    - sua tong diem thanh [24.75](diem)
+    - tim nganh phu hop voi [20](diem) diem
+- intent: cung_cap_diem
+  examples: |
+    - em nhập điểm [Toán](mon_hoc) [7,25](d), [Vật lý](mon_hoc) [8](d), [Tiếng Anh](mon_hoc) [6.5](d)
+    - kết quả [Ngữ văn](mon_hoc) [8.5](d), [Lịch sử](mon_hoc) [7](d), [Địa lý](mon_hoc) [9](d)
+    - [Toán](mon_hoc): [6](d), [Hóa học](mon_hoc): [7.5](d), [Sinh học](mon_hoc): [8.25](d)
+    - điểm từng môn [Toán](mon_hoc) [9](d), [Lý](mon_hoc) [7](d), [Hóa](mon_hoc) [8](d)
+    - em sửa [Toán](mon_hoc) thành [8.5](d), [Anh](mon_hoc) [7](d), [Hóa](mon_hoc) [6](d)
+    - [Toan](mon_hoc) [7](d), [Ly](mon_hoc) [8.5](d), [Anh](mon_hoc) [6](d)
+    - diem [Van](mon_hoc) [8](d), [Su](mon_hoc) [9](d), [Dia](mon_hoc) [7.5](d)
+    - [Toan](mon_hoc) [6.5](d) [Hoa](mon_hoc) [8](d) [Sinh](mon_hoc) [7](d)
+- intent: hoi_diem_chuan_cua_nganh
+  examples: |
+    - mức điểm trúng tuyển đã công bố cho ngành đó
+    - tra giúp ngưỡng điểm chuẩn của [Logistics](ten_nganh)
+    - năm [2026](nam) ngành [Ngôn ngữ Anh](ten_nganh) lấy mức điểm nào
+    - em cần điểm chuẩn chính thức của ngành đang hỏi
+    - diem trung tuyen nganh [CNTT](ten_nganh) la bao nhieu
+    - muc diem chuan nganh nay nam [2024](nam)
+- intent: hoi_khoi_tuyen_sinh_cua_nganh
+  examples: |
+    - ngành này nhận xét tuyển bằng tổ hợp môn nào
+    - tra các khối thi của [Ngôn ngữ Anh](ten_nganh)
+    - cho em danh sách tổ hợp xét tuyển ngành đang hỏi
+    - ngành [Kỹ thuật xây dựng](ten_nganh) nhận những khối nào
+    - nganh [CNTT](ten_nganh) nhan cac to hop nao
+    - khoi thi de dang ky vao nganh nay la gi

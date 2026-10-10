@@ -1,6 +1,25 @@
 # Local fallback for hosts where Windows blocks Python extension DLLs.
 # Docker engine must be running. This is not a public deployment configuration.
 services:
+  web:
+    build:
+      context: .
+      dockerfile: web/Dockerfile
+    image: chatbot-tuyensinh-web:local
+    environment:
+      RASA_URL: http://rasa:5005
+    depends_on:
+      rasa:
+        condition: service_healthy
+    ports:
+      - 127.0.0.1:8686:8686
+    volumes:
+      - ./results:/app/results
+    healthcheck:
+      test: [CMD, python, -c, "from urllib.request import urlopen; urlopen('http://localhost:8686/', timeout=5)"]
+      interval: 10s
+      timeout: 6s
+      retries: 6
   train:
     build: .
     image: chatbot-tuyensinh:local

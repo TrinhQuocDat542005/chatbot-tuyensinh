@@ -1,150 +1,202 @@
-# Chatbot tư vấn tuyển sinh UTH
+<div align="center">
 
-Chatbot tiếng Việt dùng Rasa 3.6.21 để tra cứu ngành/chuyên ngành, điểm chuẩn theo chương trình và năm, tính tổng tổ hợp môn, gợi ý khám phá ngành từ sở thích và tra cứu thông tin trường.
+# UTH Admissions Assistant
 
-Đây là dự án độc lập phục vụ học tập, chưa phải kênh tư vấn chính thức của UTH. Câu trả lời dữ liệu có liên kết nguồn và ngày kiểm tra.
+**Chọn ngành hôm nay. Mở lối ngày mai.**
 
-## Phạm vi hiện tại
+Trợ lý tuyển sinh tiếng Việt có ngữ cảnh, dữ liệu có nguồn và giao diện web để trải nghiệm trực tiếp.
 
-- 26 ngành và 41 chuyên ngành trong danh mục đã đối chiếu tên/quan hệ với nguồn UTH.
-- 48 bản ghi điểm chuẩn **xét tuyển kết hợp năm 2026**, phân biệt mã chương trình và đợt tuyển sinh. Đây là tập con của thông báo, không phải danh sách đầy đủ mọi chương trình.
-- Tính tổng A00, A01, B00, C00, C01, D01, D07 khi đủ môn, hỗ trợ dấu phẩy thập phân, tên môn có/không dấu và phát hiện điểm không hợp lệ.
-- 3 phần giới thiệu chương trình có nguồn; phần chi tiết chưa xác minh được bot thông báo rõ.
-- Thông tin học phí có phạm vi chương trình cụ thể, địa điểm và liên kết thông báo tuyển sinh lấy từ dữ liệu có cấu trúc.
-- Form hỏi bổ sung ngành/năm và tổng điểm; giữ ngữ cảnh trong phiên, hỗ trợ đổi ngành/năm/phương thức, sửa điểm, hủy tra cứu và bắt đầu lại. Tên người dùng không bắt buộc.
+![Python 3.10](https://img.shields.io/badge/Python-3.10-3776AB?logo=python&logoColor=white)
+![Rasa 3.6.21](https://img.shields.io/badge/Rasa-3.6.21-5A17EE)
+![Local web demo](https://img.shields.io/badge/Web-local_demo-17614F)
+![AI King 2025](https://img.shields.io/badge/Research-AI_King_2025-B88437)
 
-**Giới hạn quan trọng:** dữ liệu điểm chuẩn 2020–2024 của repository cũ chưa có nguồn/phương thức đáng tin và đã được cách ly. Bot chưa gợi ý ngành theo điểm chuẩn THPT thang 30 nếu thiếu dữ liệu đã xác minh. Không quy đổi trực tiếp tổng 3 môn sang điểm kết hợp và không bảo đảm trúng tuyển.
+[Chạy demo](#chạy-demo) · [Tính năng](#tính-năng) · [AI King 2025](#nghiên-cứu--ai-king-2025) · [Đánh giá](#đánh-giá) · [Lộ trình](docs/ROADMAP.md)
 
-## Yêu cầu môi trường
+![Giao diện web trợ lý tuyển sinh UTH](docs/assets/demo-desktop.png)
 
-- Python **3.10**, Rasa 3.6.21 và rasa-sdk 3.6.2. Không dùng Python 3.11+ cho stack này.
-- Hai tiến trình local: Rasa ở cổng 5005 và action server ở 5055.
-- Có môi trường Docker Linux để train và chạy khi Windows Application Control chặn DLL scikit-learn. Xem kết quả kiểm tra trong [báo cáo](docs/week1-2-status.md).
-- Model tuần 4 đã train trên Docker; 117 test Python, 10 kịch bản Core, 22 kịch bản nhiều lượt, 4 luồng nhiều lượt bằng câu tự nhiên và các smoke test pass. NLU trên 154 câu cố định: macro-F1 intent 0,9247, F1 entity 0,9490. Đây là tập câu tự soạn đã được review lỗi, chưa chứng minh chất lượng trên người dùng thực; xem [báo cáo tuần 4](docs/week4-status.md).
-- Cần train model mới sau thay đổi domain/actions. Các model tháng 05/2025 được track sẵn không đáp ứng cấu hình mới.
+[Video demo với model thật · 20 giây](docs/assets/demo.webm) · [Tra điểm chuẩn](docs/assets/demo-cutoff.png) · [Giao diện mobile](docs/assets/demo-mobile.png)
 
-## Cài đặt
+</div>
 
-Docker Desktop với engine Linux đang chạy:
+> Dự án độc lập phục vụ học tập và nghiên cứu, không phải kênh tư vấn chính thức của UTH. Điểm chuẩn chỉ dùng để tham khảo; thông tin chưa xác minh được bot thông báo rõ.
+
+## Tính năng
+
+| Bạn muốn… | Trợ lý hỗ trợ… |
+| --- | --- |
+| Khám phá ngành | 26 ngành và 41 chuyên ngành, tra giới thiệu và hướng nghề nghiệp khi có nguồn |
+| Xem điểm chuẩn | Tra theo ngành, năm, chương trình và phương thức; hiển thị liên kết nguồn |
+| Tính điểm tổ hợp | A00, A01, B00, C00, C01, D01, D07; nhận dấu phẩy thập phân và tên môn có/không dấu |
+| Hỏi thông tin trường | Học phí theo phạm vi chương trình, địa điểm, phương thức tuyển sinh và nguồn chính thức |
+| Hỏi tiếp tự nhiên | Hỏi bổ sung; giữ ngữ cảnh, đổi ngành/năm/phương thức, sửa điểm, hủy và bắt đầu lại |
+| Dùng trên web | Responsive, hỏi nhanh, chọn ngành/năm, bảng điểm, nguồn, trạng thái chờ, thử lại và phản hồi hữu ích |
+
+**Dữ liệu hiện có:** 48 bản ghi điểm chuẩn xét tuyển kết hợp năm 2026, có mã chương trình và đợt tuyển sinh. Đây là tập con đã đối chiếu, chưa bao phủ mọi chương trình. Điểm kết hợp không phải tổng ba môn thang 30. Dữ liệu lịch sử 2020–2024 chưa có nguồn/phương thức đáng tin đã được cách ly. Xem [nguồn và phạm vi dữ liệu](docs/data-sources.md).
+
+## Chạy demo
+
+### Docker Linux
+
+Cần Docker Desktop/Engine Linux đang chạy. Với lần cài đầu:
 
 ```bash
-docker compose build train
+git clone https://github.com/TrinhQuocDat542005/chatbot-tuyensinh.git
+cd chatbot-tuyensinh
+docker compose build train web
 docker compose run --rm train
-docker compose run --rm check
-docker compose up -d --wait actions rasa
-docker compose exec actions python scripts/smoke_actions.py
-docker compose exec rasa python scripts/smoke_rest.py
-docker compose exec rasa python scripts/check_conversations.py
-docker compose exec rasa python scripts/check_conversations.py --cases tests/conversations/natural.json --out results/conversations/natural-report.json
+docker compose up -d --wait actions rasa web
 ```
 
-Hai cổng chỉ bind trên `127.0.0.1`. Model được giữ trong `models/`, báo cáo trong `results/`; dừng server bằng `docker compose down`. Train lần đầu cần tải dependency và có thể mất vài phút. Đây là cấu hình chạy local; cấu hình triển khai công khai nằm ở giai đoạn sau.
+Mở **[localhost:8686](http://localhost:8686)**. Train có thể mất vài phút; model mới được giữ trong `models/` và không được commit.
 
-PowerShell, với Python 3.10 đã được cài:
+| Thành phần | Địa chỉ local | Vai trò |
+| --- | --- | --- |
+| Web + gateway | `http://localhost:8686` | Giao diện và API cùng origin |
+| Rasa | `http://localhost:5005` | NLU và quản lý hội thoại |
+| Action server | `http://localhost:5055` | Tra dữ liệu, tính điểm và kiểm tra slot |
 
-```powershell
-python -m venv .venv
-.venv\Scripts\Activate.ps1
-python -m pip install -r requirements-dev.txt
-python -m pip check
-$env:PYTHONUTF8 = '1'
-$env:RASA_TELEMETRY_ENABLED = 'false'
+Các cổng Compose chỉ bind trên `127.0.0.1`. Dừng demo bằng `docker compose down`.
+
+### Đã có backend đang chạy
+
+Web/gateway chỉ cần thư viện chuẩn Python; không cần Node hay `npm install`:
+
+```bash
+python scripts/serve_web.py
 ```
 
-Linux/macOS:
+Đổi endpoint/cổng nếu cần:
+
+```bash
+python scripts/serve_web.py --port 8686 --rasa-url http://127.0.0.1:5005
+```
+
+### Năm tác vụ để trải nghiệm
+
+1. Bấm **Khám phá ngành học**, rồi gửi câu hỏi đã điền.
+2. Chọn **Công nghệ thông tin** → **Giới thiệu ngành**.
+3. Chọn năm **2026** → **Tra điểm chuẩn**; hỏi tiếp “còn năm 2023?” để đổi ngữ cảnh.
+4. Bấm **Tính điểm tổ hợp**, gửi điểm ba môn và xem bảng tổng điểm.
+5. Bấm **Tìm hiểu học phí**; xem chương trình áp dụng và nguồn trước khi tham khảo con số.
+
+Enter để gửi, Shift + Enter để xuống dòng. **Cuộc trò chuyện mới** tạo ID mới và xóa lịch sử đang hiển thị; tải lại trang cũng bắt đầu phiên mới. Mỗi trang/tab có phiên riêng. Lỗi kết nối không xóa lịch sử hiện tại; nút **Thử gửi lại** giữ câu hỏi đã nhập.
+
+<details>
+<summary><strong>Cài backend trực tiếp bằng Python 3.10</strong></summary>
+
+Rasa 3.6 yêu cầu Python 3.10; không dùng Python 3.11+ cho cấu hình này.
 
 ```bash
 python3.10 -m venv .venv
 source .venv/bin/activate
 python -m pip install -r requirements-dev.txt
 python -m pip check
-export RASA_TELEMETRY_ENABLED=false
-```
-
-`requirements-lock.windows.txt` là snapshot dependency đã cài và kiểm tra trên Windows trong phiên triển khai; không phải lock cho Linux, không chứng minh train đã thành công. Khi cần tái lập đúng snapshot trên Windows, dùng `python -m pip install -r requirements-lock.windows.txt` trong venv mới. Thư mục `.tools/` và `.venv-rasa/` là môi trường local, không đưa lên GitHub.
-
-## Kiểm tra và train
-
-```bash
-python scripts/validate_data.py
-python -m pytest -q
-python -m rasa data validate --fail-on-warnings
 python -m rasa train --data data --fixed-model-name admissions-week4
-python -m rasa test core --stories tests/test_stories.yml --out results/core
 ```
 
-`rasa test core` kiểm tra chính sách hội thoại, không thực thi và xác minh nội dung custom action. Unit test và `smoke_actions.py` đảm nhiệm phần đó. `check_conversations.py` kiểm tra 22 kịch bản nhiều lượt qua REST/Core/SDK với intent tường minh. Đánh giá NLU dùng 154 câu test riêng, ngoài thư mục `data/`; ngưỡng fallback chỉ chọn từ 44 câu development. Xem [báo cáo tuần 4](docs/week4-status.md).
-
-## Chạy local
-
-PowerShell, mở hai terminal từ thư mục project:
-
-```powershell
-# Terminal 1
-./scripts/run-local.ps1 -Mode actions
-# Terminal 2, sau khi train thành công
-./scripts/run-local.ps1 -Mode server
-```
-
-Script tự chọn `.venv-rasa` nếu có, sau đó `.venv`. Có thể chỉ định `-Python` để chọn môi trường khác. Các mode `train` và `check` hỗ trợ train/validation. Nếu PowerShell policy không cho chạy `.ps1`, dùng các lệnh Python tương ứng dưới đây; không cần thay đổi policy toàn máy.
-
-Linux/macOS hoặc chạy Python trực tiếp trong venv:
+Windows: tạo venv bằng `py -3.10 -m venv .venv`, kích hoạt bằng `.venv\Scripts\Activate.ps1`. Mở hai terminal:
 
 ```bash
-# Terminal 1
 python -m rasa_sdk --actions actions --port 5055
-# Terminal 2
-python -m rasa run --model models/admissions-week4.tar.gz --port 5005 --endpoints endpoints.yml
+python -m rasa run --model models/admissions-week4.tar.gz --endpoints endpoints.yml --port 5005
 ```
 
-`bash start.sh` chạy Rasa với cổng mặc định 5005; `bash scripts/start-actions.sh` chạy action server. `star.sh` là alias tương thích của `start.sh`. `.env.example` là mẫu, không được tự động nạp. Không bật API quản trị và CORS wildcard mặc định; dùng biến `CORS_ORIGIN` nếu thực sự cần truy cập từ browser.
+Hoặc dùng `scripts/run-local.ps1 -Mode actions` / `-Mode server`. Nếu Windows Application Control chặn DLL scikit-learn, dùng Docker Linux.
 
-## Thử webhook
+`requirements-lock.windows.txt` là snapshot môi trường Windows của lần triển khai, không phải lock Linux. Các model tháng 05/2025 được track sẵn không đáp ứng domain/actions mới.
 
-Khi action server đang chạy:
+</details>
+
+## Nghiên cứu · AI King 2025
+
+Dự án gắn với quá trình tham gia **cuộc thi AI King tại Trường Đại học Hùng Vương TP.HCM**, theo chia sẻ của chủ repository. Bài nghiên cứu liên quan được lưu trong kỷ yếu **AI King: Shaping the Future**, ngày **30/07/2025**:
+
+> **Xây dựng chatbot tư vấn tuyển sinh cho trường đại học**<br>
+> Nguyễn Thanh Tiến · Phan Phát Đạt · Trịnh Phát Đạt · Nguyễn Quyền<br>
+> Nhà xuất bản Thông tin và Truyền thông · trang 372–382
+
+**[Đọc tài liệu PDF](docs/research/aiking2025-proceedings.pdf)** · [Thông tin thư mục và trích dẫn](docs/research/README.md)
+
+File gồm trang bìa và bài báo, 12 trang PDF. Số liệu trong bài thuộc phiên bản nghiên cứu năm 2025; chất lượng mã nguồn hiện tại được đo riêng trong phần dưới.
+
+## Đánh giá
+
+NLU đo ngày **10/10/2026** trên 154 câu tự soạn cố định, gồm 54 câu khó/ngoài phạm vi. Dev có 44 câu riêng. Không có câu trùng nguyên văn giữa train/dev/test; tập test đã được review lỗi nên lần đo cuối là kiểm tra hồi quy, chưa xác nhận chất lượng trên câu người dùng thực.
+
+| Chỉ số | Tuần 1–2 | Tuần 4 lần đầu | Sau mở rộng train |
+| --- | ---: | ---: | ---: |
+| Macro-F1 intent | 0,4333 | 0,7251 | **0,9247** |
+| F1 entity exact span | 0,6465 | 0,9700 | **0,9490** |
+
+Baseline chưa có ba intent mới, nên mức tăng phản ánh cả mở rộng phạm vi. Entity giảm nhẹ so với lần đầu; nhận diện ngoài phạm vi vẫn cần cải thiện.
+
+**Hội thoại backend:** 10/10 Core, 22/22 kịch bản REST nhiều lượt và 4/4 luồng nhiều lượt bằng câu tự nhiên pass. Python có 117 test backend và 14 test HTTP gateway. Xem [nghiệm thu tuần 5](docs/week5-status.md) cho kiểm tra giao diện.
+
+[Báo cáo tuần 4](docs/week4-status.md) · [Chỉ số, hash và câu sai](docs/evaluation/week4-summary.json)
 
 ```bash
-python scripts/smoke_actions.py
+docker compose run --rm check
+docker compose exec actions python scripts/smoke_actions.py
+docker compose exec rasa python scripts/smoke_rest.py
+docker compose exec rasa python scripts/check_conversations.py
+docker compose exec rasa python scripts/check_conversations.py --cases tests/conversations/natural.json --out results/conversations/natural-report.json
 ```
 
-Khi cả Rasa và action server đã chạy với model mới:
+<details>
+<summary><strong>Kiểm thử giao diện và quay demo (Node.js 20+)</strong></summary>
 
-```powershell
-$body = @{sender='demo-user'; message='điểm chuẩn ngành Công nghệ thông tin năm 2026'} | ConvertTo-Json
-Invoke-RestMethod -Uri 'http://localhost:5005/webhooks/rest/webhook' `
-  -Method Post -ContentType 'application/json; charset=utf-8' `
-  -Body ([Text.Encoding]::UTF8.GetBytes($body))
+Khi demo local đang chạy:
+
+```bash
+npm ci
+npx playwright install chromium ffmpeg
+npm run test:web
+node tests/web/record.cjs
 ```
 
-Ví dụ để thử parser/action: “8 điểm Toán, 8 điểm Hóa và 9 điểm Anh” phải có D07 = 25/30; “điểm chuẩn CNTT năm 2024” phải thông báo chưa có dữ liệu đã xác minh. Chất lượng nhận intent cho câu chưa thấy vẫn cần đo qua tập đánh giá NLU.
+13 nhóm kiểm tra bao gồm năm tác vụ với model thật, desktop/mobile, retry, tách phiên và hiển thị an toàn. `CHROME_EXECUTABLE` cho phép dùng Chrome có sẵn; `WEB_URL` đổi địa chỉ demo. Chế độ `npm run test:web -- --mock` chỉ kiểm tra hành vi giao diện với backend mô phỏng. Xem [báo cáo UI](docs/evaluation/week5-ui.json).
 
-## Cấu trúc
+</details>
+
+## Kiến trúc
 
 ```text
-actions/actions.py              Adapter Rasa và câu trả lời
-actions/admissions.py           Parser điểm, môn và năm
-actions/repository.py           Loader, schema và tham chiếu dữ liệu
-actions/data/nganh.json         Danh mục và điểm chuẩn có nguồn
-actions/data/school.json        Thông tin trường có phạm vi/năm/nguồn
-actions/data/legacy/            Bản gốc và audit; runtime không đọc
-actions/schemas/                JSON Schema
-data/                          NLU, lookup, regex, rules, stories
-tests/                         Regression, action, dữ liệu, cấu hình
-scripts/                       Chạy local, validation, smoke test
-docs/                          Nguồn dữ liệu, nghiệm thu, roadmap
+Trình duyệt :8686
+   │ POST /api/chat (cùng origin)
+   ▼
+Python gateway ──► Rasa :5005 ──► Action server :5055
+                     │                  │
+                NLU + Core       JSON có schema,
+                forms + slots    nguồn và phạm vi
 ```
 
-## Cập nhật dữ liệu
+Frontend HTML/CSS/JavaScript thuần, không có dependency runtime bên ngoài. Gateway dùng thư viện chuẩn Python, giới hạn payload, phục vụ file theo danh sách cho phép và proxy đến Rasa. Trả lời được dựng bằng DOM text; chỉ hỗ trợ Markdown giới hạn và link HTTP(S), không chạy HTML từ tin nhắn.
 
-Đọc [quy trình nguồn dữ liệu](docs/data-sources.md) trước khi sửa JSON. Mỗi số liệu cần năm, phương thức, mã chương trình, đợt, nguồn và trạng thái xác minh. Mã ngành chưa kiểm chứng được lưu `null`; ID nội bộ không phải mã tuyển sinh. Không đổi `pending` thành `verified` chỉ vì đã có đường dẫn website.
+| Thư mục | Nội dung |
+| --- | --- |
+| `web/` | Giao diện responsive và Dockerfile web |
+| `actions/` | Nghiệp vụ, parser, repository, schema và dữ liệu |
+| `data/` | NLU, rules, stories, lookup và regex |
+| `components/` | Bộ lọc entity trong pipeline Rasa |
+| `scripts/` | Gateway, validation, smoke, đánh giá và calibration |
+| `tests/` | Unit test, HTTP test, hội thoại và tập đánh giá |
+| `docs/` | Roadmap, báo cáo, ảnh demo và tài liệu AI King |
 
-Sau thay đổi chạy validation và test. Nếu thay đổi NLU/domain/rules cần train lại. Giữ model tạo mới trong artifact/Release ở giai đoạn phát hành; không thêm tất cả model thử nghiệm vào Git. Việc ignore `models/` không tự gỡ các model đã track trong lịch sử.
+## Dữ liệu và quyền riêng tư
 
-## Tiến độ
+- Không bắt buộc tên; nên tránh gửi thông tin cá nhân nhạy cảm vào demo.
+- ID phiên ngẫu nhiên chỉ nằm trong bộ nhớ trang, không đưa tên/điểm vào URL. Web không lưu lịch sử trong `localStorage` hoặc `sessionStorage`.
+- Rasa có thể giữ tracker/ngữ cảnh trong tiến trình. Tạo phiên mới không phải yêu cầu xóa tracker cũ trên server.
+- Phản hồi hữu ích chỉ ghi ID câu trả lời ngẫu nhiên và phiếu đánh giá vào `results/web-feedback.jsonl`, không ghi nội dung hội thoại, tên hay điểm. `results/` bị ignore.
+- Gateway cache phản hồi thành công tối đa 10 phút. Timeout vẫn có thể xảy ra sau khi Rasa đã xử lý; đây không phải bảo đảm xử lý đúng một lần.
 
-- [Lộ trình 8 tuần](docs/ROADMAP.md).
-- [Nguồn và audit dữ liệu](docs/data-sources.md).
-- [Kết quả tuần 1–2 và các mục chưa nghiệm thu](docs/week1-2-status.md).
-- [Hội thoại và đánh giá tuần 4](docs/week4-status.md).
+Demo hiện phục vụ local. Xác thực, rate limiting, lưu trữ tracker và vận hành công khai thuộc giai đoạn triển khai tiếp theo.
 
-Frontend, CI và public hosting nằm trong các tuần tiếp theo. Docker Compose phục vụ train/test local và bộ đánh giá NLU độc lập đã được bổ sung. Chưa có license cho toàn dự án; quyền sử dụng code/dữ liệu cần chốt trước khi công bố như một dự án open source.
+## Lộ trình và đóng góp
+
+[Lộ trình 8 tuần](docs/ROADMAP.md) · [Tuần 1–2](docs/week1-2-status.md) · [Tuần 4](docs/week4-status.md) · [Tuần 5](docs/week5-status.md)
+
+Khi bổ sung dữ liệu, ghi nguồn chính thức, ngày kiểm tra, năm/phương thức và thang điểm. Giữ tập đánh giá ngoài `data/`, thêm kiểm tra lỗi nghiệp vụ và ghi kết quả thực đo. Issue nên có bước tái hiện, câu hỏi và kỳ vọng; bỏ thông tin cá nhân trước khi gửi.
+
+Repository chưa chọn giấy phép mã nguồn. Tài liệu AI King giữ quyền tác giả của các tác giả/đơn vị xuất bản; việc công khai repository không tự cấp quyền tái sử dụng mọi tài liệu.

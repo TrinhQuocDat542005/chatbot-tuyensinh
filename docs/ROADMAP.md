@@ -2,7 +2,7 @@
 
 Ngày đánh giá: 10/10/2026. Phạm vi: mã nguồn, cấu hình Rasa, dữ liệu JSON, dữ liệu huấn luyện, kịch bản test và cấu trúc Git đang có trong repository.
 
-Tiến độ triển khai sau đánh giá: xem [nghiệm thu tuần 1–2](week1-2-status.md) và [kết quả tuần 4](week4-status.md). Tuần 4 đã triển khai và kiểm thử luồng hội thoại; macro-F1 intent 0,9247 và F1 entity 0,9490 đạt mục tiêu trên tập câu tự soạn đã review, cần xác nhận thêm bằng câu người dùng mới. Các phát hiện hiện trạng dưới đây mô tả phiên bản trước khi sửa.
+Tiến độ triển khai sau đánh giá: xem [nghiệm thu tuần 1–2](week1-2-status.md), [kết quả tuần 4](week4-status.md) và [demo web tuần 5](week5-status.md). Tuần 4 đạt mục tiêu trên tập câu tự soạn đã review, cần xác nhận thêm bằng câu người dùng mới. Tuần 5 có demo local và 5 tác vụ qua UI đã pass với model thật. Các phát hiện hiện trạng dưới đây mô tả phiên bản trước khi sửa.
 
 Đây là kế hoạch triển khai, không phải báo cáo hệ thống đã chạy đạt các chỉ số bên dưới. Phiên đánh giá này chưa có môi trường Rasa khả dụng để train hoặc chạy kiểm thử hội thoại; các phát hiện dựa trên đọc file, đối chiếu dữ liệu và kiểm tra tĩnh. Chưa xác minh tính đúng đắn của thông tin tuyển sinh với trường.
 

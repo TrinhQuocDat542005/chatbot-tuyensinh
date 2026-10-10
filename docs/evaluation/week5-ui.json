@@ -1,0 +1,140 @@
+{
+  "date": "2026-10-10",
+  "scope": "Week 5 local web demo using the accepted week 4 Rasa model; no NLU retraining",
+  "python_tests": {
+    "environment": "Docker Linux",
+    "passed": 131,
+    "backend": 117,
+    "gateway": 14,
+    "gateway_after_final_connection_error_fix": 14
+  },
+  "browser": {
+    "mode": "real-rasa",
+    "checks": [
+      "desktop and verified catalog",
+      "task 1: catalog",
+      "task 2: selected major",
+      "task 3: year, program and sources",
+      "task 4: score table",
+      "task 5: tuition scope",
+      "feedback",
+      "failure preserves history and retry avoids duplicate UI",
+      "safe limited Markdown",
+      "keyboard newline",
+      "reset isolates sender",
+      "separate tabs isolate sender",
+      "mobile 390px and score table"
+    ],
+    "page_errors": [],
+    "passed": 13,
+    "viewports": [
+      {
+        "width": 1440,
+        "height": 1000
+      },
+      {
+        "width": 390,
+        "height": 844
+      }
+    ],
+    "five_user_tasks_passed": true,
+    "failure_injection": "503 simulated at browser boundary to verify retry; successful task responses use real Rasa"
+  },
+  "video": {
+    "duration_seconds": 20.48,
+    "width": 1280,
+    "height": 900,
+    "format": "WebM VP8",
+    "source": "Real local Rasa responses"
+  },
+  "artifacts": [
+    {
+      "path": "docs/assets/demo-desktop.png",
+      "bytes": 92779,
+      "sha256": "52445fff331baf2127dff463a21a22db20193d075f616d9a625086ba834f2318"
+    },
+    {
+      "path": "docs/assets/demo-cutoff.png",
+      "bytes": 106176,
+      "sha256": "f75c282baa4c10e04ad9891b8404e5f75f1a5a3ab1daed57141ba30aab8fd31d"
+    },
+    {
+      "path": "docs/assets/demo-mobile.png",
+      "bytes": 37691,
+      "sha256": "0d35dd13892ee809f6b8ee868c4db9dc1b71ae2643bb86ed3a2324912088ab5d"
+    },
+    {
+      "path": "docs/assets/demo.webm",
+      "bytes": 1378322,
+      "sha256": "d7b3bcb01885e27d67cca81594f05e64e024decb9cd824f128915086ddd6c54d"
+    },
+    {
+      "path": "docs/research/aiking2025-proceedings.pdf",
+      "bytes": 641347,
+      "sha256": "ec68def5533b7355d4e954a666de4494dade5b5419c4c61e99d33c0769852a41"
+    }
+  ],
+  "sources": [
+    {
+      "path": "web/index.html",
+      "bytes": 5603,
+      "sha256": "481d3b8e4546422feffab7d07f3f9b5e03674db2cd1adac10bd8deba3df154c4"
+    },
+    {
+      "path": "web/styles.css",
+      "bytes": 10766,
+      "sha256": "3ef63498a7ffebd0438529035514d46723fd3354fece72d183dcd0110636004a"
+    },
+    {
+      "path": "web/app.js",
+      "bytes": 6881,
+      "sha256": "e0e1af7cc37e347fc7f3ebb2cc5f070a5ec6c8e27315e6335b5d7c37794011d1"
+    },
+    {
+      "path": "web/render.js",
+      "bytes": 3055,
+      "sha256": "25f07a7e54008945e8426da32f4a47d0ae48c9f513f04e27d6b7f561976e2d01"
+    },
+    {
+      "path": "web/Dockerfile",
+      "bytes": 290,
+      "sha256": "8c0c14a91d3150a5836f80ac8ddba563981e3ff51bfa3507eb0a91529de9dedd"
+    },
+    {
+      "path": "scripts/serve_web.py",
+      "bytes": 9094,
+      "sha256": "78337ad8b599bd0153859acaf9d1e01fd11d728a6a51b56178da7ebdec503df6"
+    },
+    {
+      "path": "tests/test_web.py",
+      "bytes": 5020,
+      "sha256": "d132d1cd11a12f828cfee8ce0b7c11b758c6fc01562fb9322a2eb25e184068bd"
+    },
+    {
+      "path": "tests/web/smoke.cjs",
+      "bytes": 7651,
+      "sha256": "a81b0bf3a6d106390b3435a7ced27828e676e10445acd9fafbf0e64fd54851c3"
+    },
+    {
+      "path": "tests/web/record.cjs",
+      "bytes": 1885,
+      "sha256": "55cceaa5be9c513025f0d0340b397ead665cb8166e5d2783ab9a7824d40c911f"
+    },
+    {
+      "path": "compose.yaml",
+      "bytes": 2231,
+      "sha256": "27bd6e4593287fabd7423b2f994195fd6d1c32ad3203735fa46ae15cb0e7f1b5"
+    },
+    {
+      "path": "package-lock.json",
+      "bytes": 1699,
+      "sha256": "a5ddcfae5737e3cbe89ee775c7eac7c86f70e741dec47228ef77fac90a161dcf"
+    }
+  ],
+  "limitations": [
+    "Local deployment only; public hosting and authentication are future work.",
+    "No full WCAG audit or screen-reader user study.",
+    "NLU metrics refer to authored and reviewed week 4 evaluation data, not new real-user accuracy.",
+    "Retry cannot guarantee exactly-once upstream processing after a timeout."
+  ]
+}

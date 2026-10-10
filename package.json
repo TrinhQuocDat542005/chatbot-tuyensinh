@@ -1,0 +1,11 @@
+{
+  "name": "uth-admissions-demo",
+  "private": true,
+  "description": "Optional browser checks; the web app has no npm runtime dependencies.",
+  "scripts": {
+    "test:web": "node tests/web/smoke.cjs"
+  },
+  "devDependencies": {
+    "playwright": "1.62.1"
+  }
+}

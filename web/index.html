@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#132d35">
+  <meta name="description" content="Trợ lý tuyển sinh UTH: khám phá ngành, tra cứu điểm chuẩn và thông tin có nguồn.">
+  <title>UTH · Trợ lý tuyển sinh</title>
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/app.js" type="module"></script>
+</head>
+<body>
+  <a href="#message" class="skip-link">Đến ô nhập câu hỏi</a>
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="Khám phá và thông tin">
+      <a class="brand" href="/" aria-label="UTH, trang chủ trợ lý tuyển sinh"><span class="brand-mark" aria-hidden="true">u.</span><span>UTH<span class="brand-caption">ADMISSIONS ASSISTANT</span></span></a>
+      <div class="sidebar-heading">CÙNG BẠN CHỌN HƯỚNG ĐI</div>
+      <p class="sidebar-copy">Một câu hỏi nhỏ.<br>Một lựa chọn rõ hơn.</p>
+      <button id="new-session" class="new-session" type="button"><span aria-hidden="true">＋</span> Cuộc trò chuyện mới</button>
+      <section class="explore" aria-labelledby="explore-title">
+        <h2 id="explore-title">Khám phá một ngành</h2>
+        <label for="major">Ngành / chuyên ngành</label>
+        <select id="major"><option value="">Đang tải danh mục…</option></select>
+        <label for="year">Năm tra cứu</label>
+        <select id="year"><option>2026</option><option>2025</option><option>2024</option><option>2023</option></select>
+        <div class="explore-actions"><button id="major-intro" type="button">Giới thiệu ngành ↗</button><button id="major-cutoff" type="button">Tra điểm chuẩn ↗</button></div>
+        <p id="catalog-note" class="small-note">Chọn ngành để điền câu hỏi. Bạn có thể sửa trước khi gửi.</p>
+      </section>
+      <div class="sidebar-bottom">
+        <div class="source-mark"><span aria-hidden="true">✓</span> Thông tin có nguồn</div>
+        <p>Điểm chuẩn là thông tin tham khảo, không bảo đảm trúng tuyển.</p>
+        <a href="https://tuyensinh.ut.edu.vn/" target="_blank" rel="noopener noreferrer">Website tuyển sinh UTH ↗</a>
+        <p class="independent-note">Dự án học tập độc lập.<br>Không phải kênh tư vấn chính thức.</p>
+      </div>
+    </aside>
+    <main id="main" class="main-panel">
+      <header class="topbar"><div><span class="breadcrumb">KHÁM PHÁ TƯƠNG LAI</span><h1>Trợ lý tuyển sinh</h1></div><div id="connection" class="connection" role="status"><span class="status-dot" aria-hidden="true"></span><span id="connection-text">Đang kết nối</span></div></header>
+      <div class="conversation-scroll" id="conversation-scroll">
+        <section class="welcome" id="welcome" aria-labelledby="welcome-title">
+          <div class="edition">UTH / TUYỂN SINH 2026 <span>ĐỒNG HÀNH CÙNG BẠN</span></div>
+          <h2 id="welcome-title">Chọn ngành hôm nay.<br><em>Mở lối ngày mai.</em></h2>
+          <p>Tìm hiểu ngành học, xem điểm chuẩn và chuẩn bị cho hành trình đại học — bắt đầu bằng câu hỏi của bạn.</p>
+          <div class="highlights"><span>26 ngành</span><span>41 chuyên ngành</span><span>Nguồn thông tin UTH</span></div>
+          <div class="suggestion-heading">BẠN MUỐN TÌM HIỂU ĐIỀU GÌ?</div>
+          <div class="suggestions">
+            <button type="button" data-question="UTH đào tạo những ngành gì"><span class="suggestion-icon" aria-hidden="true">▦</span><span>Khám phá ngành học<small>Xem danh mục ngành tại UTH</small></span><span aria-hidden="true">↗</span></button>
+            <button type="button" data-question="điểm chuẩn ngành Công nghệ thông tin năm 2026"><span class="suggestion-icon" aria-hidden="true">↗</span><span>Tra cứu điểm chuẩn<small>Theo ngành, năm và phương thức</small></span><span aria-hidden="true">↗</span></button>
+            <button type="button" data-question="học phí của trường"><span class="suggestion-icon" aria-hidden="true">₫</span><span>Tìm hiểu học phí<small>Xem phạm vi chương trình áp dụng</small></span><span aria-hidden="true">↗</span></button>
+            <button type="button" data-question="Em có 8 điểm Toán, 8 điểm Hóa và 9 điểm Anh"><span class="suggestion-icon" aria-hidden="true">＋</span><span>Tính điểm tổ hợp<small>Kiểm tra tổng điểm các môn</small></span><span aria-hidden="true">↗</span></button>
+          </div>
+        </section>
+        <section id="messages" class="messages" role="log" aria-label="Nội dung hội thoại" aria-live="polite" aria-relevant="additions"></section>
+      </div>
+      <div class="composer-area">
+        <div id="notice" class="notice" role="status" hidden></div>
+        <form id="chat-form" class="composer">
+          <label class="sr-only" for="message">Câu hỏi tuyển sinh</label>
+          <textarea id="message" rows="1" maxlength="2000" placeholder="Hỏi về ngành học, điểm chuẩn, học phí…" required></textarea>
+          <button id="send" type="submit" aria-label="Gửi câu hỏi"><span aria-hidden="true">↑</span></button>
+        </form>
+        <div class="composer-footer"><span>Enter để gửi · Shift + Enter để xuống dòng</span><span>Không cần cung cấp tên hoặc thông tin cá nhân.</span></div>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

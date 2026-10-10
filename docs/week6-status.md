@@ -21,7 +21,20 @@ Ngày kiểm tra: 10/10/2026. Phạm vi theo [roadmap](ROADMAP.md): tách runtim
 - **138/138 test Python pass**: 117 backend, 14 HTTP gateway và 7 kiểm tra tái lập/CI.
 - Test lỗi có chủ đích chứng minh từ chối catalog trùng ID, duplicate key YAML/JSON, model đổi bytes, model đúng checksum nhưng sai input và NLU dưới ngưỡng.
 
-Train/model, hội thoại và kiểm tra workflow trên GitHub đang được nghiệm thu; kết quả cuối sẽ được ghi sau khi hoàn tất.
+- Fresh train local thành công; model có manifest, checksum và fingerprint khớp checkout. Lần train này bắt đầu trước commit triển khai, nên manifest giữ đúng base commit tuần 5 và `working_tree_dirty: true`.
+- **Core 10/10**, 26 dự đoán action đúng, không có prediction warning; 4 smoke SDK và 4 smoke REST pass.
+- **22/22 hội thoại REST có intent tường minh và 4/4 hội thoại bằng câu tự nhiên pass**.
+- **13/13 nhóm browser với model thật pass**, không có JavaScript page error; desktop và mobile đều được kiểm tra.
+- NLU fresh model trên 154 câu tự soạn cố định: **macro-F1 intent 0,9394; entity exact-span F1 0,9505** (96 TP, 3 FP, 7 FN). Gate ≥0,90/≥0,85 pass. Không sửa train/test hoặc threshold trong tuần này.
+- Clone sạch commit `3847c5ac` vào thư mục kiểm thử riêng: artifact có fingerprint khớp, Compose parse thành công, không có thay đổi tracked. Lần này kiểm tra đường dùng artifact đã train; GitHub model workflow kiểm tra build/train/start từ checkout sạch.
+- [CI trên GitHub](https://github.com/TrinhQuocDat542005/chatbot-tuyensinh/actions/runs/38050433383) **success**: 138 test, 13 browser mock và report artifact đã xuất.
+- [Model regression trên GitHub](https://github.com/TrinhQuocDat542005/chatbot-tuyensinh/actions/runs/38050433408) **success** trên checkout sạch commit `3847c5ac`: build mới, validation, force train, verify, 138 test/Core, gate NLU, start ba service, smoke SDK/REST, 22+4 hội thoại và 13 browser thật đều pass. Đây là kiểm chứng đường build/train/start/check tương đương quick start từ source Git, không dùng model local hay venv/cache môi trường cũ.
+- NLU model CI: **macro-F1 intent 0,9117; entity exact-span F1 0,9596**. Khác lần train local vì fresh training không bảo đảm trọng số đồng nhất; cả hai vượt gate. Không thay tập test hoặc hạ ngưỡng để làm CI xanh.
+- Artifact [model + manifest/checksum](https://github.com/TrinhQuocDat542005/chatbot-tuyensinh/actions/runs/38050433408/artifacts/11669652254) và [báo cáo](https://github.com/TrinhQuocDat542005/chatbot-tuyensinh/actions/runs/38050433408/artifacts/11669067882) đã xuất theo đúng commit. Model bundle khoảng 34 MB, lưu 30 ngày.
+
+**Kết luận:** các tiêu chí tuần 6 đã đạt trên local và runner GitHub sạch. Không thay kết quả tuần 4 bằng số đo từ model train lại.
+
+[Báo cáo thực đo và provenance](evaluation/week6-summary.json).
 
 ## Giới hạn
 

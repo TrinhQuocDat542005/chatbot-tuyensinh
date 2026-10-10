@@ -131,6 +131,8 @@ NLU đo ngày **10/10/2026** trên 154 câu tự soạn cố định, gồm 54 c
 
 Baseline chưa có ba intent mới, nên mức tăng phản ánh cả mở rộng phạm vi. Entity giảm nhẹ so với lần đầu; nhận diện ngoài phạm vi vẫn cần cải thiện.
 
+Fresh train tuần 6 giữ nguyên dữ liệu/config: local đạt macro-F1 intent **0,9394**, entity exact-span F1 **0,9505**; runner GitHub sạch đạt **0,9117/0,9596**, đều vượt gate hồi quy. Fresh training có thể cho trọng số/chỉ số khác nhau; xem [báo cáo tuần 6 và provenance](docs/evaluation/week6-summary.json).
+
 **Hội thoại backend tuần 4:** 10/10 Core, 22/22 kịch bản REST nhiều lượt và 4/4 luồng nhiều lượt bằng câu tự nhiên pass. Bộ Python hiện có 138 test, gồm 117 backend, 14 HTTP gateway và 7 kiểm tra tái lập/CI. Xem [nghiệm thu tuần 5](docs/week5-status.md) và [tuần 6](docs/week6-status.md) cho các lần đo tiếp theo.
 
 [Báo cáo tuần 4](docs/week4-status.md) · [Chỉ số, hash và câu sai](docs/evaluation/week4-summary.json)

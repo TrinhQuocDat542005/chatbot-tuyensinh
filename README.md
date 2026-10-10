@@ -118,11 +118,13 @@ Hoặc dùng `scripts/run-local.ps1 -Mode actions` / `-Mode server`. Nếu Windo
 
 ## Nghiên cứu · AI King 2025
 
-Dự án gắn với quá trình tham gia **cuộc thi AI King tại Trường Đại học Hùng Vương TP.HCM**, theo chia sẻ của chủ repository. Bài nghiên cứu liên quan được lưu trong kỷ yếu **AI King: Shaping the Future**, ngày **30/07/2025**:
+**Trịnh Quốc Đạt**, chủ repository, đã tham gia **cuộc thi AI King tại Trường Đại học Hùng Vương TP.HCM** và xác nhận là đồng tác giả của bài nghiên cứu dưới đây. Bài được lưu trong kỷ yếu **AI King: Shaping the Future**, ngày **30/07/2025**:
 
 > **Xây dựng chatbot tư vấn tuyển sinh cho trường đại học**<br>
 > Nguyễn Thanh Tiến · Phan Phát Đạt · Trịnh Phát Đạt · Nguyễn Quyền<br>
 > Nhà xuất bản Thông tin và Truyền thông · trang 372–382
+
+**Ghi chú tên tác giả:** tên **“Trịnh Phát Đạt”** trong bản in là lỗi in tên của **Trịnh Quốc Đạt**, theo xác nhận trực tiếp của tác giả. Danh sách trên giữ theo bản in để đối chiếu; [ghi chú chi tiết](docs/research/README.md) đi kèm PDF gốc.
 
 **[Đọc tài liệu PDF](docs/research/aiking2025-proceedings.pdf)** · [Thông tin thư mục và trích dẫn](docs/research/README.md)
 

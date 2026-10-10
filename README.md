@@ -10,6 +10,7 @@ Trợ lý tuyển sinh tiếng Việt có ngữ cảnh, dữ liệu có nguồn 
 ![Rasa 3.6.21](https://img.shields.io/badge/Rasa-3.6.21-5A17EE)
 ![Local web demo](https://img.shields.io/badge/Web-local_demo-17614F)
 ![AI King 2025](https://img.shields.io/badge/Research-AI_King_2025-B88437)
+[![CI](https://github.com/TrinhQuocDat542005/chatbot-tuyensinh/actions/workflows/ci.yml/badge.svg)](https://github.com/TrinhQuocDat542005/chatbot-tuyensinh/actions/workflows/ci.yml)
 
 [Chạy demo](#chạy-demo) · [Tính năng](#tính-năng) · [AI King 2025](#nghiên-cứu--ai-king-2025) · [Đánh giá](#đánh-giá) · [Lộ trình](docs/ROADMAP.md)
 
@@ -38,17 +39,16 @@ Trợ lý tuyển sinh tiếng Việt có ngữ cảnh, dữ liệu có nguồn 
 
 ### Docker Linux
 
-Cần Docker Desktop/Engine Linux đang chạy. Với lần cài đầu:
+Cần Docker Desktop/Engine Linux đang chạy, Git và Python 3.10+ trên máy để chạy script quản lý (script này không cần cài Rasa). Với lần cài đầu:
 
 ```bash
 git clone https://github.com/TrinhQuocDat542005/chatbot-tuyensinh.git
 cd chatbot-tuyensinh
-docker compose build train web
-docker compose run --rm train
-docker compose up -d --wait actions rasa web
+python scripts/manage.py train
+python scripts/manage.py up
 ```
 
-Mở **[localhost:8686](http://localhost:8686)**. Train có thể mất vài phút; model mới được giữ trong `models/` và không được commit.
+Mở **[localhost:8686](http://localhost:8686)**. Script build ba image riêng, train mới rồi tạo manifest và SHA-256 trong `models/`. Khi khởi động, model phải khớp checksum và dữ liệu/config của checkout. Train có thể mất vài phút; model không được commit. Xem [hướng dẫn Windows/WSL/Docker và artifact CI](docs/reproducibility.md).
 
 | Thành phần | Địa chỉ local | Vai trò |
 | --- | --- | --- |
@@ -56,7 +56,7 @@ Mở **[localhost:8686](http://localhost:8686)**. Train có thể mất vài ph�
 | Rasa | `http://localhost:5005` | NLU và quản lý hội thoại |
 | Action server | `http://localhost:5055` | Tra dữ liệu, tính điểm và kiểm tra slot |
 
-Các cổng Compose chỉ bind trên `127.0.0.1`. Dừng demo bằng `docker compose down`.
+Các cổng Compose chỉ bind trên `127.0.0.1`. Dừng demo bằng `python scripts/manage.py down`.
 
 ### Đã có backend đang chạy
 
@@ -131,7 +131,7 @@ NLU đo ngày **10/10/2026** trên 154 câu tự soạn cố định, gồm 54 c
 
 Baseline chưa có ba intent mới, nên mức tăng phản ánh cả mở rộng phạm vi. Entity giảm nhẹ so với lần đầu; nhận diện ngoài phạm vi vẫn cần cải thiện.
 
-**Hội thoại backend:** 10/10 Core, 22/22 kịch bản REST nhiều lượt và 4/4 luồng nhiều lượt bằng câu tự nhiên pass. Python có 117 test backend và 14 test HTTP gateway. Xem [nghiệm thu tuần 5](docs/week5-status.md) cho kiểm tra giao diện.
+**Hội thoại backend tuần 4:** 10/10 Core, 22/22 kịch bản REST nhiều lượt và 4/4 luồng nhiều lượt bằng câu tự nhiên pass. Bộ Python hiện có 138 test, gồm 117 backend, 14 HTTP gateway và 7 kiểm tra tái lập/CI. Xem [nghiệm thu tuần 5](docs/week5-status.md) và [tuần 6](docs/week6-status.md) cho các lần đo tiếp theo.
 
 [Báo cáo tuần 4](docs/week4-status.md) · [Chỉ số, hash và câu sai](docs/evaluation/week4-summary.json)
 
@@ -142,6 +142,8 @@ docker compose exec rasa python scripts/smoke_rest.py
 docker compose exec rasa python scripts/check_conversations.py
 docker compose exec rasa python scripts/check_conversations.py --cases tests/conversations/natural.json --out results/conversations/natural-report.json
 ```
+
+**CI:** mỗi PR chạy correctness lint Python, actionlint, kiểm tra YAML/JSON/schema, 138 test và UI với backend mô phỏng. Thay đổi dữ liệu/cấu hình/nghiệp vụ kích hoạt workflow model: build sạch, train, Core/NLU, hội thoại REST và UI với model thật. Luồng này cũng chạy hàng tuần hoặc manual. Model, manifest/checksum và báo cáo được xuất thành artifact theo commit; xem [quy trình tái lập](docs/reproducibility.md).
 
 <details>
 <summary><strong>Kiểm thử giao diện và quay demo (Node.js 20+)</strong></summary>
@@ -195,7 +197,7 @@ Demo hiện phục vụ local. Xác thực, rate limiting, lưu trữ tracker v�
 
 ## Lộ trình và đóng góp
 
-[Lộ trình 8 tuần](docs/ROADMAP.md) · [Tuần 1–2](docs/week1-2-status.md) · [Tuần 4](docs/week4-status.md) · [Tuần 5](docs/week5-status.md)
+[Lộ trình 8 tuần](docs/ROADMAP.md) · [Tuần 1–2](docs/week1-2-status.md) · [Tuần 4](docs/week4-status.md) · [Tuần 5](docs/week5-status.md) · [Tuần 6](docs/week6-status.md)
 
 Khi bổ sung dữ liệu, ghi nguồn chính thức, ngày kiểm tra, năm/phương thức và thang điểm. Giữ tập đánh giá ngoài `data/`, thêm kiểm tra lỗi nghiệp vụ và ghi kết quả thực đo. Issue nên có bước tái hiện, câu hỏi và kỳ vọng; bỏ thông tin cá nhân trước khi gửi.
 

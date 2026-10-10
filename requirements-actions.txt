@@ -1,0 +1,5 @@
+# SDK-only environment; TensorFlow and the Rasa training runtime are separate.
+rasa-sdk==3.6.2
+sanic==21.12.2
+Sanic-Cors==2.0.1
+jsonschema==4.17.3

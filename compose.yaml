@@ -24,23 +24,26 @@ services:
     build: .
     image: chatbot-tuyensinh:local
     profiles: [tools]
-    command: [python, -m, rasa, train, --data, data, --fixed-model-name, admissions-week4]
+    command: [python, scripts/model_artifact.py, train]
     volumes:
       - ./models:/app/models
   check:
     image: chatbot-tuyensinh:local
     build: .
     profiles: [tools]
-    command: [bash, -c, "python scripts/validate_data.py && python -m pytest -q && python -m rasa data validate --fail-on-warnings && python -m rasa test core --model models/admissions-week4.tar.gz --stories tests/test_stories.yml --out results/core"]
+    command: [bash, -c, "python scripts/check_project.py && python scripts/validate_data.py && python -m ruff check actions components scripts tests && python -m pytest -q --junitxml=results/pytest.xml && python -m rasa data validate --fail-on-warnings && python scripts/model_artifact.py verify && python -m rasa test core --model models/admissions-week4.tar.gz --stories tests/test_stories.yml --out results/core --fail-on-prediction-errors"]
     volumes:
       - ./models:/app/models:ro
       - ./results:/app/results
   actions:
-    image: chatbot-tuyensinh:local
-    build: .
+    image: chatbot-tuyensinh-actions:local
+    build:
+      context: .
+      dockerfile: Dockerfile.actions
+      target: runtime
     command: [python, -m, rasa_sdk, --actions, actions, --port, '5055']
     ports:
-      - 127.0.0.1:5055:5055
+      - 127.0.0.1:${ACTION_PORT:-5055}:5055
     healthcheck:
       test: [CMD, python, -c, "from urllib.request import urlopen; urlopen('http://localhost:5055/health', timeout=5)"]
       interval: 5s
@@ -50,7 +53,7 @@ services:
   rasa:
     image: chatbot-tuyensinh:local
     build: .
-    command: [python, -m, rasa, run, --model, models/admissions-week4.tar.gz, --endpoints, endpoints.docker.yml, --port, '5005']
+    command: [bash, -c, "python scripts/model_artifact.py verify && exec python -m rasa run --model models/admissions-week4.tar.gz --endpoints endpoints.docker.yml --port 5005"]
     depends_on:
       actions:
         condition: service_healthy
@@ -58,7 +61,7 @@ services:
       - ./models:/app/models:ro
       - ./results:/app/results
     ports:
-      - 127.0.0.1:5005:5005
+      - 127.0.0.1:${PORT:-5005}:5005
     healthcheck:
       test: [CMD, python, -c, "from urllib.request import urlopen; urlopen('http://localhost:5005/', timeout=5)"]
       interval: 5s

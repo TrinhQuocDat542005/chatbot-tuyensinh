@@ -12,3 +12,8 @@ reports
 .pytest_cache
 .env
 *.log
+node_modules
+test-results
+.ruff_cache
+docs/assets
+docs/research

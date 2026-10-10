@@ -6,10 +6,10 @@ ENV PYTHONUTF8=1 \
     TF_NUM_INTRAOP_THREADS=2 \
     TF_NUM_INTEROP_THREADS=2
 WORKDIR /app
-COPY requirements.txt requirements-dev.txt ./
+COPY requirements-lock.linux.txt ./
 # This stack predates strict metadata handling in newer pip releases.
 RUN python -m pip install --no-cache-dir pip==24.0 \
-    && python -m pip install --no-cache-dir -r requirements-dev.txt \
+    && python -m pip install --no-cache-dir -r requirements-lock.linux.txt \
     && python -m pip check
 COPY . .
 CMD ["python", "-m", "rasa", "--version"]

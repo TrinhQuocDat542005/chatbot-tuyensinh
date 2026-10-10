@@ -7,3 +7,12 @@ models/* filter=lfs diff=lfs merge=lfs -text
 *.md text eol=lf
 requirements*.txt text eol=lf
 .gitignore text eol=lf
+*.toml text eol=lf
+*.js text eol=lf
+*.cjs text eol=lf
+*.html text eol=lf
+*.css text eol=lf
+Dockerfile* text eol=lf
+web/Dockerfile text eol=lf
+.env.example text eol=lf
+.dockerignore text eol=lf

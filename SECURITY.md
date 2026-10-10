@@ -8,7 +8,7 @@ Compose bind các cổng trên `127.0.0.1`. Không đưa cấu hình này thẳn
 
 ## Báo lỗ hổng
 
-Dùng mục **Security → Report a vulnerability** trên GitHub nếu repository đã bật private vulnerability reporting. Nếu mục này chưa có, mở issue chỉ xin kênh liên hệ riêng; không đăng exploit, token, nội dung hội thoại hoặc dữ liệu cá nhân. Chưa cam kết thời gian xử lý; đây là dự án cá nhân.
+Dùng mục **Security → Report a vulnerability** trên GitHub; repository đã bật private vulnerability reporting. Nếu mục này không khả dụng với tài khoản của bạn, mở issue chỉ xin kênh liên hệ riêng; không đăng exploit, token, nội dung hội thoại hoặc dữ liệu cá nhân. Chưa cam kết thời gian xử lý; đây là dự án cá nhân.
 
 Trong báo cáo riêng, cung cấp commit, cách chạy, bước tái hiện bằng dữ liệu giả, ảnh hưởng và biện pháp khắc phục nếu có. Không thực hiện thử nghiệm vào hệ thống tuyển sinh chính thức hoặc dịch vụ của bên thứ ba.
 

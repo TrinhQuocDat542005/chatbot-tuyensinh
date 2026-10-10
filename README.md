@@ -112,7 +112,7 @@ python -m rasa run --model models/admissions-week4.tar.gz --endpoints endpoints.
 
 Hoặc dùng `scripts/run-local.ps1 -Mode actions` / `-Mode server`. Nếu Windows Application Control chặn DLL scikit-learn, dùng Docker Linux.
 
-`requirements-lock.windows.txt` là snapshot môi trường Windows của lần triển khai, không phải lock Linux. Các model tháng 05/2025 được track sẵn không đáp ứng domain/actions mới.
+`requirements-lock.windows.txt` là snapshot môi trường Windows của lần triển khai, không phải lock Linux. Các model tháng 05/2025 trong lịch sử Git không đáp ứng domain/actions mới; dùng bundle phát hành hoặc train mới.
 
 </details>
 
@@ -141,7 +141,7 @@ Baseline chưa có ba intent mới, nên mức tăng phản ánh cả mở rộn
 
 Fresh train tuần 6 giữ nguyên dữ liệu/config: local đạt macro-F1 intent **0,9394**, entity exact-span F1 **0,9505**; runner GitHub sạch đạt **0,9117/0,9596**, đều vượt gate hồi quy. Fresh training có thể cho trọng số/chỉ số khác nhau; xem [báo cáo tuần 6 và provenance](docs/evaluation/week6-summary.json).
 
-**Hội thoại backend tuần 4:** 10/10 Core, 22/22 kịch bản REST nhiều lượt và 4/4 luồng nhiều lượt bằng câu tự nhiên pass. Bộ Python hiện có 138 test, gồm 117 backend, 14 HTTP gateway và 7 kiểm tra tái lập/CI. Xem [nghiệm thu tuần 5](docs/week5-status.md) và [tuần 6](docs/week6-status.md) cho các lần đo tiếp theo.
+**Hội thoại backend tuần 4:** 10/10 Core, 22/22 kịch bản REST nhiều lượt và 4/4 luồng nhiều lượt bằng câu tự nhiên pass. Bộ Python portfolio hiện có 141 test: 117 backend, 14 HTTP gateway, 7 kiểm tra tái lập/CI và 3 kiểm tra audit. Clone sạch dùng model phát hành đã pass toàn bộ, cùng 13 nhóm UI thật. Xem [nghiệm thu portfolio](docs/week8-status.md).
 
 [Báo cáo tuần 4](docs/week4-status.md) · [Chỉ số, hash và câu sai](docs/evaluation/week4-summary.json)
 
@@ -153,7 +153,7 @@ docker compose exec rasa python scripts/check_conversations.py
 docker compose exec rasa python scripts/check_conversations.py --cases tests/conversations/natural.json --out results/conversations/natural-report.json
 ```
 
-**CI:** mỗi PR chạy correctness lint Python, actionlint, kiểm tra YAML/JSON/schema, 138 test và UI với backend mô phỏng. Thay đổi dữ liệu/cấu hình/nghiệp vụ kích hoạt workflow model: build sạch, train, Core/NLU, hội thoại REST và UI với model thật. Luồng này cũng chạy hàng tuần hoặc manual. Model, manifest/checksum và báo cáo được xuất thành artifact theo commit; xem [quy trình tái lập](docs/reproducibility.md).
+**CI:** mỗi PR chạy correctness lint Python, actionlint, kiểm tra YAML/JSON/schema, 141 test, scanner secret và UI với backend mô phỏng. Thay đổi dữ liệu/cấu hình/nghiệp vụ kích hoạt workflow model: build sạch, train, Core/NLU, hội thoại REST và UI với model thật. Luồng này cũng chạy hàng tuần hoặc manual. Model, manifest/checksum và báo cáo được xuất thành artifact theo commit; xem [quy trình tái lập](docs/reproducibility.md).
 
 <details>
 <summary><strong>Kiểm thử giao diện và quay demo (Node.js 20+)</strong></summary>

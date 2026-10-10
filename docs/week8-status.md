@@ -16,7 +16,9 @@ Ngày: 10/10/2026. Phạm vi theo quyết định chủ repository: GitHub portf
 
 Model CI đã có 138 test Python, Core 10/10, 22+4 hội thoại REST và 13 nhóm browser thật pass; NLU 0,9117/0,9596 trên tập tự soạn đã review. Bộ audit thêm 3 kiểm tra nhận diện secret, không in giá trị và phát hiện `.env`.
 
-Clone sạch, build/start/check bằng bundle chuẩn và CI source portfolio phải được xác nhận trước publish; kết quả sẽ được cập nhật tại đây khi hoàn tất.
+Clone sạch commit `36b01b25326134d5552ccfa43baf875b65581528` đã build ba image và dùng bundle CI chuẩn: verify fingerprint/checksum, lint/schema, **141/141 Python**, Rasa validation và **Core 10/10** pass. Ba service healthy; SDK 4/4, REST smoke 4/4, **22/22 hội thoại explicit + 4/4 natural**, **13/13 browser thật** pass, không có page error. Browser được chạy sau khi startup đã hoàn tất; một lượt chạy sớm bị gián đoạn khi thay container và đã được chạy lại đầy đủ.
+
+[CI source portfolio](https://github.com/TrinhQuocDat542005/chatbot-tuyensinh/actions/runs/38052969094) success. Tám model legacy được bỏ khỏi checkout hiện tại và quy tắc LFS mới được bỏ; file local/lịch sử vẫn giữ. Model chuẩn phân phối qua [Release v1.0.0](https://github.com/TrinhQuocDat542005/chatbot-tuyensinh/releases/tag/v1.0.0), không commit binary model mới vào source.
 
 ## Hoãn có chủ đích
 

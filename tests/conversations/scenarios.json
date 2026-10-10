@@ -514,7 +514,8 @@
         "contains": [
           "chưa hiểu"
         ],
-        "excludes": []
+        "excludes": [],
+        "max_messages": 3
       },
       {
         "intent": "bo_sung_tra_cuu",

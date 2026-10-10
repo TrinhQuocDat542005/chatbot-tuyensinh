@@ -11,6 +11,7 @@ Phiên bản portfolio chạy local; không có dịch vụ hosting trả phí h
 - README, ảnh/video và tài liệu nghiên cứu AI King 2025.
 - Ba runtime Docker, khóa dependency Linux, manifest model/checksum và CI kiểm tra nhẹ/model regression.
 - Bộ tài liệu đóng góp, bảo mật, quyền sử dụng, audit và quy trình phát hành.
+- Core fallback dùng action mặc định có revert để tránh lặp utterance khi policy thiếu tự tin; regression kiểm tra giới hạn số phản hồi và lượt tiếp sau fallback.
 
 Model phát hành lấy từ workflow sạch tại commit `3847c5acbf96899363ce6c5aff879e54fd0fd617`: macro-F1 intent 0,9117; entity exact-span F1 0,9596 trên tập 154 câu tự soạn đã review. 138 test Python, Core 10/10, REST 22+4 và 13 nhóm browser thật đã pass trong lần nghiệm thu đó. Không coi đây là đánh giá mù trên người dùng mới.
 

@@ -30,9 +30,12 @@ def main():
                               data=json.dumps({'sender': sender, 'message': message}).encode('utf-8'),
                               headers={'Content-Type': 'application/json'})
             with urlopen(request, timeout=90) as response:
-                answer = '\n'.join(m.get('text', '') for m in json.load(response))
+                messages = json.load(response)
+                answer = '\n'.join(m.get('text', '') for m in messages)
             passed = all(s in answer for s in turn.get('contains', [])) and all(s not in answer for s in turn.get('excludes', []))
-            turns.append({'message': message, 'answer': answer, 'passed': passed})
+            if 'max_messages' in turn:
+                passed = passed and len(messages) <= turn['max_messages']
+            turns.append({'message': message, 'answer': answer, 'message_count': len(messages), 'passed': passed})
         passed = all(turn['passed'] for turn in turns)
         print('PASS' if passed else 'FAIL', case['id'], flush=True)
         results.append({'id': case['id'], 'passed': passed, 'turns': turns})

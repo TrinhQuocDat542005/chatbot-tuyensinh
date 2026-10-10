@@ -31,7 +31,7 @@ def main():
         ('score-replacement', [score(24), score(26)]),
         ('score-fresh-request', [score(25), turn('tu_van_nganh_theo_diem', ['tổng điểm'], excludes=['25/30']), score(22)]),
         ('isolated-new-session', [follow({'nam': '2026'}, ['ngành nào'])]),
-        ('fallback-in-form', [missing, turn('nlu_fallback', ['chưa hiểu']), follow({'ten_nganh': 'CNTT'}, ['Công nghệ thông tin'])]),
+        ('fallback-in-form', [missing, turn('nlu_fallback', ['chưa hiểu']) | {'max_messages': 3}, follow({'ten_nganh': 'CNTT'}, ['Công nghệ thông tin'])]),
         ('name-optional', [turn('chao_hoi', ['không cần cung cấp tên'], excludes=['cho tôi biết tên']), intro()]),
         ('career-context', [intro(), turn('hoi_co_hoi_viec_lam_cua_nganh', ['Công nghệ thông tin'], excludes=['ngành nào'])]),
         ('explicit-new-year-new-major', [cutoff('2024'), follow({'ten_nganh': 'Ngôn ngữ Anh', 'nam': '2026'}, ['UTHNNA01A'], ['năm 2024'])]),

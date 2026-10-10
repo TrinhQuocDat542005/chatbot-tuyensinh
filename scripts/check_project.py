@@ -43,7 +43,7 @@ def json_pairs(pairs):
 
 def check(root):
     paths = list(root.glob('*.yml')) + list(root.glob('*.yaml')) + list(root.glob('*.json'))
-    for directory in ['actions/data', 'actions/schemas', 'data', 'tests', '.github/workflows', 'docs/evaluation']:
+    for directory in ['actions/data', 'actions/schemas', 'data', 'tests', '.github', 'docs/evaluation']:
         paths += [p for p in (root / directory).rglob('*') if p.suffix in {'.json', '.yml', '.yaml'}]
     for path in sorted(set(paths)):
         raw = path.read_text(encoding='utf-8-sig')

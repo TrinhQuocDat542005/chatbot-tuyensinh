@@ -12,6 +12,8 @@ Trợ lý tuyển sinh tiếng Việt có ngữ cảnh, dữ liệu có nguồn 
 ![AI King 2025](https://img.shields.io/badge/Research-AI_King_2025-B88437)
 [![CI](https://github.com/TrinhQuocDat542005/chatbot-tuyensinh/actions/workflows/ci.yml/badge.svg)](https://github.com/TrinhQuocDat542005/chatbot-tuyensinh/actions/workflows/ci.yml)
 
+[![Release v1.0.0](https://img.shields.io/badge/Release-v1.0.0-17614F)](https://github.com/TrinhQuocDat542005/chatbot-tuyensinh/releases/tag/v1.0.0)
+
 [Chạy demo](#chạy-demo) · [Tính năng](#tính-năng) · [AI King 2025](#nghiên-cứu--ai-king-2025) · [Đánh giá](#đánh-giá) · [Lộ trình](docs/ROADMAP.md)
 
 ![Giao diện web trợ lý tuyển sinh UTH](docs/assets/demo-desktop.png)
@@ -21,6 +23,8 @@ Trợ lý tuyển sinh tiếng Việt có ngữ cảnh, dữ liệu có nguồn 
 </div>
 
 > Dự án độc lập phục vụ học tập và nghiên cứu, không phải kênh tư vấn chính thức của UTH. Điểm chuẩn chỉ dùng để tham khảo; thông tin chưa xác minh được bot thông báo rõ.
+
+**Bản portfolio v1.0.0:** demo chạy local, không yêu cầu hosting trả phí. Có thể tải model đã kiểm thử và báo cáo từ [GitHub Release](https://github.com/TrinhQuocDat542005/chatbot-tuyensinh/releases/tag/v1.0.0); xem [hướng dẫn bản phát hành](docs/release.md). Triển khai Internet và benchmark public là backlog, chưa được nghiệm thu.
 
 ## Tính năng
 
@@ -40,6 +44,10 @@ Trợ lý tuyển sinh tiếng Việt có ngữ cảnh, dữ liệu có nguồn 
 ### Docker Linux
 
 Cần Docker Desktop/Engine Linux đang chạy, Git và Python 3.10+ trên máy để chạy script quản lý (script này không cần cài Rasa). Với lần cài đầu:
+
+**Chạy nhanh bằng model phát hành:** checkout tag `v1.0.0`, tải `model-bundle.zip`, giải nén ba file vào `models/`, chạy `python scripts/model_artifact.py verify`, `docker compose build train actions web` rồi `python scripts/manage.py up`. [Hướng dẫn checksum và từng bước](docs/release.md).
+
+**Hoặc train mới từ source:**
 
 ```bash
 git clone https://github.com/TrinhQuocDat542005/chatbot-tuyensinh.git
@@ -199,8 +207,10 @@ Demo hiện phục vụ local. Xác thực, rate limiting, lưu trữ tracker v�
 
 ## Lộ trình và đóng góp
 
-[Lộ trình 8 tuần](docs/ROADMAP.md) · [Tuần 1–2](docs/week1-2-status.md) · [Tuần 4](docs/week4-status.md) · [Tuần 5](docs/week5-status.md) · [Tuần 6](docs/week6-status.md)
+[Lộ trình](docs/ROADMAP.md) · [Tuần 1–2](docs/week1-2-status.md) · [Tuần 4](docs/week4-status.md) · [Tuần 5](docs/week5-status.md) · [Tuần 6](docs/week6-status.md) · [Phát hành portfolio](docs/release.md)
 
 Khi bổ sung dữ liệu, ghi nguồn chính thức, ngày kiểm tra, năm/phương thức và thang điểm. Giữ tập đánh giá ngoài `data/`, thêm kiểm tra lỗi nghiệp vụ và ghi kết quả thực đo. Issue nên có bước tái hiện, câu hỏi và kỳ vọng; bỏ thông tin cá nhân trước khi gửi.
 
-Repository chưa chọn giấy phép mã nguồn. Tài liệu AI King giữ quyền tác giả của các tác giả/đơn vị xuất bản; việc công khai repository không tự cấp quyền tái sử dụng mọi tài liệu.
+[Đóng góp](CONTRIBUTING.md) · [Bảo mật](SECURITY.md) · [Changelog](CHANGELOG.md) · [Quyền sử dụng](LICENSE) · [Nguồn và quyền bên thứ ba](NOTICE.md).
+
+Mã nguồn hiện giữ quyền tác giả, chưa cấp giấy phép mã nguồn mở khi quyền của các đồng tác giả chưa được xác nhận. Tài liệu AI King, dữ liệu dẫn nguồn và dependency giữ quyền/giấy phép riêng.

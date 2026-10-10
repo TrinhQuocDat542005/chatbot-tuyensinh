@@ -46,6 +46,8 @@ jobs:
           docker compose config --quiet
       - name: Unit and HTTP integration tests
         run: python -m pytest -q --junitxml=results/pytest.xml
+      - name: Scan tracked text for known secret formats
+        run: python scripts/audit_repository.py --out results/repository-audit.json
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
           node-version: '22'

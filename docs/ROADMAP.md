@@ -2,6 +2,8 @@
 
 Ngày đánh giá: 10/10/2026. Phạm vi: mã nguồn, cấu hình Rasa, dữ liệu JSON, dữ liệu huấn luyện, kịch bản test và cấu trúc Git đang có trong repository.
 
+**Phạm vi đã chốt với chủ repository:** portfolio GitHub và demo local. Tuần 7 public hosting được hoãn, không phải điều kiện phát hành portfolio v1.0.0. Tuần 8 tập trung đóng gói, tài liệu, audit và release model; xem [quy trình phát hành](release.md). Các tiêu chí public bên dưới được giữ làm backlog, không đánh dấu đã đạt.
+
 Tiến độ triển khai sau đánh giá: xem [nghiệm thu tuần 1–2](week1-2-status.md), [kết quả tuần 4](week4-status.md), [demo web tuần 5](week5-status.md) và [Docker/CI tuần 6](week6-status.md). Tuần 4 đạt mục tiêu trên tập câu tự soạn đã review, cần xác nhận thêm bằng câu người dùng mới. Tuần 5 có demo local và 5 tác vụ qua UI đã pass với model thật. Tuần 6 có runtime SDK riêng, model truy vết bằng commit/input/checksum; CI và model regression đã success trên checkout GitHub sạch. Các phát hiện hiện trạng dưới đây mô tả phiên bản trước khi sửa.
 
 Đây là kế hoạch triển khai, không phải báo cáo hệ thống đã chạy đạt các chỉ số bên dưới. Phiên đánh giá này chưa có môi trường Rasa khả dụng để train hoặc chạy kiểm thử hội thoại; các phát hiện dựa trên đọc file, đối chiếu dữ liệu và kiểm tra tĩnh. Chưa xác minh tính đúng đắn của thông tin tuyển sinh với trường.

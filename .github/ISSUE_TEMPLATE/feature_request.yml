@@ -1,0 +1,20 @@
+name: Đề xuất cải tiến
+description: Đề xuất có phạm vi và tiêu chí kiểm chứng
+title: "[Feature] "
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Nhu cầu và ví dụ sử dụng
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Kết quả mong muốn và cách kiểm tra
+    validations:
+      required: true
+  - type: textarea
+    id: sources
+    attributes:
+      label: Nguồn chính thức nếu liên quan dữ liệu

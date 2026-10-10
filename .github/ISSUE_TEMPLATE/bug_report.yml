@@ -1,0 +1,26 @@
+name: Báo lỗi
+description: Báo lỗi bằng dữ liệu giả và bước tái hiện
+title: "[Bug] "
+body:
+  - type: markdown
+    attributes:
+      value: Không gửi token, tên thật, điểm cá nhân hoặc log chưa rà. Lỗ hổng được báo theo SECURITY.md.
+  - type: textarea
+    id: environment
+    attributes:
+      label: Môi trường
+      description: Commit/tag, hệ điều hành, Docker hoặc Python và cách chạy.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Bước tái hiện và câu hỏi mẫu
+    validations:
+      required: true
+  - type: textarea
+    id: result
+    attributes:
+      label: Kết quả thực tế và mong đợi
+    validations:
+      required: true

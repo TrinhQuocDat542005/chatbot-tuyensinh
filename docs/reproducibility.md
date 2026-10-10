@@ -83,7 +83,7 @@ python scripts/model_artifact.py verify
 python scripts/manage.py up
 ```
 
-`verify` phải pass trước khi dùng. Không dùng tám model legacy tháng 05/2025 cho domain hiện tại. Artifact là đầu ra CI có hạn lưu, chưa phải GitHub Release v1.0; phát hành và license thuộc tuần 8. Không tự rewrite lịch sử Git/LFS.
+`verify` phải pass trước khi dùng. Không dùng tám model legacy tháng 05/2025 cho domain hiện tại. Artifact là đầu ra CI có hạn lưu. Bản portfolio v1.0.0 phân phối bundle chuẩn lâu dài qua [GitHub Release và hướng dẫn](release.md). Không tự rewrite lịch sử Git/LFS.
 
 ## Tài liệu đối chiếu
 

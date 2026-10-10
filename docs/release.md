@@ -25,7 +25,7 @@ Nếu muốn train mới, dùng `python scripts/manage.py train` rồi `up`; tr�
 
 ## Nguồn model
 
-Model chuẩn lấy từ [workflow 38050433408](https://github.com/TrinhQuocDat542005/chatbot-tuyensinh/actions/runs/38050433408), checkout sạch `3847c5acbf96899363ce6c5aff879e54fd0fd617`. Source release bổ sung tài liệu và kiểm tra portfolio; model input được verify vẫn khớp. Model local từng train với dirty tree không dùng làm asset phát hành.
+Model chuẩn lấy từ [workflow 38053556087](https://github.com/TrinhQuocDat542005/chatbot-tuyensinh/actions/runs/38053556087), checkout sạch `7be7e2f6d9b7e366cb41e408e46c7b087fc98597`. Source release bổ sung tài liệu và kiểm tra portfolio; model input được verify vẫn khớp. Model local từng train với dirty tree không dùng làm asset phát hành.
 
 Kèm **evaluation.zip** từ cùng workflow, và **release-report.json** mô tả checksum, commit nguồn, các kiểm tra và giới hạn. Số liệu NLU trong README thuộc model/tập test được ghi rõ; không coi là số đo trên câu hỏi người dùng mới.
 

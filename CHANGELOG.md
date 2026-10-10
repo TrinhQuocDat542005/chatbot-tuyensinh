@@ -13,6 +13,6 @@ Phiên bản portfolio chạy local; không có dịch vụ hosting trả phí h
 - Bộ tài liệu đóng góp, bảo mật, quyền sử dụng, audit và quy trình phát hành.
 - Core fallback dùng action mặc định có revert để tránh lặp utterance khi policy thiếu tự tin; regression kiểm tra giới hạn số phản hồi và lượt tiếp sau fallback.
 
-Model phát hành lấy từ workflow sạch tại commit `3847c5acbf96899363ce6c5aff879e54fd0fd617`: macro-F1 intent 0,9117; entity exact-span F1 0,9596 trên tập 154 câu tự soạn đã review. 138 test Python, Core 10/10, REST 22+4 và 13 nhóm browser thật đã pass trong lần nghiệm thu đó. Không coi đây là đánh giá mù trên người dùng mới.
+Model phát hành lấy từ workflow sạch tại commit `7be7e2f6d9b7e366cb41e408e46c7b087fc98597`: macro-F1 intent 0,9010; entity exact-span F1 0,9608 trên tập 154 câu tự soạn đã review. 141 test Python, Core 10/10, REST 22+4 và 13 nhóm browser thật đã pass. Không coi đây là đánh giá mù trên người dùng mới.
 
 Giới hạn: chưa có dữ liệu THPT cùng thang để gợi ý ngành theo điểm; nhiều mô tả ngành còn chờ xác minh; chưa nghiệm thu vận hành Internet, tải đồng thời hoặc nâng cấp vòng đời runtime.

@@ -141,6 +141,8 @@ Baseline chưa có ba intent mới, nên mức tăng phản ánh cả mở rộn
 
 Fresh train tuần 6 giữ nguyên dữ liệu/config: local đạt macro-F1 intent **0,9394**, entity exact-span F1 **0,9505**; runner GitHub sạch đạt **0,9117/0,9596**, đều vượt gate hồi quy. Fresh training có thể cho trọng số/chỉ số khác nhau; xem [báo cáo tuần 6 và provenance](docs/evaluation/week6-summary.json).
 
+**Model phát hành v1.0.0:** sau sửa Core fallback, fresh train trên GitHub sạch đạt macro-F1 intent **0,9010**, entity exact-span F1 **0,9608**; gate ≥0,90/≥0,85 pass. 141 test Python, Core 10/10, 22+4 hội thoại và 13 nhóm UI thật pass. Giữ nguyên tập NLU và ngưỡng; số đo này thuộc model trong release, khác các lần train lịch sử. [Báo cáo release](docs/evaluation/release-summary.json) · [Workflow nguồn](https://github.com/TrinhQuocDat542005/chatbot-tuyensinh/actions/runs/38053556087).
+
 **Hội thoại backend tuần 4:** 10/10 Core, 22/22 kịch bản REST nhiều lượt và 4/4 luồng nhiều lượt bằng câu tự nhiên pass. Bộ Python portfolio hiện có 141 test: 117 backend, 14 HTTP gateway, 7 kiểm tra tái lập/CI và 3 kiểm tra audit. Clone sạch dùng model phát hành đã pass toàn bộ, cùng 13 nhóm UI thật. Xem [nghiệm thu portfolio](docs/week8-status.md).
 
 [Báo cáo tuần 4](docs/week4-status.md) · [Chỉ số, hash và câu sai](docs/evaluation/week4-summary.json)
